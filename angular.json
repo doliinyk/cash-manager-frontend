@@ -60,9 +60,7 @@
                   "maximumError": "10kb"
                 }
               ],
-              "outputHashing": "all"
-            },
-            "development": {
+              "outputHashing": "all",
               "optimization": true,
               "extractLicenses": true,
               "sourceMap": false,
@@ -74,19 +72,18 @@
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "cash-manager-frontend:build"
+          },
           "configurations": {
             "production": {
               "buildTarget": "cash-manager-frontend:build:production"
-            },
-            "development": {
-              "buildTarget": "cash-manager-frontend:build:development"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
