@@ -1,5 +1,4 @@
-name: Azure Static Web Apps CI/CD
-
+name: Build and deploy
 on:
   workflow_dispatch:
   push:
@@ -20,7 +19,7 @@ jobs:
           lfs: false
           
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'npm'
