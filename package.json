@@ -11,6 +11,9 @@
     "test:coverage": "ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage",
     "serve:ssr:cash-manager-frontend": "node dist/cash-manager-frontend/server/server.mjs"
   },
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.1.0",
