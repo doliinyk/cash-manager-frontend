@@ -23,14 +23,11 @@ jobs:
       - name: Build
         run: npm run build:production
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: node-app
-          path: release.zip
+          name: cash-manager-frontend
+          path: dist/cash-manager-frontend/browser
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,11 +41,8 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: node-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-      
+          name: cash-manager-frontend
+   
       - name: Login to Azure
         uses: azure/login@v1
         with:
