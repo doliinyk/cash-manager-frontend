@@ -1,0 +1,21 @@
+
+  <mat-toolbar color="primary" fxLayout="row">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" fxFlex="none" [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span >Cash Manager</span>
+    <span class="example-spacer" fxFlex></span>
+    <button class="example-icon" mat-button>
+      <span>Sign in</span>
+    </button>
+  </mat-toolbar>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>contact_support</mat-icon>
+      <span>Support</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>help</mat-icon>
+      <span>FAQ</span>
+    </button>
+  </mat-menu>

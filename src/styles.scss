@@ -20,11 +20,11 @@ $cash-manager-frontend-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$cash-manager-frontend-theme: mat.define-light-theme((
+$cash-manager-frontend-theme: mat.define-dark-theme((
   color: (
     primary: $cash-manager-frontend-primary,
     accent: $cash-manager-frontend-accent,
-    warn: $cash-manager-frontend-warn,
+    warn: $cash-manager-frontend-warn
   )
 ));
 
