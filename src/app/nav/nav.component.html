@@ -1,21 +1,22 @@
 
   <mat-toolbar color="primary" fxLayout="row">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" fxFlex="none" [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
+    <span class="text-main">CashChecker</span>
+    <button mat-button class="button-profile">
+      <span>Профіль</span>
     </button>
-    <span >Cash Manager</span>
     <span class="example-spacer" fxFlex></span>
-    <button class="example-icon" mat-button>
-      <span>Sign in</span>
+    <button mat-button class="button-language" [matMenuTriggerFor]="menu">
+      <span class="text-language">Українська</span>
+    </button>
+    <button mat-button class="button-login">
+           <span class="text-login">Вхід/Реєстрація</span>
     </button>
   </mat-toolbar>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
-      <mat-icon>contact_support</mat-icon>
-      <span>Support</span>
+      <span>Англійська</span>
     </button>
     <button mat-menu-item>
-      <mat-icon>help</mat-icon>
-      <span>FAQ</span>
+      <span>Польська</span>
     </button>
   </mat-menu>

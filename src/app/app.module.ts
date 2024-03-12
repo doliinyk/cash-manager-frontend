@@ -12,12 +12,14 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import { MainComponent } from './main/main.component';
+import {MatButtonToggle} from "@angular/material/button-toggle";
+import {MatLabel} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    MainComponent
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,9 @@ import { MainComponent } from './main/main.component';
     MatMenuTrigger,
     MatMenu,
     MatMenuItem,
-    MatButton
+    MatButton,
+    MatButtonToggle,
+    MatLabel
   ],
   providers: [
     provideClientHydration(),
