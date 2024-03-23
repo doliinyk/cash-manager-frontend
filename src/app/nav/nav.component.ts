@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {Languages} from "../models/languages";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +10,15 @@ import {Languages} from "../models/languages";
   styleUrl: './nav.component.scss'
 })
 export class NavComponent implements OnInit {
+  isSmallScreen = false;
+
   ngOnInit() {
+    this.breakpointObserver.observe([
+      Breakpoints.Small,
+      Breakpoints.XSmall,
+    ]).subscribe(result => {
+      this.isSmallScreen = result.matches;
+    });
     if (this.getLanguage() != null) {
       this.translate.use(<string>this.getLanguage());
     } else {
@@ -19,7 +29,7 @@ export class NavComponent implements OnInit {
     }
   }
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private breakpointObserver: BreakpointObserver) {
 
   }
 
@@ -36,4 +46,9 @@ export class NavComponent implements OnInit {
   }
 
   protected readonly Languages = Languages;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  isMenuOpen = false;
 }

@@ -1,14 +1,17 @@
-<mat-toolbar color="primary" fxLayout="row">
+<mat-toolbar color="primary" fxLayout="row" role="heading">
   <span class="text-main">CashChecker</span>
-  <button mat-button class="button-profile">
+  <button mat-button class="button-profile" *ngIf="!isSmallScreen">
     <span>{{'nav.profile' | translate}}</span>
   </button>
   <span class="example-spacer" fxFlex></span>
-  <button mat-button class="button-language" [matMenuTriggerFor]="menu">
+  <button mat-button class="button-language" *ngIf="!isSmallScreen" [matMenuTriggerFor]="menu">
     <span class="text-language">{{'nav.locale.current' | translate}}</span>
   </button>
-  <button mat-button class="button-login">
+  <button mat-button class="button-login" *ngIf="!isSmallScreen">
     <span class="text-login">{{'nav.login' | translate}}</span>
+  </button>
+  <button mat-icon-button (click)="toggleMenu()" *ngIf="isSmallScreen" fxFlexAlign="end center">
+    <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">

@@ -13,7 +13,6 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import { MainComponent } from './main/main.component';
 import {MatButtonToggle} from "@angular/material/button-toggle";
-import {MatLabel} from "@angular/material/form-field";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -45,7 +44,6 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
     MatMenuItem,
     MatButton,
     MatButtonToggle,
-    MatLabel,
     HttpClientModule,
   ],
   providers: [
