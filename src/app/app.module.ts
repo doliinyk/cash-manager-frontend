@@ -14,6 +14,9 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import { MainComponent } from './main/main.component';
 import {MatButtonToggle} from "@angular/material/button-toggle";
 import {MatLabel} from "@angular/material/form-field";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 @NgModule({
   declarations: [
@@ -22,6 +25,14 @@ import {MatLabel} from "@angular/material/form-field";
     MainComponent,
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      useDefaultLang: false,
+    }),
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
@@ -34,7 +45,8 @@ import {MatLabel} from "@angular/material/form-field";
     MatMenuItem,
     MatButton,
     MatButtonToggle,
-    MatLabel
+    MatLabel,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
@@ -43,3 +55,6 @@ import {MatLabel} from "@angular/material/form-field";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

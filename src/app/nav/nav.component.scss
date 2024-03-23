@@ -9,7 +9,7 @@
   color: #493c3c;
   background-color: #ffffff;
   border-radius: 5px;
-  padding: 0.00001% 0.7%;
+  padding: 0 20px;
   margin-right: 24px;
   text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
 }
@@ -18,7 +18,7 @@
   font-size: 30px;
   font-family: Outfit, sans-serif;
   color: #ffffff;
-  padding: 1.5% 0.7%;
+  padding: 29px 20px;
   border-radius: 5px;
   background-color: rgba(196, 176, 176, 0.1899999976158142);
   text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
@@ -28,7 +28,7 @@
   font-size: 20px;
   margin-left: 24px;
   font-family: Outfit, sans-serif;
-  padding: 1.5% 0.7%;
+  padding: 29px 20px;
   border-radius: 5px;
   border: 1px;
   text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
@@ -53,11 +53,14 @@
   font-size: 20px;
   font-family: Outfit, sans-serif;
   background: white;
-  padding: 1.5% 0.7%;
+  padding: 29px 20px;
   border-radius: 5px;
   text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
   box-shadow: rgba(0,0,0,19%) 0 4px 4px;
 }
 .text-language{
   color: black;
+}
+mat-menu{
+  background-color: white;
 }
