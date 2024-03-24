@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { TitleBarComponent } from './title-bar.component';
 
@@ -8,10 +10,10 @@ describe('TitleBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TitleBarComponent]
-    })
-    .compileComponents();
-    
+      declarations: [TitleBarComponent],
+      imports: [MatToolbarModule, MatMenuModule],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TitleBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

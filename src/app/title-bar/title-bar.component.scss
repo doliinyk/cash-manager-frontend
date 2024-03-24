@@ -1,18 +1,20 @@
+@import '../../variables';
+
 mat-toolbar {
-  width: 100%;
+  width: 100vw;
   height: 7vh;
   background: rgb(194,35,35);
-  background: linear-gradient(90deg, rgba(194,35,35,1) 0%, rgba(219,125,37,1) 50%, rgba(255,230,0,0.93) 100%);
+  background: $main-gradient;
   font-family: Outfit, sans-serif;
   letter-spacing: 1px;
   font-weight: 400;
 }
 
-.TitleText {
+.title-text {
   margin-left: 10px;
   color: white;
   font-size: 40px;
-  text-shadow: rgba(0,0,0,0.4) 0 4px 4px ;
+  text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
 }
 
 .spacer {
@@ -35,5 +37,5 @@ mat-toolbar {
   width: 80px;
   font-size: 15px;
   letter-spacing: 1px;
-  color: #493C3C;
+  color: $main-text-color;
 }

@@ -1,5 +1,5 @@
 mat-toolbar {
-  width: 100%;
+  width: 100vw;
   height: 7vh;
   background: rgb(194, 35, 35);
   background: linear-gradient(90deg, rgb(194, 35, 35) 0%, rgb(219, 125, 37) 50%, rgba(255, 230, 0, 0.93) 100%);
@@ -8,7 +8,7 @@ mat-toolbar {
   font-weight: 400;
 }
 
-.TitleText {
+.title-text {
   margin-left: 10px;
   color: white;
   font-size: 40px;

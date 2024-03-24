@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TitleBarComponent {
   selectedLanguage: string = 'Українська';
-  changeLanguage(language: string): void {
-    this.selectedLanguage = language
+
+  protected changeLanguage(language: string): void {
+    this.selectedLanguage = language;
   }
 }

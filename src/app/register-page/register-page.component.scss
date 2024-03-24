@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .reg-page {
   height: 85vh;
   display: flex;
@@ -28,7 +30,7 @@ form {
 
 .color-grad-thick, .color-grad {
   background: rgb(206, 77, 36);
-  background: linear-gradient(90deg, rgba(206, 77, 36, 1) 0%, rgba(0, 0, 0, 0.51) 100%);
+  background: $secondary-gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: rgba(0,0,0,0.3) 0 4px 4px ;
@@ -51,7 +53,7 @@ a {
   font-size: 13px;
   text-decoration: none !important;
   border: none !important;
-  color: #493C3C;
+  color: $main-text-color;
 }
 
 .forgot-password {
@@ -62,7 +64,7 @@ a {
 
 .login-text {
   background: rgb(206, 77, 36);
-  background: linear-gradient(90deg, rgba(206, 77, 36, 1) 0%, rgba(0, 0, 0, 0.51) 100%);
+  background: $secondary-gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterFooterComponent } from './register-footer.component';
+import { MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 describe('RegisterFooterComponent', () => {
   let component: RegisterFooterComponent;
@@ -8,10 +10,12 @@ describe('RegisterFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RegisterFooterComponent]
+      declarations: [RegisterFooterComponent],
+      imports: [MatIconModule, MatFormFieldModule
+      ]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(RegisterFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
