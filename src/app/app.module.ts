@@ -16,7 +16,7 @@ import {MatInput} from "@angular/material/input";
 import {MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {RegisterFooterComponent } from './register-footer/register-footer.component';
-import {LoginLayoutComponent } from './login-layout/login-layout.component';
+import {LoginLayoutComponent } from './Login/login-layout/login-layout.component';
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 
