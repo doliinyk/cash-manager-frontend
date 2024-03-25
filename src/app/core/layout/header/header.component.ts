@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-title-bar',
-  templateUrl: './title-bar.component.html',
-  styleUrl: './title-bar.component.scss'
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
 })
-export class TitleBarComponent {
+export class HeaderComponent {
   selectedLanguage: string = 'Українська';
 
   protected changeLanguage(language: string): void {

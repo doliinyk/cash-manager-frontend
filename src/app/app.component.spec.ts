@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { RegisterFooterComponent} from "./register-footer/register-footer.component";
-import {RegisterPageComponent} from "./register-page/register-page.component";
+import { FooterComponent} from "./core/layout/footer/footer.component";
+import {AuthComponent} from "./core/auth/auth.component";
 import {LoginLayoutComponent} from "./login-layout/login-layout.component";
-import {TitleBarComponent} from "./title-bar/title-bar.component";
+import {HeaderComponent} from "./core/layout/header/header.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -23,10 +23,10 @@ describe('AppComponent', () => {
      ],
       declarations: [
         AppComponent,
-        RegisterFooterComponent,
-        RegisterPageComponent,
+        FooterComponent,
+        AuthComponent,
         LoginLayoutComponent,
-        TitleBarComponent,
+        HeaderComponent,
       ],
     }).compileComponents();
   });
