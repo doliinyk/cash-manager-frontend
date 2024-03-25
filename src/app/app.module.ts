@@ -16,9 +16,10 @@ import {MatInput} from "@angular/material/input";
 import {MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {FooterComponent } from './core/layout/footer/footer.component';
-import {LoginLayoutComponent } from './Login/login-layout/login-layout.component';
+import {LoginLayoutComponent } from './features/WIP-login-layout/login-layout.component';
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatInputModule} from "@angular/material/input";
     MatFabButton,
     MatIcon,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    FontAwesomeModule
   ],
   providers: [
     provideClientHydration(),

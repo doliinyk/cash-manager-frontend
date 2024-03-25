@@ -1,19 +1,22 @@
-<footer>
+<footer fxLayout="row" fxLayoutAlign="space-between center">
   <div class="github-button">
     <button mat-fab class="footer-button">
-      <mat-icon svgIcon="githubIcon"></mat-icon>
+      <i class="fa-brands fa-github fa-xl"></i>
     </button>
   </div>
-  <div class="support-info-container">
+  <div class="support-info-container" fxLayout="row" fxLayoutGap="10px">
     <div class="info-button">
       <button mat-fab class="footer-button">
-        <mat-icon svgIcon="infoIcon"></mat-icon>
+        <i class="fa-solid fa-circle-info fa-xl"></i>
       </button>
     </div>
-    <div class="support-button">
-      <button mat-fab class="footer-button">
-        <mat-icon svgIcon="infoIcon"></mat-icon>
-      </button>
-    </div>
+
+    @if (loginStatus) {
+      <div class="support-button">
+        <button mat-fab class="footer-button">
+          <i class="fa-solid fa-message fa-xl"></i>
+        </button>
+      </div>
+    }
   </div>
 </footer>

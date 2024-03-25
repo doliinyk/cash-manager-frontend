@@ -1,81 +1,69 @@
 .reg-page {
-  height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Oufit, sans-serif;
+  height: 81vh;
 }
 
 form {
   width: 350px;
-  max-height: 300px;
+  height: auto;
   background-color: #f1f1f1;
-  border-radius: 5px;
-  border: orange 2px solid;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 25px;
+  border-radius: 50px;
+  border: transparent 2px solid;
+  -webkit-box-shadow: 2px 6px 44px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 6px 44px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 6px 44px 0px rgba(0, 0, 0, 0.25);
+  padding: 25px;
 }
 
-.two-buttons {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  gap: 45px;
-}
-
-.color-grad-thick, .color-grad {
+.color-grad {
+  width: 100px;
+  height: 50px;
   background: rgb(206, 77, 36);
   background: linear-gradient(90deg, rgb(206, 77, 36) 0%, rgba(0, 0, 0, 0.51) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: rgba(0, 0, 0, 0.3) 0 4px 4px;
+  font-size: 35px;
+  margin-bottom: 5px;
 }
 
-.color-grad-thick {
-  letter-spacing: 2px;
-  margin-top: 12px;
-  font-size: 40px;
-}
-
-.color-grad {
-  margin-top: 12px;
-  margin-bottom: 6px;
-  font-size: 40px;
+mat-form-field, .two-buttons {
+  width: 120%;
 }
 
 a {
-  margin-left: -60%;
   font-size: 13px;
-  text-decoration: none !important;
-  border: none !important;
+  text-decoration: none;
+  border: none;
   color: #493C3C;
 }
 
 .forgot-password {
   width: auto;
   height: auto;
-  margin-top: -10px;
+  margin-left: -115px;
+  margin-bottom: 20px;
+}
+
+.login-button, .register-button {
+  font-size: 15px;
+  width: 100px;
+  height: 40px;
+}
+
+.register-button {
+  width: 138px;
+}
+
+.two-buttons .register-button {
+  background: linear-gradient(90deg, rgb(206, 77, 36) 0%, rgba(0, 0, 0, 0.51) 100%);
+  color: #f1f1f1;
 }
 
 .login-text {
+  font-size: 15px;
   background: rgb(206, 77, 36);
   background: linear-gradient(90deg, rgb(206, 77, 36) 0%, rgba(0, 0, 0, 0.51) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-mat-form-field {
-  width: 120%;
-}
-
-.inputs-container {
-  align-items: center;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
 }
 
 /*# sourceMappingURL=auth.component.css.map */

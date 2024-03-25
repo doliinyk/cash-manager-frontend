@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FooterComponent } from './footer.component';
-import { MatIconModule} from "@angular/material/icon";
+import {FooterComponent} from './footer.component';
+import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 
 describe('RegisterFooterComponent', () => {
@@ -14,7 +14,7 @@ describe('RegisterFooterComponent', () => {
       imports: [MatIconModule, MatFormFieldModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;

@@ -1,12 +1,13 @@
 footer {
-  height: 8vh;
+  height: 12vh;
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 25px;
   box-sizing: border-box;
+}
+
+.footer-button {
+  background: white;
+  color: black;
 }
 
 /*# sourceMappingURL=footer.component.css.map */
