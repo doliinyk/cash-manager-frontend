@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Validators, FormGroup, FormControl, ReactiveFormsModule } from "@angular/forms";
-import {log} from "node:util";
+import { FormControl } from "@angular/forms";
 
 interface AuthForm {
   email: FormControl<string>;
