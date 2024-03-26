@@ -8,6 +8,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterOutlet} from "@angular/router";
 
 
 describe('AppComponent', () => {
@@ -17,13 +18,14 @@ describe('AppComponent', () => {
         MatToolbarModule,
         MatMenuModule,
         MatFormFieldModule,
-        MatIconModule
+        MatIconModule,
+        RouterOutlet
      ],
       declarations: [
         AppComponent,
         FooterComponent,
         LoginComponent,
-        HeaderComponent,
+        HeaderComponent
       ],
     }).compileComponents();
   });
