@@ -1,5 +1,7 @@
-.reg-page {
-  height: 81vh;
+@import '../../../shared/styles/variables'; //unfixable for now
+
+.overall-page {
+  height: $page-height;
 }
 
 form {
@@ -7,18 +9,20 @@ form {
   height: auto;
   background-color: #f1f1f1;
   border-radius: 50px;
-  border: transparent 2px solid;
-  -webkit-box-shadow: 2px 6px 44px 0px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 2px 6px 44px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 2px 6px 44px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 2px 6px 44px 0 rgba(0,0,0,0.25);
+  -moz-box-shadow: 2px 6px 44px 0 rgba(0,0,0,0.25);
+  box-shadow: 2px 6px 44px 0 rgba(0,0,0,0.25);
   padding: 25px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .color-grad {
-  width: 100px;
+  width: 100%;
   height: 50px;
   background: rgb(206, 77, 36);
-  background: linear-gradient(90deg, rgb(206, 77, 36) 0%, rgba(0, 0, 0, 0.51) 100%);
+  background: $secondary-gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 35px;
@@ -33,7 +37,7 @@ a {
   font-size: 13px;
   text-decoration: none;
   border: none;
-  color: #493C3C;
+  color: $main-text-color;
 }
 
 .forgot-password {
@@ -43,27 +47,31 @@ a {
   margin-bottom: 20px;
 }
 
-.login-button, .register-button {
+.login-button, .log-register-button {
   font-size: 15px;
   width: 100px;
   height: 40px;
 }
 
-.register-button {
+.log-register-button {
   width: 138px;
 }
 
-.two-buttons .register-button {
-  background: linear-gradient(90deg, rgb(206, 77, 36) 0%, rgba(0, 0, 0, 0.51) 100%);
+.reg-register-button {
+  width: 86%;
+}
+
+.two-buttons .log-register-button {
+  background: $secondary-gradient;
   color: #f1f1f1;
 }
 
 .login-text {
   font-size: 15px;
   background: rgb(206, 77, 36);
-  background: linear-gradient(90deg, rgb(206, 77, 36) 0%, rgba(0, 0, 0, 0.51) 100%);
+  background: $secondary-gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/*# sourceMappingURL=auth.component.css.map */
+

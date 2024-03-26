@@ -1,10 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl } from "@angular/forms";
-
-interface AuthForm {
-  email: FormControl<string>;
-  password: FormControl<string>;
-}
+import {Component} from '@angular/core';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-footer',

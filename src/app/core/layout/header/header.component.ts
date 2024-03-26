@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  selectedLanguage: string = 'Українська';
-
-  protected changeLanguage(language: string): void {
-    this.selectedLanguage = language;
-  }
+ //no code?
 }

@@ -2,8 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { FooterComponent} from "./core/layout/footer/footer.component";
-import {AuthComponent} from "./core/auth/auth.component";
-import {LoginLayoutComponent} from "./features/WIP-login-layout/login-layout.component";
+import {LoginComponent} from "./core/auth/login/login.component";
 import {HeaderComponent} from "./core/layout/header/header.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
@@ -15,7 +14,6 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         MatToolbarModule,
         MatMenuModule,
         MatFormFieldModule,
@@ -24,8 +22,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         FooterComponent,
-        AuthComponent,
-        LoginLayoutComponent,
+        LoginComponent,
         HeaderComponent,
       ],
     }).compileComponents();

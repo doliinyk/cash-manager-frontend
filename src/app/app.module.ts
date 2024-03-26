@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FlexLayoutServerModule} from "@angular/flex-layout/server";
-import {AuthComponent } from './core/auth/auth.component';
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {HeaderComponent } from './core/layout/header/header.component';
@@ -16,18 +15,20 @@ import {MatInput} from "@angular/material/input";
 import {MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {FooterComponent } from './core/layout/footer/footer.component';
-import {LoginLayoutComponent } from './features/WIP-login-layout/login-layout.component';
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MainComponent } from './main/main.component';
+import {LoginComponent} from "./core/auth/login/login.component";
+import {RegisterComponent} from "./core/auth/register/register.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     HeaderComponent,
     FooterComponent,
-    LoginLayoutComponent
+    MainComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +49,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     MatFabButton,
     MatIcon,
     MatIconModule,
-    MatInputModule,
-    FontAwesomeModule
+    MatInputModule
   ],
   providers: [
     provideClientHydration(),
