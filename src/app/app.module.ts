@@ -1,25 +1,28 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FlexLayoutServerModule} from "@angular/flex-layout/server";
-import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButton, MatFabButton} from "@angular/material/button";
-import {HeaderComponent } from './core/layout/header/header.component';
+import {HeaderComponent} from './core/layout/header/header.component';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
-import {MatInput} from "@angular/material/input";
+import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
-import {FooterComponent } from './core/layout/footer/footer.component';
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {FooterComponent} from './core/layout/footer/footer.component';
+import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
-import {MainComponent } from './main/main.component';
+import {MainComponent} from './main/main.component';
 import {LoginComponent} from "./core/auth/login/login.component";
 import {RegisterComponent} from "./core/auth/register/register.component";
+import {ProfileComponent} from './profile/profile.component';
+import {PaymentsComponent} from './payments/payments.component';
+import {AccountRecoverComponent} from './account-recover/account-recover.component';
+import {SupportComponent} from './support/support.component';
 
 @NgModule({
   declarations: [
@@ -28,26 +31,26 @@ import {RegisterComponent} from "./core/auth/register/register.component";
     FooterComponent,
     MainComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    PaymentsComponent,
+    AccountRecoverComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     FlexLayoutServerModule,
-    MatFormField,
     MatFormFieldModule,
     MatButton,
     MatMenu,
     MatMenuTrigger,
-    MatToolbar,
     MatToolbarModule,
     MatMenuItem,
-    MatInput,
     MatLabel,
     FormsModule,
     MatFabButton,
-    MatIcon,
     MatIconModule,
     MatInputModule
   ],
@@ -57,4 +60,5 @@ import {RegisterComponent} from "./core/auth/register/register.component";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

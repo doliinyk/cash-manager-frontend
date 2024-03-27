@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: '../auth-styles.scss'
+  styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
 
