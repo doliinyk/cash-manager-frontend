@@ -16,26 +16,16 @@ import {FormsModule} from "@angular/forms";
 import {FooterComponent} from './core/layout/footer/footer.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
-import {MainComponent} from './main/main.component';
 import {LoginComponent} from "./core/auth/login/login.component";
 import {RegisterComponent} from "./core/auth/register/register.component";
-import {ProfileComponent} from './profile/profile.component';
-import {PaymentsComponent} from './payments/payments.component';
-import {AccountRecoverComponent} from './account-recover/account-recover.component';
-import {SupportComponent} from './support/support.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MainComponent,
     LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
-    PaymentsComponent,
-    AccountRecoverComponent,
-    SupportComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
