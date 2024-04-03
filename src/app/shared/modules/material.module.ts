@@ -15,7 +15,16 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
+    FlexLayoutModule,
+    FlexLayoutServerModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     MatFabButton,
     MatLabel,
     MatMenuItem
