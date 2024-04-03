@@ -1,20 +1,15 @@
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
-import {Component} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        BrowserModule
-      ],
-      declarations: [
-        AppComponent,
-        MockNavComponent
-      ],
+      imports: [RouterModule, BrowserModule],
+      declarations: [AppComponent, MockNavComponent]
     }).compileComponents();
   });
 
@@ -29,4 +24,4 @@ describe('AppComponent', () => {
   selector: 'app-nav',
   template: ''
 })
-export class MockNavComponent{}
+export class MockNavComponent {}
