@@ -1,6 +1,7 @@
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import {Subject, takeUntil} from "rxjs";
 
 import {Languages} from "../shared/enums/languages";
 
@@ -9,11 +10,12 @@ import {Languages} from "../shared/enums/languages";
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
   protected readonly Object = Object;
   protected readonly Languages = Languages;
   protected isSmallScreen = false;
   protected language: string = "uk";
+  private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private readonly translateService: TranslateService,
@@ -25,10 +27,15 @@ export class NavComponent implements OnInit {
     this.breakpointObserver.observe([
       Breakpoints.Small,
       Breakpoints.XSmall,
-    ]).subscribe(result => {
-      this.isSmallScreen = result.matches;
-    });
+    ])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => this.isSmallScreen = result.matches);
     this.useLanguage(this.getLanguage() as Languages);
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   public useLanguage(language: string): void {

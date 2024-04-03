@@ -27,22 +27,22 @@ import {MaterialModule} from "./shared/modules/material.module";
         deps: [HttpClient],
       },
       useDefaultLang: true,
-      defaultLanguage:  localStorage.getItem('language') || 'uk'
+      defaultLanguage: localStorage.getItem('language') || 'uk'
     }),
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    FlexLayoutServerModule,
     HttpClientModule,
     MaterialModule
   ],
   providers: [
-    provideClientHydration(),
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http);
 }
