@@ -10,7 +10,7 @@
   <button mat-button class="button-login" *ngIf="!isSmallScreen">
     <span class="text-login">{{'nav.login' | translate}}</span>
   </button>
-  <button mat-icon-button (click)="toggleMenu()" *ngIf="isSmallScreen" fxFlexAlign="end center">
+  <button mat-icon-button [matMenuTriggerFor]="mobileMenu" *ngIf="isSmallScreen" fxFlexAlign="end center">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
@@ -25,3 +25,10 @@
     <span>{{'nav.locale.uk' | translate}}</span>
   </button>
 </mat-menu>
+
+<mat-menu #mobileMenu="matMenu">
+  <button mat-menu-item>{{'nav.profile' | translate}}</button>
+  <button mat-menu-item>{{'nav.login' | translate}}</button>
+  <button mat-menu-item [matMenuTriggerFor]="menu">{{'nav.locale.current' | translate}}</button>
+</mat-menu>
+
