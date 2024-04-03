@@ -1,8 +1,8 @@
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
-import {Languages} from "../models/languages";
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
+import {Languages} from "../shared/enums/languages";
 
 @Component({
   selector: 'app-nav',
@@ -10,45 +10,34 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
   styleUrl: './nav.component.scss'
 })
 export class NavComponent implements OnInit {
-  isSmallScreen = false;
+  protected readonly Object = Object;
+  protected readonly Languages = Languages;
+  protected isSmallScreen = false;
+  protected language: string = "uk";
 
-  ngOnInit() {
+  constructor(
+    private readonly translateService: TranslateService,
+    private readonly breakpointObserver: BreakpointObserver
+  ) {
+  }
+
+  public ngOnInit(): void {
     this.breakpointObserver.observe([
       Breakpoints.Small,
       Breakpoints.XSmall,
     ]).subscribe(result => {
       this.isSmallScreen = result.matches;
     });
-    if (this.getLanguage() != null) {
-      this.translate.use(<string>this.getLanguage());
-    } else {
-      this.translate.use(Languages.uk);
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('language', Languages.uk);
-      }
-    }
+    this.useLanguage(this.getLanguage() as Languages);
   }
 
-  constructor(private translate: TranslateService, private breakpointObserver: BreakpointObserver) {
-
-  }
-
-  useLanguage(language: Languages): void {
+  public useLanguage(language: string): void {
     localStorage.setItem('language', language);
-    this.translate.use(language);
+    this.translateService.use(language);
+    this.language = language;
   }
 
-  getLanguage(): string | null {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('language');
-    }
-    return null;
+  public getLanguage(): string {
+    return localStorage.getItem('language') || 'uk';
   }
-
-  protected readonly Languages = Languages;
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-  isMenuOpen = false;
 }

@@ -1,12 +1,11 @@
 {
-  "nav": {
-    "profile": "Profil",
-    "login": "Logowanie/Rejestracja",
-    "locale": {
-      "en": "Angielski",
-      "uk": "Ukraiński",
-      "pl": "Polski",
-      "current":"Polski"
+  "NAV": {
+    "PROFILE": "Profil",
+    "LOGIN": "Logowanie/Rejestracja",
+    "LOCALE": {
+      "EN": "Angielski",
+      "UK": "Ukraiński",
+      "PL": "Polski"
     }
   }
 }
