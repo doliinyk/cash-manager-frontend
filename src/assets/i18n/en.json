@@ -1,0 +1,11 @@
+{
+  "NAV": {
+    "PROFILE": "Profile",
+    "LOGIN": "Login/Registration",
+    "LOCALE": {
+      "EN": "English",
+      "UK": "Ukrainian",
+      "PL": "Polish"
+    }
+  }
+}

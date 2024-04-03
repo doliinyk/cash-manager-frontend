@@ -1,24 +1,28 @@
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {NgModule} from '@angular/core';
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {BrowserModule} from '@angular/platform-browser';
-import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import { NgModule } from '@angular/core';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {MaterialModule} from "./shared/modules/material.module";
-import {LoginComponent} from "./core/auth/login/login.component";
-import {RegisterComponent} from "./core/auth/register/register.component";
-import {FooterComponent} from "./core/layout/footer/footer.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {FlexLayoutServerModule} from "@angular/flex-layout/server";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    FooterComponent
+    NavComponent,
+    MainComponent,
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      useDefaultLang: true,
+      defaultLanguage: localStorage.getItem('language') || 'uk'
+    }),
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
@@ -31,4 +35,8 @@ import {FooterComponent} from "./core/layout/footer/footer.component";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http);
 }
