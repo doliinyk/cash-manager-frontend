@@ -42,6 +42,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Project configuration & misc
 package-lock.json
 package.json
 .editorconfig
