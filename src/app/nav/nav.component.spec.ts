@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { MaterialModule } from '../shared/modules/material.module';
+import { MaterialModule } from 'shared/modules/material.module';
 import { NavComponent } from './nav.component';
 
 describe('NavComponent', () => {

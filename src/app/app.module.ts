@@ -6,11 +6,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { MaterialModule } from 'shared/modules/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NavComponent } from './nav/nav.component';
-import { MaterialModule } from './shared/modules/material.module';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, MainComponent],
