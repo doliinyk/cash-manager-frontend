@@ -1,17 +1,24 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {FlexLayoutServerModule} from "@angular/flex-layout/server";
+import {BrowserModule} from '@angular/platform-browser';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {FooterComponent} from "./footer/footer.component";
+import {MainComponent} from "./core/main/main.component";
+import {HeaderComponent} from "./header/header.component";
+import {MaterialModule} from "./shared/modules/material.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    MainComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent
   ],
   imports: [
     TranslateModule.forRoot({

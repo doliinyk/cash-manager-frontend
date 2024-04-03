@@ -1,64 +1,68 @@
 
-.mat-toolbar{
-  background: linear-gradient(90deg, rgba(194,35,35,1) 20%, rgba(219,125,37,1) 54%, rgba(255,230,0,1) 100%);
-  height: 75px;
+.mat-toolbar {
+  background: linear-gradient(90deg, rgba(194, 35, 35, 1) 20%, rgba(219, 125, 37, 1) 54%, rgba(255, 230, 0, 1) 100%);
+  height: 7vh;
 }
+
 .text-main {
   font-size: 45px;
   font-family: Outfit, sans-serif;
   color: #493c3c;
   background-color: #ffffff;
   border-radius: 5px;
-  padding: 0 20px;
+  padding: 8px 20px;
   margin-right: 24px;
-  text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
 }
 
-.button-profile{
+.button-profile {
   font-size: 30px;
   font-family: Outfit, sans-serif;
   color: #ffffff;
   padding: 29px 20px;
   border-radius: 5px;
   background-color: rgba(196, 176, 176, 0.1899999976158142);
-  text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
-  box-shadow: rgba(0,0,0,19%) 0 4px 4px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
+  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
 }
-.button-login{
+
+.button-login {
   font-size: 20px;
   margin-left: 24px;
   font-family: Outfit, sans-serif;
   padding: 29px 20px;
   border-radius: 5px;
   border: 1px;
-  text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
-  box-shadow: rgba(0,0,0,19%) 0 4px 4px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
+  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
   background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 3px, transparent 3px) 0 0%/5px 5px no-repeat,
   radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px) 100% 0%/5px 5px no-repeat,
   radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px) 0% 100%/5px 5px no-repeat,
   radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100% 100%/5px 5px no-repeat,
   linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 10px) no-repeat,
   linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 10px) calc(100% - 4px) no-repeat,
-  linear-gradient(90deg, transparent 0%, #ce4d24 0%, rgba(0,0,0,0.51) 100%);
+  linear-gradient(90deg, transparent 0%, #ce4d24 0%, rgba(0, 0, 0, 0.51) 100%);
   box-sizing: border-box;
 }
-.text-login{
+
+.text-login {
   background: #CE4D24;
-  background: linear-gradient(to right, #CE4D24 0%, rgba(0,0,0,51%) 100%);
+  background: linear-gradient(to right, #CE4D24 0%, rgba(0, 0, 0, 51%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
 }
-.button-language{
+
+.button-language {
   font-size: 20px;
   font-family: Outfit, sans-serif;
   background: white;
   padding: 29px 20px;
   border-radius: 5px;
-  text-shadow: rgba(0,0,0,0.4) 0 4px 4px;
-  box-shadow: rgba(0,0,0,19%) 0 4px 4px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
+  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
 }
-.text-language{
+
+.text-language {
   color: black;
 }
 
