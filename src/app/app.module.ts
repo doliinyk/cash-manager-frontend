@@ -8,7 +8,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {FlexLayoutServerModule} from "@angular/flex-layout/server";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButton, MatFabButton} from "@angular/material/button";
-import {HeaderComponent} from './core/layout/header/header.component';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatLabel} from "@angular/material/form-field";
@@ -22,7 +21,6 @@ import {RegisterComponent} from "./core/auth/register/register.component";
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent

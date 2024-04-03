@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { FooterComponent} from "./core/layout/footer/footer.component";
 import {LoginComponent} from "./core/auth/login/login.component";
-import {HeaderComponent} from "./core/layout/header/header.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -25,7 +24,6 @@ describe('AppComponent', () => {
         AppComponent,
         FooterComponent,
         LoginComponent,
-        HeaderComponent
       ],
     }).compileComponents();
   });
