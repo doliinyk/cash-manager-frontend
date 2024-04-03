@@ -1,15 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {Component} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MockNavComponent
       ],
     }).compileComponents();
   });
@@ -20,3 +24,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 });
+
+@Component({
+  selector: 'app-nav',
+  template: ''
+})
+export class MockNavComponent{}

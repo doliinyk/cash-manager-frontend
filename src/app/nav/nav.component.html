@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" fxLayout="row" role="heading">
+  <span class="text-main">CashChecker</span>
+  @if (!isSmallScreen) {
+    <button mat-button class="button-profile" *ngIf="!isSmallScreen">
+      <span>{{ 'NAV.PROFILE' | translate }}</span>
+    </button>
+  }
+  <span class="example-spacer" fxFlex></span>
+  @if (!isSmallScreen) {
+    <button mat-button class="button-language" [matMenuTriggerFor]="menu">
+      <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
+    </button>
+    <button mat-button class="button-login">
+      <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
+    </button>
+  } @else {
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu" fxFlexAlign="end center">
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+  @for (language of Object.values(Languages); track language) {
+    <button mat-menu-item (click)="useLanguage(language)">
+      <span>{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
+    </button>
+  }
+</mat-menu>
+
+<mat-menu #mobileMenu="matMenu">
+  <button mat-menu-item>{{ 'NAV.PROFILE' | translate }}</button>
+  <button mat-menu-item>{{ 'NAV.LOGIN' | translate }}</button>
+  <button mat-menu-item [matMenuTriggerFor]="menu">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</button>
+</mat-menu>
+
