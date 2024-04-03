@@ -13,8 +13,7 @@
     <button mat-button class="button-login">
       <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
     </button>
-  }
-  @if (isSmallScreen) {
+  } @else {
     <button mat-icon-button [matMenuTriggerFor]="mobileMenu" fxFlexAlign="end center">
       <mat-icon>menu</mat-icon>
     </button>
