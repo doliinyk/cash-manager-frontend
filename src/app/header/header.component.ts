@@ -11,8 +11,8 @@ import { Languages } from 'shared/enums/languages';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  protected loggined = false;
-  protected mainMenu = false;
+  protected loggined = true;
+  protected mainMenu = true;
 
   protected readonly Object = Object;
   protected readonly Languages = Languages;
