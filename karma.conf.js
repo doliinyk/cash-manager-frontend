@@ -27,11 +27,7 @@ module.exports = function (config) {
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/cash-manager-frontend'),
       subdir: '.',
-      reporters: [
-        { type: 'lcov' },
-        { type: 'cobertura' },
-        { type: 'text-summary' }
-      ]
+      reporters: [{ type: 'lcov' }, { type: 'cobertura' }, { type: 'text-summary' }]
     },
     reporters: ['progress', 'kjhtml'],
     browsers: ['Chrome'],

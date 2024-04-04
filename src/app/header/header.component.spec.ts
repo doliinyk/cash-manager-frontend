@@ -1,10 +1,8 @@
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {HttpLoaderFactory} from "../app.module";
-import {MaterialModule} from "../shared/modules/material.module";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
-import {HeaderComponent} from './header.component';
+import { MaterialModule } from 'shared/modules/material.module';
+import { HeaderComponent } from './header.component';
 
 describe('NavComponent', () => {
   let component: HeaderComponent;
@@ -12,20 +10,9 @@ describe('NavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-        },
-        useDefaultLang: false,
-      }),
-        HttpClientModule,
-        MaterialModule
-      ],
+      imports: [TranslateModule.forRoot(), MaterialModule],
       declarations: [HeaderComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -36,4 +23,3 @@ describe('NavComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

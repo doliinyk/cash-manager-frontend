@@ -1,21 +1,15 @@
-import {Component} from "@angular/core";
-import {TestBed} from '@angular/core/testing';
-import {BrowserModule} from "@angular/platform-browser";
-import {RouterTestingModule} from '@angular/router/testing';
-import {AppComponent} from './app.component';
+import { Component } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        BrowserModule
-      ],
-      declarations: [
-        AppComponent,
-        MockHeaderComponent,
-        MockFooterComponent
-      ],
+      imports: [RouterModule, BrowserModule],
+      declarations: [AppComponent, MockHeaderComponent, MockFooterComponent]
     }).compileComponents();
   });
 
@@ -30,12 +24,10 @@ describe('AppComponent', () => {
   selector: 'app-header',
   template: ''
 })
-export class MockHeaderComponent {
-}
+export class MockHeaderComponent {}
 
 @Component({
   selector: 'app-footer',
   template: ''
 })
-export class MockFooterComponent {
-}
+export class MockFooterComponent {}

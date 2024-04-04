@@ -20,13 +20,15 @@ $cash-manager-frontend-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$cash-manager-frontend-theme: mat.define-light-theme((
-  color: (
-    primary: $cash-manager-frontend-primary,
-    accent: $cash-manager-frontend-accent,
-    warn: $cash-manager-frontend-warn
+$cash-manager-frontend-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $cash-manager-frontend-primary,
+      accent: $cash-manager-frontend-accent,
+      warn: $cash-manager-frontend-warn
+    )
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,7 +37,8 @@ $cash-manager-frontend-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
