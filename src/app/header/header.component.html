@@ -1,18 +1,26 @@
-<mat-toolbar color="primary" fxLayout="row" role="heading">
+<mat-toolbar fxLayout="row" role="heading">
   <span class="text-main">CashChecker</span>
-  @if (!isSmallScreen) {
-    <button mat-button class="button-profile" *ngIf="!isSmallScreen">
-      <span>{{ 'NAV.PROFILE' | translate }}</span>
-    </button>
+  @if (loggined) {
+    @if (!isSmallScreen) {
+      <button mat-button class="button-profile">
+        <span>{{ 'NAV.PROFILE' | translate }}</span>
+      </button>
+    }
   }
-  <span class="example-spacer" fxFlex></span>
+  <span class="spacer" fxFlex></span>
   @if (!isSmallScreen) {
-    <button mat-button class="button-language" [matMenuTriggerFor]="menu">
-      <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
+    <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
+      <span class="icon-lang" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="13px">
+        <object data="assets/icons/lang_icon.svg" type="image/svg+xml"></object>
+        <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
+        <object data="assets/icons/arrowdown_icon.svg" type="image/svg+xml"></object>
+      </span>
     </button>
-    <button mat-button class="button-login">
-      <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
-    </button>
+    @if (mainMenu) {
+      <button mat-button class="button-login">
+        <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
+      </button>
+    }
   } @else {
     <button mat-icon-button [matMenuTriggerFor]="mobileMenu" fxFlexAlign="end center">
       <mat-icon>menu</mat-icon>
