@@ -1,11 +1,10 @@
-import {Injectable} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalizationService {
-
   constructor(private readonly translateService: TranslateService) {
   }
 
@@ -17,5 +16,4 @@ export class LocalizationService {
   public getLocalization(): string {
     return localStorage.getItem('language') || 'uk';
   }
-
 }

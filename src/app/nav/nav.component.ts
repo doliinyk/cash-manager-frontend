@@ -1,9 +1,9 @@
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject, takeUntil} from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
-import {LocalizationService} from "shared/services/localization/localization.service";
-import {Languages} from 'shared/enums/languages';
+import { LocalizationService } from 'shared/services/localization/localization.service';
+import { Languages } from 'shared/enums/languages';
 
 @Component({
   selector: 'app-nav',
@@ -20,7 +20,8 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly localizationService: LocalizationService
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
     this.breakpointObserver
