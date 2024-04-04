@@ -1,0 +1,24 @@
+<div class="overall-page" fxLayoutAlign="center center">
+  <form fxLayout="column" fxLayoutAlign="none center">
+    <span class="color-grad" fxLayout="fxLayout" fxLayoutAlign="center center">{{ 'REGISTER.TITLE' | translate }}</span>
+    <div class="inputs-container" fxLayout="column" fxLayoutAlign="none center">
+      <mat-form-field color="accent">
+        <mat-label>{{ 'REGISTER.NAME_PH' | translate }}</mat-label>
+        <input matInput type="text" />
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>{{ 'REGISTER.EMAIL_PH' | translate }}</mat-label>
+        <input matInput type="email" />
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>{{ 'REGISTER.PASSWORD_PH' | translate }}</mat-label>
+        <input matInput type="password" />
+      </mat-form-field>
+    </div>
+    <button mat-raised-button class="reg-register-button">
+      <span class="login-text">
+        {{ 'REGISTER.REGISTER_BUTTON' | translate }}
+      </span>
+    </button>
+  </form>
+</div>

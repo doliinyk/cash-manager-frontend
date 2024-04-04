@@ -6,11 +6,11 @@ import { LocalizationService } from 'shared/services/localization/localization.s
 import { Languages } from 'shared/enums/languages';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrl: './nav.component.scss'
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
 })
-export class NavComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
   protected readonly Object = Object;
   protected readonly Languages = Languages;
   protected isSmallScreen = false;

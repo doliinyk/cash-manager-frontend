@@ -9,7 +9,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterModule, BrowserModule],
-      declarations: [AppComponent, MockNavComponent]
+      declarations: [AppComponent, MockHeaderComponent, MockFooterComponent]
     }).compileComponents();
   });
 
@@ -21,7 +21,13 @@ describe('AppComponent', () => {
 });
 
 @Component({
-  selector: 'app-nav',
+  selector: 'app-header',
   template: ''
 })
-export class MockNavComponent {}
+export class MockHeaderComponent {}
+
+@Component({
+  selector: 'app-footer',
+  template: ''
+})
+export class MockFooterComponent {}
