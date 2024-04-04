@@ -40,5 +40,4 @@ import { NavComponent } from './nav/nav.component';
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

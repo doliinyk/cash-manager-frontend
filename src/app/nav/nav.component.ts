@@ -20,8 +20,7 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly localizationService: LocalizationService
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.breakpointObserver
@@ -40,5 +39,4 @@ export class NavComponent implements OnInit, OnDestroy {
     this.localizationService.setLocalization(language);
     this.language = language;
   }
-
 }
