@@ -4,11 +4,11 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../app.module";
 import {MaterialModule} from "../shared/modules/material.module";
 
-import {NavComponent} from './nav.component';
+import {HeaderComponent} from './header.component';
 
 describe('NavComponent', () => {
-  let component: NavComponent;
-  let fixture: ComponentFixture<NavComponent>;
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,11 +23,11 @@ describe('NavComponent', () => {
         HttpClientModule,
         MaterialModule
       ],
-      declarations: [NavComponent]
+      declarations: [HeaderComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(NavComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

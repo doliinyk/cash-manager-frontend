@@ -8,15 +8,18 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MainComponent} from './main/main.component';
-import {NavComponent} from './nav/nav.component';
+import {AuthModule} from "./core/auth/auth.module";
+import {MainComponent} from "./core/main/main.component";
+import {FooterComponent} from "./footer/footer.component";
+import {HeaderComponent} from "./header/header.component";
 import {MaterialModule} from "./shared/modules/material.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    MainComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent
   ],
   imports: [
     TranslateModule.forRoot({
@@ -30,9 +33,10 @@ import {MaterialModule} from "./shared/modules/material.module";
     }),
     BrowserModule,
     AppRoutingModule,
-    FlexLayoutModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    AuthModule,
+    FlexLayoutModule
   ],
   providers: [
     provideAnimationsAsync()

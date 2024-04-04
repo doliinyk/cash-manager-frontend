@@ -7,5 +7,20 @@
       "UK": "Ukraiński",
       "PL": "Polski"
     }
+  },
+  "LOGIN": {
+    "TITLE": "Logowanie",
+    "EMAIL_PH": "E-mail",
+    "PASSWORD_PH": "Hasło",
+    "FORGOT": "Zapomnieliście hasło?",
+    "REGISTER_BUTTON": "Rejestracja",
+    "LOGIN_BUTTON": "Login"
+  },
+  "REGISTER": {
+    "TITLE": "Rejestracja",
+    "NAME_PH": "Imię",
+    "EMAIL_PH": "E-mail",
+    "PASSWORD_PH": "Hasło",
+    "REGISTER_BUTTON": "Odesłać"
   }
 }

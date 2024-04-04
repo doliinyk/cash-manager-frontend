@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
 import {Component} from "@angular/core";
+import {TestBed} from '@angular/core/testing';
 import {BrowserModule} from "@angular/platform-browser";
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +13,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        MockNavComponent
+        MockHeaderComponent,
+        MockFooterComponent
       ],
     }).compileComponents();
   });
@@ -26,7 +27,15 @@ describe('AppComponent', () => {
 });
 
 @Component({
-  selector: 'app-nav',
+  selector: 'app-header',
   template: ''
 })
-export class MockNavComponent{}
+export class MockHeaderComponent {
+}
+
+@Component({
+  selector: 'app-footer',
+  template: ''
+})
+export class MockFooterComponent {
+}
