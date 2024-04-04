@@ -1,9 +1,9 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subject, takeUntil } from 'rxjs';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject, takeUntil} from 'rxjs';
 
-import { Languages } from '../shared/enums/languages';
+import {LocalizationService} from "shared/services/localization/localization.service";
+import {Languages} from 'shared/enums/languages';
 
 @Component({
   selector: 'app-nav',
@@ -18,8 +18,8 @@ export class NavComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private readonly translateService: TranslateService,
-    private readonly breakpointObserver: BreakpointObserver
+    private readonly breakpointObserver: BreakpointObserver,
+    private readonly localizationService: LocalizationService
   ) {}
 
   public ngOnInit(): void {
@@ -27,7 +27,7 @@ export class NavComponent implements OnInit, OnDestroy {
       .observe([Breakpoints.Small, Breakpoints.XSmall])
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => (this.isSmallScreen = result.matches));
-    this.useLanguage(this.getLanguage() as Languages);
+    this.useLanguage(this.localizationService.getLocalization() as Languages);
   }
 
   public ngOnDestroy(): void {
@@ -36,12 +36,8 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   public useLanguage(language: string): void {
-    localStorage.setItem('language', language);
-    this.translateService.use(language);
+    this.localizationService.setLocalization(language);
     this.language = language;
   }
 
-  public getLanguage(): string {
-    return localStorage.getItem('language') || 'uk';
-  }
 }
