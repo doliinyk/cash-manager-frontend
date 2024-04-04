@@ -7,5 +7,20 @@
       "UK": "Українська",
       "PL": "Польська"
     }
+  },
+  "LOGIN": {
+    "TITLE": "Вхід",
+    "EMAIL_PH": "Електронна пошта",
+    "PASSWORD_PH": "Пароль",
+    "FORGOT": "Забули пароль?",
+    "REGISTER_BUTTON": "Реєстрація",
+    "LOGIN_BUTTON": "Увійти"
+  },
+  "REGISTER": {
+    "TITLE": "Реєстрація",
+    "NAME_PH": "Ім'я",
+    "EMAIL_PH": "Електронна пошта",
+    "PASSWORD_PH": "Пароль",
+    "REGISTER_BUTTON": "Надіслати"
   }
 }

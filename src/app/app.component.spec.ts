@@ -13,7 +13,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        MockNavComponent,
+        MockHeaderComponent,
         MockFooterComponent
       ],
     }).compileComponents();
@@ -30,7 +30,7 @@ describe('AppComponent', () => {
   selector: 'app-header',
   template: ''
 })
-export class MockNavComponent {
+export class MockHeaderComponent {
 }
 
 @Component({

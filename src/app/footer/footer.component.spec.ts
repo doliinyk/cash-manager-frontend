@@ -1,8 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {MaterialModule} from "../shared/modules/material.module";
 
 import {FooterComponent} from './footer.component';
-import {MatIconModule} from "@angular/material/icon";
-import {MatFormFieldModule} from "@angular/material/form-field";
 
 describe('RegisterFooterComponent', () => {
   let component: FooterComponent;
@@ -11,7 +10,8 @@ describe('RegisterFooterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FooterComponent],
-      imports: [MatIconModule, MatFormFieldModule
+      imports: [
+        MaterialModule
       ]
     })
       .compileComponents();
