@@ -1,5 +1,6 @@
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from "@angular/flex-layout";
 import {BrowserModule} from '@angular/platform-browser';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
@@ -34,7 +35,8 @@ import {MaterialModule} from "./shared/modules/material.module";
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    AuthModule
+    AuthModule,
+    FlexLayoutModule
   ],
   providers: [
     provideAnimationsAsync()
