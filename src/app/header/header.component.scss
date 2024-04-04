@@ -8,11 +8,13 @@
 
 .title-text {
   color: $main-text-color;
-  font-size: 40px;
+  font-size: 2vw;
+  height: 5vh;
+  width: auto;
+  padding: 0 10px 0 10px;
   text-shadow: rgba(0,0,0,0.25) 0 4px 4px;
   background-color: white;
   border-radius: 5px;
-  padding: 8px 10px;
   margin: 0 24px 0 10px;
   -webkit-box-shadow: -1px 3px 10px -3px rgba(0,0,0,0.65);
   -moz-box-shadow: -1px 3px 10px -3px rgba(0,0,0,0.65);
