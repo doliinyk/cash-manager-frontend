@@ -10,9 +10,11 @@ import { Languages } from 'shared/enums/languages';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
   protected loggined = true;
   protected mainMenu = true;
+  protected currentPage = 'profile';
 
   protected readonly Object = Object;
   protected readonly Languages = Languages;

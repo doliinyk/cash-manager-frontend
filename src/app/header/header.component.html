@@ -1,16 +1,20 @@
 <mat-toolbar fxLayout="row" role="heading">
-  <span class="title-text" fxFlexAlign="center center">
+  <span class="title" fxLayoutAlign="center center">
     CashChecker
   </span>
 
   @if (loggined) {
     @if (!isSmallScreen) {
-      <button mat-button class="button-profile">
-        <span>{{ 'NAV.PROFILE' | translate }}</span>
-      </button>
-      <button mat-button class="button-payments">
-        <span>Payments</span> <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
-      </button>
+      <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+        <button mat-button
+                [ngClass]="{'button-profile-current': currentPage==='profile', 'button-profile-not-current': currentPage!='profile'}">
+          <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
+        </button>
+        <button mat-button
+                [ngClass]="{'button-profile-current': currentPage==='payments', 'button-profile-not-current': currentPage!='payments'}">
+          <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
+        </button>
+      </div>
     }
   }
 
@@ -45,6 +49,7 @@
 
 <mat-menu #mobileMenu="matMenu">
   <button mat-menu-item>{{ 'NAV.PROFILE' | translate }}</button>
+  <button mat-menu-item>{{ 'NAV.PAYMENTS' | translate }}</button>
   <button mat-menu-item>{{ 'NAV.LOGIN' | translate }}</button>
   <button mat-menu-item [matMenuTriggerFor]="menu">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</button>
 </mat-menu>

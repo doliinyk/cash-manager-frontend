@@ -1,6 +1,7 @@
 {
   "NAV": {
     "PROFILE": "Profile",
+    "PAYMENTS": "Payments",
     "LOGIN": "Login/Registration",
     "LOCALE": {
       "EN": "English",
