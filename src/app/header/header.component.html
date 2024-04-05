@@ -8,7 +8,7 @@
           mat-button
           [ngClass]="{
             'button-profile-current': currentPage === 'profile',
-            'button-profile-not-current': currentPage != 'profile'
+            'button-profile-not-current': currentPage !== 'profile'
           }">
           <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
         </button>
@@ -16,7 +16,7 @@
           mat-button
           [ngClass]="{
             'button-profile-current': currentPage === 'payments',
-            'button-profile-not-current': currentPage != 'payments'
+            'button-profile-not-current': currentPage !== 'payments'
           }">
           <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
         </button>
@@ -29,9 +29,9 @@
   @if (!isSmallScreen) {
     <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
       <span fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="13px">
-        <object data="assets/icons/lang_icon.svg" type="image/svg+xml"></object>
+        <object data="assets/icons/lang_icon.svg" type="image/svg+xml">Lang</object>
         <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
-        <object data="assets/icons/arrowdown_icon.svg" type="image/svg+xml"></object>
+        <object data="assets/icons/arrowdown_icon.svg" type="image/svg+xml">ArrowDown</object>
       </span>
     </button>
     @if (mainMenu) {
