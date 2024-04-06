@@ -19,7 +19,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     FlexLayoutModule,
     RouterLink,
     NgOptimizedImage,
-    AuthRoutingModule
+    AuthRoutingModule,
   ]
 })
 export class AuthModule {}
