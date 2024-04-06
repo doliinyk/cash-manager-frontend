@@ -11,15 +11,14 @@ import { Languages } from 'shared/enums/languages';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  protected loggined = true;
-  protected mainMenu = true;
-  protected currentPage = 'profile';
-
   protected readonly Object = Object;
   protected readonly Languages = Languages;
   protected isSmallScreen = false;
   protected language: string = 'uk';
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
+  protected isAuthenticated;
+  protected mainMenu;
+  protected currentPage;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
