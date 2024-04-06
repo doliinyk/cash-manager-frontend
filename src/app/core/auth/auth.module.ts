@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, EmailActivationComponent],
@@ -23,7 +24,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RouterLink,
     NgOptimizedImage,
     ReactiveFormsModule,
-    NgxsModule.forFeature([RegistrationState])
+    NgxsModule.forFeature([RegistrationState]),
+    AuthRoutingModule
   ]
 })
 export class AuthModule {}
