@@ -1,9 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 
 import { LocalizationService } from 'shared/services/localization/localization.service';
 import { Languages } from 'shared/enums/languages';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +17,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected isSmallScreen = false;
   protected language: string = 'uk';
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
-  protected isAuthenticated;
-  protected mainMenu;
+  protected currentRoute;
   protected currentPage;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly localizationService: LocalizationService
-  ) {}
+    private readonly localizationService: LocalizationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.currentRoute = this.activatedRoute.snapshot.firstChild.routeConfig.path;
+    });
+  }
 
   public ngOnInit(): void {
     this.breakpointObserver
@@ -36,6 +42,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+
+  isAuthentificated() {
+    return this.currentRoute === 'auth' || this.currentRoute === 'home';
   }
 
   public useLanguage(language: string): void {

@@ -1,7 +1,7 @@
 <mat-toolbar fxLayout="row" role="heading">
   <span class="title" fxLayoutAlign="center center"> CashChecker </span>
 
-  @if (isAuthenticated) {
+  @if (isAuthentificated()) {
     @if (!isSmallScreen) {
       <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
         <button
@@ -15,7 +15,7 @@
         <button
           mat-button
           [ngClass]="{
-            'button-profile-current': currentPage === 'payments',
+            'button-profile-current': currentRoute === 'payments',
             'button-profile-not-current': currentPage !== 'payments'
           }">
           <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
@@ -34,7 +34,7 @@
         <object data="assets/icons/arrowdown_icon.svg" type="image/svg+xml">ArrowDown</object>
       </span>
     </button>
-    @if (mainMenu) {
+    @if (true) {
       <a mat-button class="button-login" routerLink="/login">
         <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
       </a>
