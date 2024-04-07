@@ -6,17 +6,17 @@
       <button
         mat-button
         [ngClass]="{
-            'button-profile-current': currentPage === 'profile',
-            'button-profile-not-current': currentPage !== 'profile'
-          }">
+          'button-profile-current': currentPage === 'profile',
+          'button-profile-not-current': currentPage !== 'profile'
+        }">
         <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
       </button>
       <button
         mat-button
         [ngClass]="{
-            'button-profile-current': currentRoute === 'payments',
-            'button-profile-not-current': currentPage !== 'payments'
-          }">
+          'button-profile-current': currentRoute === 'payments',
+          'button-profile-not-current': currentPage !== 'payments'
+        }">
         <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
       </button>
     </div>
