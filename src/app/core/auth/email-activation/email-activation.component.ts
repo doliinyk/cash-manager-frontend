@@ -22,8 +22,8 @@ export class EmailActivationComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         switchMap(paramMap => {
-          const userId= paramMap.get('userId');
-          const activationToken= paramMap.get('activationToken');
+          const userId = paramMap.get('userId');
+          const activationToken = paramMap.get('activationToken');
           return this.authService.verifyEmail(userId, activationToken);
         })
       )
