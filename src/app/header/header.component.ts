@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected isSmallScreen = false;
   protected language: string = 'uk';
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
-  protected currentRoute: string;
-  protected currentPage: string;
+  protected currentRoute?: string;
+  protected currentPage?: string;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
