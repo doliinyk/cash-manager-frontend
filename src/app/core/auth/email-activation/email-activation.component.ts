@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { AuthService } from 'shared/services/auth/auth.service';
 
 @Component({
@@ -18,16 +18,16 @@ export class EmailActivationComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((queryParam: Params) => {
-      const userId = queryParam['userId'];
-      const activationToken = queryParam['activationToken'];
-      this.authService
-        .verifyEmail(userId, activationToken)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => {
-          this.isVerified = true;
-        });
-    });
+    this.route.queryParamMap
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap(paramMap => {
+          const userId = paramMap.get('userId');
+          const activationToken = paramMap.get('activationToken');
+          return this.authService.verifyEmail(userId, activationToken);
+        })
+      )
+      .subscribe(() => (this.isVerified = true));
   }
 
   public ngOnDestroy(): void {

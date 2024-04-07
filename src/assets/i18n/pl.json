@@ -23,5 +23,11 @@
     "EMAIL_PH": "E-mail",
     "PASSWORD_PH": "Hasło",
     "REGISTER_BUTTON": "Odesłać"
+  },
+  "EMAIL": {
+    "CONGRATS" : "Gratulacje!",
+    "ACTIVATED" : "Twoje konto zostało pomyślnie aktywowane!",
+    "ERROR": "Ups! Coś poszło nie tak!",
+    "ERROR_BUTTON": "Wróć do strony głównej"
   }
 }
