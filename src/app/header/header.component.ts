@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected isSmallScreen = false;
   protected language: string = 'uk';
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
-  protected currentRoute;
-  protected currentPage;
+  protected currentRoute: string;
+  protected currentPage: string;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute
   ) {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
-      this.currentRoute = this.activatedRoute.snapshot.firstChild.routeConfig.path;
+      this.currentRoute = this.activatedRoute.snapshot.firstChild!.routeConfig!.path;
     });
   }
 
