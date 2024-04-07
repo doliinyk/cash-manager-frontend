@@ -5,17 +5,20 @@
         <mat-card class="card">
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="30">
-              <img class="confetti" ngSrc="assets/icons/confetti.png" alt="confetti" height="170" width="170" />
-              <b style="font-size: 30px">Congratulations!</b>
-              <p style="font-size: 23px">Your account was successfully activated!</p>
-              <a mat-fab extended color="white" routerLink="/login"> Link </a>
+              @if (isVerified) {
+                <img class="confetti" ngSrc="assets/icons/confetti.png" alt="confetti" height="170" width="170" />
+                <b style="font-size: 30px">{{ 'EMAIL.CONGRATS' | translate }}!</b>
+                <p style="font-size: 23px">{{ 'EMAIL.ACTIVATED' | translate }}</p>
+                <a mat-fab extended color="white" routerLink="/login"> {{ 'LOGIN.LOGIN_BUTTON' | translate }} </a>
+              } @else {
+                <img class="confetti" ngSrc="assets/icons/sad-emodji.webp" alt="confetti" height="170" width="170" />
+                <b style="font-size: 30px">{{ 'EMAIL.ERROR' | translate }}</b>
+                <a mat-fab extended color="white" routerLink=""> {{ 'EMAIL.ERROR_BUTTON' | translate }} </a>
+              }
             </div>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
   </div>
-  @if (isVerified) {
-    <p>Congratulations!</p>
-  }
 </div>
