@@ -1,27 +1,25 @@
 <mat-toolbar fxLayout="row" role="heading">
   <span class="title" fxLayoutAlign="center center"> CashChecker </span>
 
-  @if (isAuthentificated()) {
-    @if (!isSmallScreen) {
-      <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
-        <button
-          mat-button
-          [ngClass]="{
-            'button-profile-current': currentPage === 'profile',
-            'button-profile-not-current': currentPage !== 'profile'
-          }">
-          <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
-        </button>
-        <button
-          mat-button
-          [ngClass]="{
-            'button-profile-current': currentRoute === 'payments',
-            'button-profile-not-current': currentPage !== 'payments'
-          }">
-          <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
-        </button>
-      </div>
-    }
+  @if (isAuthentificated() && !isSmallScreen) {
+    <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+      <button
+        mat-button
+        [ngClass]="{
+          'button-profile-current': currentPage === 'profile',
+          'button-profile-not-current': currentPage !== 'profile'
+        }">
+        <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
+      </button>
+      <button
+        mat-button
+        [ngClass]="{
+          'button-profile-current': currentRoute === 'payments',
+          'button-profile-not-current': currentPage !== 'payments'
+        }">
+        <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
+      </button>
+    </div>
   }
 
   <span class="spacer" fxFlex></span>
