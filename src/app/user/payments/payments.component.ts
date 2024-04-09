@@ -8,4 +8,5 @@ import {FormControl} from "@angular/forms";
 })
 export class PaymentsComponent {
   nameField = new FormControl('');
+  searchField = new FormControl('');
 }
