@@ -1,0 +1,70 @@
+@import '../../shared/styles/variables';
+
+.overall-page {
+  height: $page-height;
+  background: #fff;
+  padding: 0 27px 0 27px;
+}
+
+.tools-container {
+  height: 95%;
+  width: 40%;
+}
+
+.new-tools {
+  width: 20%;
+  height: 95%;
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.filter-tools {
+  width: 20%;
+  height: 95%;
+  background: #f1f1f1;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
+}
+
+.payments-container {
+  height: 95%;
+  width: 40%;
+  background: #f1f1f1;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
+}
+
+.scroll-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+button {
+  margin-top: 10px;
+}
+
+form {
+  padding: 10px;
+}
+
+.text-form-field {
+  width: 250px;
+}
+
+.sum-suffix {
+  margin-right: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}

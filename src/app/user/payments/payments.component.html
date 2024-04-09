@@ -1,0 +1,95 @@
+<div class="overall-page" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5%">
+  <mat-stepper orientation="vertical" linear="false" color="accent" class="new-tools" #stepper>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Виберіть тип</ng-template>
+        <mat-radio-group fxLayout="column" required>
+          <mat-radio-button value="1">Прибуток</mat-radio-button>
+          <mat-radio-button value="2">Витрата</mat-radio-button>
+          <mat-radio-button value="3">Регулярний</mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <button mat-raised-button matStepperNext>Далі</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Введіть назву</ng-template>
+        <mat-form-field class="text-form-field">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" placeholder="Назва" [formControl]="nameField" required/>
+          @if (nameField.value) {
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="nameField.setValue('')">
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+        </mat-form-field>
+        <div fxLayoutGap="10px">
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-raised-button matStepperNext>Далі</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Введіть суму</ng-template>
+        <mat-form-field class="text-form-field">
+          <mat-label>Сума</mat-label>
+          <input matInput type="number" maxlength="10" placeholder="Сума" required/>
+          <span matSuffix class="sum-suffix">
+            <i class="fa-solid fa-hryvnia-sign"></i>
+          </span>
+        </mat-form-field>
+        <div fxLayoutGap="10px">
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-raised-button matStepperNext>Далі</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Виберіть дату</ng-template>
+        <mat-form-field>
+          <mat-label>Дата</mat-label>
+          <input matInput [matDatepicker]="picker" required>
+          <mat-hint>ММ/ДД/РРРР</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div fxLayoutGap="10px">
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-raised-button matStepperNext>Далі</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Завершення</ng-template>
+        <p>Додати даний елемент</p>
+        <div fxLayoutGap="10px">
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-button (click)="stepper.reset()">Від початку</button>
+          <button mat-raised-button>Додати</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+  <div class="payments-container">
+    <mat-tab-group color="warn">
+      <mat-tab label="Усі">
+        <div class="scroll-container"></div>
+      </mat-tab>
+      <mat-tab label="Прибутки">
+        <div class="scroll-container"></div>
+      </mat-tab>
+      <mat-tab label="Витрати">
+        <div class="scroll-container"></div>
+      </mat-tab>
+      <mat-tab label="Регулярні">
+        <div class="scroll-container"></div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="filter-tools"></div>
+</div>
