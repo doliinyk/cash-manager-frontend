@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserRoutingModule } from './user-routing.module';
 import { PaymentsComponent } from './payments/payments.component';
 import { ProfileComponent } from './profile/profile.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PaymentsComponent, ProfileComponent],
