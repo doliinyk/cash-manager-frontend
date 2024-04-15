@@ -2,6 +2,7 @@
 
 .overall-page {
   height: $page-height;
+  position: relative;
 }
 
 form {
@@ -25,6 +26,38 @@ form {
   font-size: 35px;
   margin-bottom: 5px;
 }
+
+.back-button {
+  font-size: 10vw;
+  opacity: 0.3;
+  position: absolute;
+  top: 37%;
+  left: 20%;
+  width: auto;
+  height: auto;
+}
+
+.back-button-text {
+  font-size: 3vw;
+  font-family: Mulish, sans-serif;
+}
+
+@media screen and (max-width: 1400px) {
+  .back-button-text {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .back-button-text {
+    display: block;
+  }
+  .back-button {
+    left: 0;
+    top: 0;
+  }
+}
+
 
 mat-form-field,
 .two-buttons {

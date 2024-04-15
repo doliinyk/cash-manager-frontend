@@ -1,8 +1,11 @@
 <mat-toolbar fxLayout="row" role="heading">
-  <span class="title" fxLayoutAlign="center center"> CashChecker </span>
+  <span class="title" fxLayoutAlign="center center">
+    <span class="title-first-part">Cash</span>
+    <span class="title-second-part">Checker</span>
+  </span>
 
-  @if (isAuthentificated() && !isSmallScreen) {
-    <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+    @if (isAuthentificated() && !isSmallScreen) {
+      <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
       <button
         mat-button
         [ngClass]="{
@@ -20,28 +23,28 @@
         <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
       </button>
     </div>
-  }
+    }
 
-  <span class="spacer" fxFlex></span>
+    <span class="spacer" fxFlex></span>
 
-  @if (!isSmallScreen) {
-    <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
+    @if (!isSmallScreen) {
+      <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
       <span fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="13px">
         <object data="assets/icons/lang_icon.svg" type="image/svg+xml">Lang</object>
         <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
         <object data="assets/icons/arrowdown_icon.svg" type="image/svg+xml">ArrowDown</object>
       </span>
     </button>
-    @if (true) {
-      <a mat-button class="button-login" routerLink="/login">
+      @if (true) {
+        <a mat-button class="button-login" routerLink="/login">
         <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
       </a>
-    }
-  } @else {
-    <button mat-icon-button [matMenuTriggerFor]="mobileMenu" fxFlexAlign="end center">
+      }
+    } @else {
+      <button mat-icon-button [matMenuTriggerFor]="mobileMenu" fxFlexAlign="end center">
       <mat-icon>menu</mat-icon>
     </button>
-  }
+    }
 </mat-toolbar>
 <mat-menu #menu="matMenu">
   @for (language of Object.values(Languages); track language) {
