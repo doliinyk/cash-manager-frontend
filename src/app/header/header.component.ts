@@ -45,7 +45,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   isAuthentificated() {
-    return this.currentRoute === 'auth' || this.currentRoute === 'home';
+    return this.currentRoute === 'user';
+  }
+
+  getUserPage(route: string) {
+    return this.currentRoute === route;
   }
 
   public useLanguage(language: string): void {

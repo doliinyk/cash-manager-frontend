@@ -3,6 +3,8 @@
 @use '@angular/material' as mat;
 @import './app/shared/styles/variables';
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -18,16 +20,21 @@ $cash-manager-frontend-accent: mat.define-palette(mat.$pink-palette, A200, A100,
 
 // The warn palette is optional (defaults to red).
 $cash-manager-frontend-warn: mat.define-palette(mat.$red-palette);
+$cash-manager-frontend-typography: mat.define-typography-config(
+  $font-family: 'Mulish'
+);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
+
 $cash-manager-frontend-theme: mat.define-light-theme(
   (
     color: (
       primary: $cash-manager-frontend-primary,
       accent: $cash-manager-frontend-accent,
       warn: $cash-manager-frontend-warn
-    )
+    ),
+    typography: $cash-manager-frontend-typography
   )
 );
 
@@ -40,8 +47,8 @@ $cash-manager-frontend-theme: mat.define-light-theme(
 
 html,
 body {
-  font-family: Outfit, sans-serif;
   height: 100%;
+  font-family: Mulish, sans-serif;
 }
 
 body {

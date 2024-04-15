@@ -3,12 +3,12 @@
 .mat-toolbar {
   height: 7vh;
   background: $main-gradient;
-  font-family: Outfit, sans-serif;
 }
 
 .title {
   color: $main-text-color;
   font-size: 40px;
+  font-weight: 600;
   width: auto;
   min-width: 150px;
   height: 5vh;

@@ -14,8 +14,8 @@
       <button
         mat-button
         [ngClass]="{
-          'button-profile-current': currentRoute === 'payments',
-          'button-profile-not-current': currentPage !== 'payments'
+          'button-profile-current': getUserPage('payments'),
+          'button-profile-not-current': !getUserPage('user/payments')
         }">
         <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
       </button>

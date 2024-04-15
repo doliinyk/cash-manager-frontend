@@ -1,16 +1,24 @@
 <div class="overall-page" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%">
   <div class="filter-new-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-    <div class="new-tools" fxLayoutAlign="none center" fxLayout="column">
-      <span class="new-text">Новий</span>
-      <mat-stepper orientation="horizontal" linear="false" color="accent" #stepper>
+    <div class="new-tools" fxLayoutAlign="none center" fxLayout="column" fxLayoutGap="10px">
+      <div class="new-text">
+        <span class="text">
+          <i class="fa-solid fa-plus"></i>
+          Новий
+        </span>
+      </div>
+      <mat-stepper orientation="horizontal" linear="false" color="warn" #stepper>
         <mat-step>
           <form>
             <ng-template matStepLabel>Виберіть тип</ng-template>
-            <mat-radio-group fxLayout="column" required>
-              <mat-radio-button value="1">Прибуток</mat-radio-button>
-              <mat-radio-button value="2">Витрата</mat-radio-button>
-              <mat-radio-button value="3">Регулярний</mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field class="text-form-field" appearance="outline">
+              <mat-label>Тип</mat-label>
+              <mat-select>
+                @for (transactionType of transactionTypes; track transactionType) {
+                  <mat-option [value]="transactionType.value">{{ transactionType.viewValue }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
             <div>
               <button mat-raised-button matStepperNext>Далі</button>
             </div>
@@ -19,7 +27,7 @@
         <mat-step>
           <form>
             <ng-template matStepLabel>Введіть назву</ng-template>
-            <mat-form-field class="text-form-field">
+            <mat-form-field class="search-field" appearance="outline">
               <mat-label>Назва</mat-label>
               <input matInput type="text" placeholder="Назва" [formControl]="nameField" required />
               @if (nameField.value) {
@@ -36,8 +44,25 @@
         </mat-step>
         <mat-step>
           <form>
+            <ng-template matStepLabel>Виберіть категорію</ng-template>
+            <mat-form-field class="text-form-field" appearance="outline">
+              <mat-label>Категорія</mat-label>
+              <mat-select>
+                @for (category of categories; track category) {
+                  <mat-option [value]="category.value">{{ category.viewValue }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <div fxLayoutGap="10px">
+              <button mat-button matStepperPrevious>Назад</button>
+              <button mat-raised-button matStepperNext>Далі</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <form>
             <ng-template matStepLabel>Введіть суму</ng-template>
-            <mat-form-field class="text-form-field">
+            <mat-form-field class="text-form-field" appearance="outline">
               <mat-label>Сума</mat-label>
               <input matInput type="number" maxlength="10" placeholder="Сума" required />
               <span matSuffix class="sum-suffix">
@@ -53,23 +78,13 @@
         <mat-step>
           <form>
             <ng-template matStepLabel>Виберіть дату</ng-template>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
               <mat-label>Дата</mat-label>
               <input matInput [matDatepicker]="picker" required />
               <mat-hint>ММ/ДД/РРРР</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <div fxLayoutGap="10px">
-              <button mat-button matStepperPrevious>Назад</button>
-              <button mat-raised-button matStepperNext>Далі</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <form>
-            <ng-template matStepLabel>Завершення</ng-template>
-            <p>Додати даний елемент</p>
             <div fxLayoutGap="10px">
               <button mat-button matStepperPrevious>Назад</button>
               <button mat-button (click)="stepper.reset()">Спочатку</button>
@@ -80,26 +95,93 @@
       </mat-stepper>
     </div>
 
-    <div class="filter-tools" fxLayout="column" fxLayoutAlign="center center">
-      <span class="new-text">Фільтри</span>
-      <form>
-        <mat-form-field class="search-field">
-          <mat-label>Пошук</mat-label>
-          <span matPrefix class="search-preffix">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </span>
-          <input type="text" matInput placeholder="Почніть вводити назву.." [formControl]="searchField">
-          @if (searchField.value) {
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="searchField.setValue('')">
-              <mat-icon>close</mat-icon>
-            </button>
-          }
-        </mat-form-field>
+    <div class="filter-tools" fxLayout="column" fxLayoutGap="10px">
+      <div class="new-text">
+        <span class="text">
+          <i class="fa-solid fa-filter"></i>
+          Фільтри
+        </span>
+      </div>
+      <form fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="row">
+          <mat-form-field class="search-field" appearance="outline">
+            <mat-label>Пошук</mat-label>
+            <span matPrefix class="search-preffix">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <input type="text" matInput placeholder="Почніть вводити назву.." [formControl]="searchField" />
+            @if (searchField.value) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="searchField.setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+          </mat-form-field>
+          <mat-form-field class="filter-select-category , text-form-field" appearance="outline">
+            <mat-label>Категорія</mat-label>
+            <mat-select multiple>
+              @for (category of categories; track category) {
+                <mat-option [value]="category.value">{{ category.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field class="text-form-field" appearance="outline">
+            <mat-label>Від</mat-label>
+            <input matInput [matDatepicker]="frompicker" />
+            <mat-hint>ММ/ДД/РРРР</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="frompicker"></mat-datepicker-toggle>
+            <mat-datepicker #frompicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="text-form-field" appearance="outline">
+            <mat-label>До</mat-label>
+            <input matInput [matDatepicker]="topicker" />
+            <mat-hint>ММ/ДД/РРРР</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="topicker"></mat-datepicker-toggle>
+            <mat-datepicker #topicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="filter-select-type , text-form-field" appearance="outline">
+            <mat-label>Тип</mat-label>
+            <mat-select multiple>
+              @for (transactionType of transactionTypes; track transactionType) {
+                <mat-option [value]="transactionType.value">{{ transactionType.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <div class="filter-price-forms" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <mat-form-field class="text-form-field" appearance="outline">
+              <mat-label>Від</mat-label>
+              <input matInput type="number" maxlength="10" placeholder="Сума" />
+              <span matSuffix class="sum-suffix">
+                <i class="fa-solid fa-hryvnia-sign"></i>
+              </span>
+            </mat-form-field>
+            <mat-form-field class="text-form-field" appearance="outline">
+              <mat-label>До</mat-label>
+              <input matInput type="number" maxlength="10" placeholder="Сума" />
+              <span matSuffix class="sum-suffix">
+                <i class="fa-solid fa-hryvnia-sign"></i>
+              </span>
+            </mat-form-field>
+          </div>
+          <div class="filter-two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <button mat-raised-button class="clear-filter-button">Очистити</button>
+            <button mat-raised-button class="apply-filter-button">Застосувати</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
 
   <div class="payments-container">
+    <div class="new-text">
+      <span class="text">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        Історія
+      </span>
+    </div>
     <mat-tab-group color="warn">
       <mat-tab label="Усі">
         <div class="scroll-container"></div>
