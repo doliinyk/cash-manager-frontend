@@ -1,5 +1,5 @@
-<div class="overall-page" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%">
-  <div class="filter-new-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+<div class="overall-page">
+  <div class="filter-new-container">
     <div class="new-tools" fxLayoutAlign="none center" fxLayout="column" fxLayoutGap="10px">
       <div class="new-text">
         <span class="text">
@@ -7,7 +7,8 @@
           Новий
         </span>
       </div>
-      <mat-stepper orientation="horizontal" linear="false" color="warn" #stepper>
+
+      <mat-stepper [orientation]="(stepperOrientation | async)!" color="warn" #stepper>
         <mat-step>
           <form>
             <ng-template matStepLabel>Виберіть тип</ng-template>
@@ -101,8 +102,8 @@
           Фільтри
         </span>
       </div>
-      <form fxLayout="column" fxLayoutGap="10px">
-        <div fxLayout="row">
+      <form fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="search-field" appearance="outline">
             <mat-label>Пошук</mat-label>
             <span matPrefix class="search-preffix">
@@ -115,7 +116,7 @@
               </button>
             }
           </mat-form-field>
-          <mat-form-field class="filter-select-category , text-form-field" appearance="outline">
+          <mat-form-field class="filter-select , text-form-field" appearance="outline">
             <mat-label>Категорія</mat-label>
             <mat-select multiple>
               @for (category of categories; track category) {
@@ -124,7 +125,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="text-form-field" appearance="outline">
             <mat-label>Від</mat-label>
             <input matInput [matDatepicker]="frompicker" />
@@ -137,7 +138,7 @@
             <mat-datepicker-toggle matIconSuffix [for]="topicker"></mat-datepicker-toggle>
             <mat-datepicker #topicker></mat-datepicker>
           </mat-form-field>
-          <mat-form-field class="filter-select-type , text-form-field" appearance="outline">
+          <mat-form-field class="filter-select , text-form-field" appearance="outline">
             <mat-label>Тип</mat-label>
             <mat-select multiple>
               @for (transactionType of transactionTypes; track transactionType) {
@@ -146,7 +147,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="text-form-field" appearance="outline">
             <mat-label>Від</mat-label>
             <input matInput type="number" maxlength="10" placeholder="Сума" />
