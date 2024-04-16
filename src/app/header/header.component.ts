@@ -1,10 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { filter, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 import { LocalizationService } from 'shared/services/localization/localization.service';
 import { Languages } from 'shared/enums/languages';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -23,13 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly localizationService: LocalizationService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
-      this.currentRoute = this.activatedRoute.snapshot.firstChild!.routeConfig!.path;
-    });
-  }
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.breakpointObserver
@@ -45,11 +40,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   isAuthentificated() {
-    return this.currentRoute === 'user';
+    return this.router.url === '/user/payments' || this.router.url === '/user/profile';
   }
 
-  getUserPage(route: string) {
-    return this.currentRoute === route;
+  getCurrentPage() {
+    return this.router.url;
   }
 
   public useLanguage(language: string): void {

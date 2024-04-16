@@ -8,8 +8,9 @@
 
 .title {
   color: $main-text-color;
+  font-family: Outfit, sans-serif;
   font-size: 40px;
-  font-weight: 600;
+  font-weight: 500;
   width: auto;
   min-width: 150px;
   height: 5vh;
@@ -48,6 +49,25 @@
   background-color: transparent;
 }
 
+.balance {
+  color: $main-text-color;
+  height: 5vh;
+  font-size: 23px;
+  background: white;
+  border-radius: 5px;
+  padding: 0 10px 0 10px;
+  -webkit-box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
+  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
+}
+
+.balance-text {
+  font-size: 30px;
+  font-family: Outfit, sans-serif;
+  font-weight: 300;
+  margin-left: 20px;
+}
+
 .button-language {
   width: auto;
   height: 5vh;
@@ -63,7 +83,6 @@
   font-size: 15px;
   height: 5vh;
   width: auto;
-  margin-left: 24px;
   border-radius: 5px;
   border: 1px;
   padding: 0 20px 0 20px;
@@ -83,4 +102,10 @@
   background: linear-gradient(to right, #ce4d24 0%, rgba(0, 0, 0, 51%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.logout-button {
+  font-size: 23px;
+  height: 5vh;
+  width: 50px;
 }
