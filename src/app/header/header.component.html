@@ -8,7 +8,8 @@
         [ngClass]="{
           'button-profile-current': getCurrentPage() === '/user/profile',
           'button-profile-not-current': getCurrentPage() !== '/user/profile'
-        }" routerLink="/user/profile">
+        }"
+        routerLink="/user/profile">
         <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
       </button>
       <button
@@ -16,7 +17,8 @@
         [ngClass]="{
           'button-profile-current': getCurrentPage() === '/user/payments',
           'button-profile-not-current': getCurrentPage() !== '/user/payments'
-        }" routerLink="/user/payments">
+        }"
+        routerLink="/user/payments">
         <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
       </button>
     </div>
