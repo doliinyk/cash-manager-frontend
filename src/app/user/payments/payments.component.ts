@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
-import {map, Observable} from "rxjs";
-import {StepperOrientation} from "@angular/cdk/stepper";
-import {BreakpointObserver} from "@angular/cdk/layout";
+import { FormBuilder, FormControl } from '@angular/forms';
+import { map, Observable } from 'rxjs';
+import { StepperOrientation } from '@angular/cdk/stepper';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 interface Categories {
   value: string;
@@ -39,10 +39,10 @@ export class PaymentsComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    breakpointObserver: BreakpointObserver,
+    breakpointObserver: BreakpointObserver
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
-      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
 }
