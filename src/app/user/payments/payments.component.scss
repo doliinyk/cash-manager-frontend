@@ -140,7 +140,7 @@ input[type='number'] {
   margin-left: 50px;
 }
 
-@media screen and (max-width: 1300px) , (max-height: 808px) {
+@media screen and (max-width: 1300px), (max-height: 808px) {
   .overall-page {
     flex-direction: column;
     padding: 25px 0 25px 0;
@@ -160,6 +160,7 @@ input[type='number'] {
   .filter-tools {
     height: auto;
   }
+
   .payments-container {
     height: auto;
     width: 90%;

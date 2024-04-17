@@ -8,6 +8,5 @@ platformBrowserDynamic()
 /* TODO: Profile page from zero
          FAQ page from zero
          LoginRegister transition animation
-         Fix responsive payments page
          Support window
-         Upgrade header, footer  */
+         Upgrade footer  */
