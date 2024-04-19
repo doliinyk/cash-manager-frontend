@@ -3,66 +3,40 @@
 .overall-page {
   height: $page-height;
   position: relative;
-  background: rgba(194, 35, 35, 0.5);
-  background: linear-gradient(
-      90deg,
-      rgba(194, 35, 35, 0.1) 0%,
-      rgba(219, 125, 37, 0.1) 50%,
-      rgba(255, 230, 0, 0.093) 100%
-  );
 }
 
 form {
   width: 350px;
   height: auto;
-  background-color: #f1f1f1;
   border-radius: 50px;
-  -webkit-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
-  box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
-  padding: 25px;
+  -webkit-box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  -moz-box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  padding: 15px 15px 30px 15px;
 }
 
 .color-grad {
   width: 100%;
   height: 50px;
-  background: rgb(206, 77, 36);
-  background: $secondary-gradient;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: orange;
   font-size: 35px;
-  margin-bottom: 5px;
+  font-weight: normal;
+  margin-bottom: 12px;
 }
 
 .back-button {
-  font-size: 10vw;
+  font-size: 40px;
   opacity: 0.3;
   position: absolute;
-  top: 37%;
-  left: 15%;
+  top: 2%;
+  left: 2%;
   width: auto;
   height: auto;
 }
 
 .back-button-text {
-  font-size: 3vw;
+  font-size: 20px;
   font-family: Mulish, sans-serif;
-}
-
-@media screen and (max-width: 1400px) {
-  .back-button-text {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .back-button-text {
-    display: block;
-  }
-  .back-button {
-    left: 0;
-    top: 0;
-  }
 }
 
 mat-form-field,
@@ -100,7 +74,7 @@ a {
 }
 
 .two-buttons .log-register-button {
-  background: $secondary-gradient;
+  background: orange;
   color: #f1f1f1;
 }
 

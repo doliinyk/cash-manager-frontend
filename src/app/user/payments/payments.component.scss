@@ -2,7 +2,6 @@
 
 .overall-page {
   height: $page-height;
-  background: #fff;
   box-sizing: border-box;
   padding: 0 27px 0 27px;
   display: flex;
@@ -10,7 +9,6 @@
   align-items: center;
   justify-content: center;
   gap: 2%;
-  overflow-y: hidden;
 }
 
 .filter-new-container {
@@ -26,7 +24,6 @@
 .payments-container {
   height: 95%;
   width: 50%;
-  background: #f1f1f1;
   border-radius: 5px;
   -webkit-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
   -moz-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
@@ -37,7 +34,6 @@
   width: 100%;
   height: 48%;
   border-radius: 5px;
-  background: #f1f1f1;
   -webkit-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
   -moz-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
   box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
@@ -47,7 +43,6 @@
   width: 100%;
   height: 48%;
   border-radius: 5px;
-  background: #f1f1f1;
   -webkit-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
   -moz-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
   box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
@@ -60,8 +55,8 @@
 .new-text {
   border-radius: 5px 5px 0 0;
   font-size: 30px;
-  color: white;
-  background: $secondary-gradient;
+  color: orange;
+  background: #f1f1f1;
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
@@ -76,7 +71,6 @@
 }
 
 mat-stepper {
-  background: #f1f1f1;
   width: 100%;
 }
 
