@@ -17,6 +17,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { MainComponent } from './core/main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent],
@@ -39,7 +40,8 @@ import { HeaderComponent } from './header/header.component';
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     AuthModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]
