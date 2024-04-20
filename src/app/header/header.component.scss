@@ -3,7 +3,7 @@
 .mat-toolbar {
   height: 80px;
   width: 100vw;
-  background: white;
+  background: #f1f1f1;
   border: 2px solid #e6e6e6;
 }
 
@@ -25,7 +25,7 @@
 
 .buttons-text {
   color: $main-text-color;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 .button-profile-current,
@@ -35,11 +35,10 @@
   width: auto;
   padding: 0 20px 0 20px;
   border-radius: 20px;
-  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
 }
 
 .button-profile-current {
-  box-shadow: rgba(0, 0, 0, 0.19) 0 4px 4px;
+  box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px;
   //background: rgba(196, 176, 176, 0.1899999976158142);
   background: orange;
 }
@@ -52,16 +51,13 @@
   color: $main-text-color;
   height: 45px;
   font-size: 23px;
-  background: white;
   border-radius: 20px;
   padding: 0 10px 0 10px;
-  -webkit-box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
-  -moz-box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
-  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
+  border: 2px solid #e6e6e6;
 }
 
 .balance-text {
-  font-size: 30px;
+  font-size: 25px;
   font-family: Outfit, sans-serif;
   font-weight: 300;
   margin-left: 20px;
@@ -107,8 +103,17 @@
 }
 
 .logout-button {
-  font-size: 23px;
+  background: orange;
+  font-size: 15px;
   border-radius: 20px;
   height: 5vh;
-  width: 50px;
+  width: 100px;
+  box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px;
 }
+
+.logout-text {
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+

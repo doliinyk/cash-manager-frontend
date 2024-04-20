@@ -38,7 +38,6 @@
         <span fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="13px">
           <object data="assets/icons/lang_icon.svg" type="image/svg+xml">Lang</object>
           <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
-          <object data="assets/icons/arrowdown_icon.svg" type="image/svg+xml">ArrowDown</object>
         </span>
       </button>
       @if (!isAuthentificated()) {
@@ -46,7 +45,8 @@
           <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
         </a>
       } @else {
-        <button mat-raised-button class="logout-button" fxLayoutAlign="center center">
+        <button mat-button class="logout-button" fxLayoutAlign="center center">
+          <span class="logout-text">Вийти</span>
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
       }

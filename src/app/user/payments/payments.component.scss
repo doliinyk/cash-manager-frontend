@@ -25,27 +25,21 @@
   height: 95%;
   width: 50%;
   border-radius: 5px;
-  -webkit-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
-  -moz-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
-  box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
+  border: 2px solid #e6e6e6;
 }
 
 .new-tools {
   width: 100%;
   height: 48%;
   border-radius: 5px;
-  -webkit-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
-  -moz-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
-  box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
+  border: 2px solid #e6e6e6;
 }
 
 .filter-tools {
   width: 100%;
   height: 48%;
   border-radius: 5px;
-  -webkit-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
-  -moz-box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
-  box-shadow: 0 7px 15px -7px rgba(0, 0, 0, 0.59);
+  border: 2px solid #e6e6e6;
 }
 
 .filter-form {
@@ -160,5 +154,3 @@ input[type='number'] {
     width: 90%;
   }
 }
-
-

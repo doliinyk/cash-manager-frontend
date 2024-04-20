@@ -1,1 +1,51 @@
-<p>profile works!</p>
+<div class="overall-page">
+  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2vh">
+    @if (!isEditMode) {
+      <button mat-button class="edit-button" (click)="toEditMode()">
+        <span>Редагувати</span>
+        <mat-icon>edit</mat-icon>
+      </button>
+    } @else {
+      <button mat-button class="save-button" (click)="saveChanges()">
+        <span>Зберегти</span>
+        <mat-icon>done</mat-icon>
+      </button>
+      <button mat-button class="decline-button" (click)="declineChanges()">
+        <span>Відхилити</span>
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+    <div class="avatar-container" fxLayoutAlign="center center">
+      @if (hasAvatar) {
+        <ng-template>
+          <p>avatar</p>
+        </ng-template>
+      } @else {
+        <i class="fa-solid fa-user"></i>
+      }
+    </div>
+    <mat-form-field class="profile-field" color="warn" appearance="outline">
+      <mat-label>Ім'я</mat-label>
+      <input matInput type="text" placeholder="Ім'я" [readonly]="!isEditMode" [(ngModel)]="userName" />
+    </mat-form-field>
+    <mat-form-field class="profile-field" color="warn" appearance="outline">
+      <mat-label>Електронна пошта</mat-label>
+      <input matInput type="email" placeholder="Електронна пошта" [readonly]="!isEditMode" [(ngModel)]="userEmail" />
+    </mat-form-field>
+    <mat-form-field class="profile-field" color="warn" appearance="outline">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" placeholder="Пароль" [readonly]="!isEditMode" [(ngModel)]="userPassword" />
+    </mat-form-field>
+  </div>
+  <div class="analytics-container" fxLayout="column">
+    <div class="period-buttons-container" fxLayoutAlign="none center" fxLayoutGap="20px">
+      <span>Період</span>
+      <mat-button-toggle-group appearance="legacy">
+        <mat-button-toggle value="sevenDays" checked>7</mat-button-toggle>
+        <mat-button-toggle value="thirtyDays">30</mat-button-toggle>
+        <mat-button-toggle value="allTime">Весь час</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="stats-container"></div>
+  </div>
+</div>
