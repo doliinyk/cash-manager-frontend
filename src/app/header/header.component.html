@@ -41,11 +41,11 @@
         </span>
       </button>
       @if (!isAuthentificated()) {
-        <a mat-button class="button-login" routerLink="/login">
+        <button mat-button class="button-login" routerLink="/login">
           <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
-        </a>
+        </button>
       } @else {
-        <button mat-button class="logout-button" fxLayoutAlign="center center">
+        <button mat-button class="logout-button" fxLayoutAlign="center center" routerLink="/login">
           <span class="logout-text">Вийти</span>
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
