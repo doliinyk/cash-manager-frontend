@@ -8,7 +8,7 @@ import { EmailActivationComponent } from './email-activation/email-activation.co
 const routes: Routes = [
   { path: 'registration', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'email-activation', component: EmailActivationComponent }
+  { path: 'activation', component: EmailActivationComponent }
 ];
 
 @NgModule({

@@ -12,8 +12,14 @@
       <div class="text-main-child-step" fxLayoutAlign="center center">3</div>
       <span>Переглядайте аналітику за окремий період часу по декільком показникам</span>
     </div>
-    <button mat-button class="button-login" routerLink="/registration">
-      <span class="text-login"> Зареєстуватись зараз</span>
-    </button>
+    @if (isAuthentificated) {
+      <button mat-button class="button-login" routerLink="/user/profile">
+        <span class="text-login"> До профілю</span>
+      </button>
+    } @else {
+      <button mat-button class="button-login" routerLink="/registration">
+        <span class="text-login"> Зареєстуватись зараз</span>
+      </button>
+    }
   </div>
 </div>

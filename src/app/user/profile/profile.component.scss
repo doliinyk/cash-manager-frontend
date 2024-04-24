@@ -63,7 +63,7 @@
   width: auto;
 }
 
-.avatar-container {
+.avatar {
   height: 200px;
   width: 200px;
   border: 3px solid lightgray;
@@ -73,6 +73,23 @@
   font-size: 5rem;
 }
 
+.avatar-container {
+  position: relative;
+}
+
 .profile-field {
   width: 60%;
+}
+
+.avatar-button {
+  color: darkorange;
+  background: white;
+  position: absolute;
+  top: 70%;
+  left: 70%;
+  box-shadow: rgba(0, 0, 0, 10%) 0 4px 4px;
+}
+
+.file-picker-invisible {
+  display: none;
 }

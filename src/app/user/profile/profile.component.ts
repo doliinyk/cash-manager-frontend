@@ -32,4 +32,8 @@ export class ProfileComponent {
     this.userPassword = this.tempUserPassword;
     this.isEditMode = false;
   }
+
+  onFileSelected(event: any) {
+    const file:File = event.target.files[0];
+  }
 }

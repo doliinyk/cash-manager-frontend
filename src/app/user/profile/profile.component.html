@@ -15,14 +15,22 @@
         <mat-icon>close</mat-icon>
       </button>
     }
-    <div class="avatar-container" fxLayoutAlign="center center">
-      @if (hasAvatar) {
-        <ng-template>
-          <p>avatar</p>
-        </ng-template>
-      } @else {
-        <i class="fa-solid fa-user"></i>
-      }
+    <div class="avatar-container">
+      <div type="file" class="avatar" fxLayoutAlign="center center">
+        <input type="file" class="file-picker-invisible" (change)="onFileSelected($event)" #filepicker>
+        @if (hasAvatar) {
+          <ng-template>
+            <p>avatar</p>
+          </ng-template>
+        } @else {
+          <i class="fa-solid fa-user"></i>
+        }
+        @if (isEditMode) {
+          <button mat-fab class="avatar-button" (click)="filepicker.click()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        }
+      </div>
     </div>
     <mat-form-field class="profile-field" color="warn" appearance="outline">
       <mat-label>Ім'я</mat-label>

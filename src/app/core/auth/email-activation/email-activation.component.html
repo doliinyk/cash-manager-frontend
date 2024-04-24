@@ -1,24 +1,31 @@
-<div class="main">
-  <div fxLayout="column" fxLayoutAlign="center" class="container">
-    <div class="container" fxFlexOffset="4" fxLayout="row" fxLayoutAlign="center">
-      <div fxFlex.lt-md="80" fxFlex="37">
-        <mat-card class="card">
-          <mat-card-content>
-            <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="30">
-              @if (isVerified) {
-                <img class="confetti" ngSrc="assets/icons/confetti.png" alt="confetti" height="170" width="170" />
-                <b style="font-size: 30px">{{ 'EMAIL.CONGRATS' | translate }}!</b>
-                <p style="font-size: 23px">{{ 'EMAIL.ACTIVATED' | translate }}</p>
-                <a mat-fab extended color="white" routerLink="/login"> {{ 'LOGIN.LOGIN_BUTTON' | translate }} </a>
-              } @else {
-                <img class="confetti" ngSrc="assets/icons/sad-emodji.webp" alt="confetti" height="170" width="170" />
-                <b style="font-size: 30px">{{ 'EMAIL.ERROR' | translate }}</b>
-                <a mat-fab extended color="white" routerLink=""> {{ 'EMAIL.ERROR_BUTTON' | translate }} </a>
-              }
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
-  </div>
+<div class="overall-page" fxLayoutAlign="center center">
+  @if (isVerified) {
+    <mat-card>
+      <mat-card-header fxLayout="column">
+        <mat-card-subtitle>Успіх</mat-card-subtitle>
+        <mat-card-title>Зареєстровано</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <img class="confetti" ngSrc="assets/icons/confetti.png" alt="confetti" height="170" width="170"/>
+        <span class="text">Перейдіть у профіль вже зараз</span>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-button routerLink="/login">{{ 'LOGIN.LOGIN_BUTTON' | translate }}</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else {
+    <mat-card>
+      <mat-card-header fxLayout="column">
+        <mat-card-subtitle>Упс!</mat-card-subtitle>
+        <mat-card-title>Щось пішло не так</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <img class="confetti" ngSrc="assets/icons/sad-emodji.webp" alt="confetti" height="170" width="170"/>
+        <span class="text">Повторіть спробу</span>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-button routerLink="">{{ 'EMAIL.ERROR_BUTTON' | translate }}</button>
+      </mat-card-actions>
+    </mat-card>
+  }
 </div>

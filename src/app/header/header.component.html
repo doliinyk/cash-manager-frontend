@@ -1,5 +1,7 @@
 <mat-toolbar fxLayout="row" role="heading">
-  <span class="title" fxLayoutAlign="center center"> CashChecker </span>
+  <button mat-button class="title" fxLayoutAlign="center center" routerLink="">
+    <span class="title-text" fxLayoutAlign="center center"> CashChecker </span>
+  </button>
 
   @if (isAuthentificated() && !isSmallScreen) {
     <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0.7vw">
