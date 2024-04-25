@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { LocalizationService } from 'shared/services/localization/localization.service';
 import { Languages } from 'shared/enums/languages';
 import { Router } from '@angular/router';
+import {AuthService} from "shared/services/auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -19,11 +20,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
   protected currentRoute?: string;
   protected currentPage?: string;
+  protected isAuthentificated = this.authService.isAuthorized;
+  protected account = this.authService.account;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly localizationService: LocalizationService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -39,10 +43,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  isAuthentificated() {
-    return this.router.url === '/user/payments' || this.router.url === '/user/profile';
-  }
-
   getCurrentPage() {
     return this.router.url;
   }
@@ -50,5 +50,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public useLanguage(language: string): void {
     this.localizationService.setLocalization(language);
     this.language = language;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

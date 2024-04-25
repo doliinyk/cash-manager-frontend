@@ -3,7 +3,7 @@
     <span class="title-text" fxLayoutAlign="center center"> CashChecker </span>
   </button>
 
-  @if (isAuthentificated() && !isSmallScreen) {
+  @if ((isAuthentificated | async) && !isSmallScreen) {
     <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0.7vw">
       <button
         mat-button
@@ -30,10 +30,10 @@
 
   @if (!isSmallScreen) {
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="25px">
-      @if (isAuthentificated()) {
+      @if (isAuthentificated | async) {
         <span class="balance" fxLayout="row" fxLayoutAlign="none center">
           <i class="fa-solid fa-wallet"></i>
-          <span class="balance-text">1337</span>
+          <span class="balance-text">{{ account | async }}</span>
         </span>
       }
       <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
@@ -42,12 +42,12 @@
           <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
         </span>
       </button>
-      @if (!isAuthentificated()) {
+      @if (!(isAuthentificated | async)) {
         <button mat-button class="button-login" routerLink="/login">
           <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
         </button>
       } @else {
-        <button mat-button class="logout-button" fxLayoutAlign="center center" routerLink="/login">
+        <button mat-button class="logout-button" fxLayoutAlign="center center" (click)="logout()">
           <span class="logout-text">Вийти</span>
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
@@ -68,14 +68,14 @@
 </mat-menu>
 
 <mat-menu #mobileMenu="matMenu">
-  @if (isAuthentificated()) {
+  @if (isAuthentificated | async) {
     <button mat-menu-item>{{ 'NAV.PROFILE' | translate }}</button>
     <button mat-menu-item>{{ 'NAV.PAYMENTS' | translate }}</button>
   } @else {
     <button mat-menu-item routerLink="/login">{{ 'NAV.LOGIN' | translate }}</button>
   }
   <button mat-menu-item [matMenuTriggerFor]="menu">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</button>
-  @if (isAuthentificated()) {
-    <button mat-menu-item>{{ 'NAV.LOGOUT' | translate }}</button>
+  @if (isAuthentificated | async) {
+    <button mat-menu-item (click)="logout()">{{ 'NAV.LOGOUT' | translate }}</button>
   }
 </mat-menu>
