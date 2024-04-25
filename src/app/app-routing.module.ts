@@ -5,8 +5,8 @@ import { MainComponent } from './core/main/main.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'auth', loadChildren: () => import('./core/auth/auth.module').then(m => m.AuthModule) },
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) }
+  { path: 'auth', loadChildren: () => import('./core/auth/auth.module').then(m => m.AuthModule), data: { animation: 'isRight'}  },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), data: { animation: 'isRight'}  }
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {slider} from "../../../route-animations";
 
 @Component({
   selector: 'app-login',
