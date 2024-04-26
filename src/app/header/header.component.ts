@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { LocalizationService } from 'shared/services/localization/localization.service';
 import { Languages } from 'shared/enums/languages';
 import { Router } from '@angular/router';
-import {AuthService} from "shared/services/auth/auth.service";
+import { AuthService } from 'shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',

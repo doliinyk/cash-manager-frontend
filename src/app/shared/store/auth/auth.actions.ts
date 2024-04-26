@@ -30,7 +30,3 @@ export class GetUser{
   constructor() {
   }
 }
-
-export class RefreshToken{
-  static readonly type = '[token] refresh';
-}

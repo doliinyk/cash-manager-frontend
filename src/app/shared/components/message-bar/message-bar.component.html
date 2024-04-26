@@ -10,7 +10,9 @@
       </p>
     </div>
   </span>
-  <div *ngIf="!data.unclosable" (click)="onClose()" data-testid="closing-button">
-    <mat-icon class="action">close</mat-icon>
-  </div>
+  @if (!data.unclosable) {
+    <div (click)="onClose()" data-testid="closing-button">
+      <mat-icon class="action">close</mat-icon>
+    </div>
+  }
 </div>

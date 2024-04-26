@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "shared/services/auth/auth.service";
-import {Observable} from "rxjs";
-import {UserStateModel} from "shared/models/user";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'shared/services/auth/auth.service';
+import { Observable } from 'rxjs';
+import { UserStateModel } from 'shared/models/user';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent implements OnInit{
-  protected user?: Observable<UserStateModel> = this.authService.user$
+export class ProfileComponent implements OnInit {
+  protected user?: Observable<UserStateModel> = this.authService.user$;
   hasAvatar: boolean = false;
   isEditMode: boolean = false;
   userName?: string;
@@ -19,14 +19,13 @@ export class ProfileComponent implements OnInit{
   tempUserEmail?: string = '';
   tempUserPassword: string = '';
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.user?.subscribe((data)=>{
-      this.userName=data.login?.toString();
-      this.userEmail=data.email;
-    })
+    this.user?.subscribe(data => {
+      this.userName = data.login?.toString();
+      this.userEmail = data.email;
+    });
   }
 
   toEditMode() {
@@ -48,6 +47,6 @@ export class ProfileComponent implements OnInit{
   }
 
   onFileSelected(event: any) {
-    const file:File = event.target.files[0];
+    const file: File = event.target.files[0];
   }
 }

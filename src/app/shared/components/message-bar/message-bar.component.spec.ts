@@ -9,9 +9,8 @@ describe('MessageBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MessageBarComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(MessageBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -42,7 +42,7 @@
           <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
         </span>
       </button>
-      @if (!(isAuthentificated | async)) {
+      @if ((isAuthentificated | async) === false) {
         <button mat-button class="button-login" routerLink="/login">
           <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
         </button>

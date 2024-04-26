@@ -1,5 +1,5 @@
-import {MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
-import {MessageBarType} from "shared/enums/message-bar";
+import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MessageBarType } from 'shared/enums/message-bar';
 
 export interface MessageBarData {
   message: string;

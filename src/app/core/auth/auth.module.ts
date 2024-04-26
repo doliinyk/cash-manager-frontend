@@ -12,7 +12,7 @@ import { EmailActivationComponent } from './email-activation/email-activation.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import {UserState} from "shared/store/user/user.state";
+import { AuthState } from 'shared/store/auth/auth.state';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, EmailActivationComponent],
@@ -25,7 +25,7 @@ import {UserState} from "shared/store/user/user.state";
     RouterLink,
     NgOptimizedImage,
     ReactiveFormsModule,
-    NgxsModule.forFeature([RegistrationState, UserState]),
+    NgxsModule.forFeature([RegistrationState, AuthState]),
     AuthRoutingModule
   ]
 })

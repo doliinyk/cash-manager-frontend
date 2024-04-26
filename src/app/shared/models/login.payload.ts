@@ -1,4 +1,4 @@
-export interface LoginPayload{
+export interface LoginPayload {
   accessToken?: string;
   refreshToken?: string;
 }
