@@ -1,5 +1,5 @@
 <div class="overall-page">
-  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2vh">
+  <div class="profile-containter" fxLayout="column" fxLayoutAlign="none center" fxLayoutGap="2vh">
     @if (!isEditMode) {
       <button mat-button class="edit-button" (click)="toEditMode()">
         <span>Редагувати</span>
@@ -40,10 +40,24 @@
       <mat-label>Електронна пошта</mat-label>
       <input matInput type="email" placeholder="Електронна пошта" [readonly]="!isEditMode" [(ngModel)]="userEmail" />
     </mat-form-field>
-    <mat-form-field class="profile-field" color="warn" appearance="outline">
-      <mat-label>Пароль</mat-label>
-      <input matInput type="password" placeholder="Пароль" [readonly]="!isEditMode" [(ngModel)]="userPassword" />
-    </mat-form-field>
+    @if (isEditMode) {
+      <mat-form-field class="profile-field" color="warn" appearance="outline">
+        <mat-label>Старий пароль</mat-label>
+        <input matInput type="password" placeholder="Старий пароль" [readonly]="!isEditMode" [(ngModel)]="userPassword" />
+      </mat-form-field>
+      <mat-form-field class="profile-field" color="warn" appearance="outline">
+        <mat-label>Новий пароль</mat-label>
+        <input matInput type="password" placeholder="Новий пароль" [readonly]="!isEditMode" [(ngModel)]="userPassword" />
+      </mat-form-field>
+    }
+    <div class="profile-info-table" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <i class="fa-solid fa-lightbulb"></i>
+      @if (isEditMode) {
+        <span>Щоб змінити пароль введіть старий та новий пароль</span>
+      } @else {
+        <span>Щоб змінити пароль перейдіть в режим редагування</span>
+      }
+    </div>
   </div>
   <div class="analytics-container" fxLayout="column">
     <div class="period-buttons-container" fxLayoutAlign="none center" fxLayoutGap="20px">

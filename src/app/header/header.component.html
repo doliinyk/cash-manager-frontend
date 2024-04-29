@@ -29,7 +29,7 @@
   <span class="spacer" fxFlex></span>
 
   @if (!isSmallScreen) {
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0.7vw">
       @if (isAuthentificated()) {
         <span class="balance" fxLayout="row" fxLayoutAlign="none center">
           <i class="fa-solid fa-wallet"></i>
@@ -38,7 +38,7 @@
       }
       <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
         <span fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="13px">
-          <object data="assets/icons/lang_icon.svg" type="image/svg+xml">Lang</object>
+          <i class="fa-solid fa-earth-americas"></i>
           <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
         </span>
       </button>
@@ -69,8 +69,8 @@
 
 <mat-menu #mobileMenu="matMenu">
   @if (isAuthentificated()) {
-    <button mat-menu-item>{{ 'NAV.PROFILE' | translate }}</button>
-    <button mat-menu-item>{{ 'NAV.PAYMENTS' | translate }}</button>
+    <button mat-menu-item routerLink="/user/profile">{{ 'NAV.PROFILE' | translate }}</button>
+    <button mat-menu-item routerLink="/user/payments">{{ 'NAV.PAYMENTS' | translate }}</button>
   } @else {
     <button mat-menu-item routerLink="/login">{{ 'NAV.LOGIN' | translate }}</button>
   }
