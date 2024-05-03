@@ -17,7 +17,7 @@
     }
     <div class="avatar-container">
       <div type="file" class="avatar" fxLayoutAlign="center center">
-        <input type="file" class="file-picker-invisible" (change)="onFileSelected($event)" #filepicker>
+        <input type="file" class="file-picker-invisible" (change)="onFileSelected($event)" #filepicker />
         @if (hasAvatar) {
           <ng-template>
             <p>avatar</p>
@@ -43,11 +43,21 @@
     @if (isEditMode) {
       <mat-form-field class="profile-field" color="warn" appearance="outline">
         <mat-label>Старий пароль</mat-label>
-        <input matInput type="password" placeholder="Старий пароль" [readonly]="!isEditMode" [(ngModel)]="userPassword" />
+        <input
+          matInput
+          type="password"
+          placeholder="Старий пароль"
+          [readonly]="!isEditMode"
+          [(ngModel)]="userPassword" />
       </mat-form-field>
       <mat-form-field class="profile-field" color="warn" appearance="outline">
         <mat-label>Новий пароль</mat-label>
-        <input matInput type="password" placeholder="Новий пароль" [readonly]="!isEditMode" [(ngModel)]="userPassword" />
+        <input
+          matInput
+          type="password"
+          placeholder="Новий пароль"
+          [readonly]="!isEditMode"
+          [(ngModel)]="userPassword" />
       </mat-form-field>
     }
     <div class="profile-info-table" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
@@ -68,6 +78,23 @@
         <mat-button-toggle value="allTime">Весь час</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <div class="stats-container"></div>
+    <div class="stats-container" fxLayout="column">
+      <div class="piechart-row" fxLayout="row">
+        <div class="piechart-row-piechart" fxLayoutAlign="center center">
+          <canvas id="pieChart"></canvas>
+          <span class="pieChart-vallet">1337</span>
+        </div>
+        <div class="piechar-row-categories" fxLayout="row" fxLayoutAlign="none center">
+          @for (category of categories; track category) {
+            <div class="category-item" fxLayout="row" fxLayoutGap="10px" (click)="categoryItemClick(category.id)">
+              <div class="category-item-color" [style.background]="category.color"></div>
+              <div class="category-item-name" fxLayoutAlign="center center">{{ category.title }}</div>
+            </div>
+          }
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="gistogram-row"></div>
+    </div>
   </div>
 </div>
