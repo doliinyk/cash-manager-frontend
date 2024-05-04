@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'shared/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {slider} from "../../../route-animations";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  animations: [
+    slider
+  ]
 })
 export class LoginComponent {
   loginForm: FormGroup;

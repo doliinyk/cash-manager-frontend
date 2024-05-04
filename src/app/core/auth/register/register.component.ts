@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'shared/services/auth/registration.service';
+import {slider} from "../../../route-animations";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  animations: [
+    slider
+  ]
 })
 export class RegisterComponent {
   registerForm: FormGroup;

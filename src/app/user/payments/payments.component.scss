@@ -50,7 +50,6 @@
   border-radius: 5px 5px 0 0;
   font-size: 30px;
   color: orange;
-  background: #f1f1f1;
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
@@ -66,6 +65,7 @@
 
 mat-stepper {
   width: 100%;
+  background: #f1f1f1;
 }
 
 .scroll-container {
