@@ -1,5 +1,4 @@
 import {
-  HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule,
   provideHttpClient,
@@ -27,7 +26,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { MessageBarComponent } from 'shared/components/message-bar/message-bar.component';
 import { AppState } from 'shared/store/app/app.state';
 import { TokenInterceptor } from 'shared/services/auth/token.interceptor';
-import {TokenState} from "shared/store/token/token.state";
+import { TokenState } from 'shared/store/token/token.state';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
@@ -53,9 +52,7 @@ import {TokenState} from "shared/store/token/token.state";
     FlexLayoutModule,
     NgOptimizedImage
   ],
-  providers: [
-    [provideHttpClient(withInterceptors([TokenInterceptor]))]
-  ],
+  providers: [[provideHttpClient(withInterceptors([TokenInterceptor]))]],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

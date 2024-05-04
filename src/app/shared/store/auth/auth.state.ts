@@ -1,20 +1,13 @@
-import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {UserStateModel} from "shared/models/user";
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {
-  GetUser,
-  LoginUser,
-  LogoutUser,
-  UserLoginFailed,
-  UserLoginSuccess
-} from "shared/store/auth/auth.actions";
-import {catchError, Observable, tap} from "rxjs";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {LoginPayload} from "shared/models/login.payload";
-import {ShowMessageBar} from "shared/store/app/app.actions";
-import {RemoveTokens, SetTokens} from "shared/store/token/token.actions";
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { UserStateModel } from 'shared/models/user';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { GetUser, LoginUser, LogoutUser, UserLoginFailed, UserLoginSuccess } from 'shared/store/auth/auth.actions';
+import { catchError, tap } from 'rxjs';
+import { LoginPayload } from 'shared/models/login.payload';
+import { ShowMessageBar } from 'shared/store/app/app.actions';
+import { RemoveTokens, SetTokens } from 'shared/store/token/token.actions';
 
 @State<UserStateModel>({
   name: 'user',
@@ -25,80 +18,76 @@ import {RemoveTokens, SetTokens} from "shared/store/token/token.actions";
     account: undefined
   }
 })
-
 @Injectable()
 export class AuthState {
   constructor(
     private httpClient: HttpClient,
     private router: Router
-  ) {
-  }
+  ) {}
 
   @Selector()
-  static isAuthorized(state: UserStateModel){
+  static isAuthorized(state: UserStateModel) {
     return state.isAuthorized;
   }
 
   @Selector()
-  static user(state:UserStateModel){
+  static user(state: UserStateModel) {
     return state;
   }
 
   @Selector()
-  static account(state:UserStateModel){
+  static account(state: UserStateModel) {
     return state.account;
   }
 
   @Action(LoginUser)
-  loginUser({dispatch}: StateContext<UserStateModel>, {payload}: LoginUser) {
-    let login = payload.login;
-    let password = payload.password;
-    const headers = new HttpHeaders({'Authorization': 'Basic ' + btoa(login + ':' + password)});
-    console.log("login " + login + " password: " + password);
+  loginUser({ dispatch }: StateContext<UserStateModel>, { payload }: LoginUser) {
+    const login = payload.login;
+    const password = payload.password;
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(login + ':' + password) });
+    console.log('login ' + login + ' password: ' + password);
     console.log(headers);
-    return this.httpClient.post<LoginPayload>('http://localhost:8080/api/v1/auth/login', {}, {headers: headers}).pipe(tap(
-        (loginPayload: LoginPayload) => dispatch(new UserLoginSuccess(loginPayload))),
+    return this.httpClient.post<LoginPayload>('http://localhost:8080/api/v1/auth/login', {}, { headers: headers }).pipe(
+      tap((loginPayload: LoginPayload) => dispatch(new UserLoginSuccess(loginPayload))),
       catchError((error: HttpErrorResponse) => dispatch(new UserLoginFailed()))
     );
   }
 
   @Action(UserLoginSuccess)
-  userLoginSuccess({dispatch}: StateContext<UserStateModel>, {payload}: UserLoginSuccess): void {
+  userLoginSuccess({ dispatch }: StateContext<UserStateModel>, { payload }: UserLoginSuccess): void {
     dispatch(new SetTokens(payload));
-    dispatch([
-      new ShowMessageBar({message: "Harosh", type: 'success'}),
-      new GetUser(),
-    ]);
+    dispatch([new ShowMessageBar({ message: 'Harosh', type: 'success' }), new GetUser()]);
     this.router.navigate(['/user/profile']);
   }
 
   @Action(UserLoginFailed)
-  userLoginFailed({dispatch}: StateContext<UserStateModel>): void {
-    dispatch(new ShowMessageBar({message: "Помилка", type: 'error'}));
+  userLoginFailed({ dispatch }: StateContext<UserStateModel>): void {
+    dispatch(new ShowMessageBar({ message: 'Помилка', type: 'error' }));
   }
 
   @Action(GetUser)
-  getUserByLogin({patchState}: StateContext<UserStateModel>) {
-    return this.httpClient.get<UserStateModel>('http://localhost:8080/api/v1/user').pipe(tap((data: UserStateModel) => patchState({
-      login: data.login,
-      email: data.email,
-      account: data.account,
-      isAuthorized: true
-    })))
+  getUserByLogin({ patchState }: StateContext<UserStateModel>) {
+    return this.httpClient.get<UserStateModel>('http://localhost:8080/api/v1/user').pipe(
+      tap((data: UserStateModel) =>
+        patchState({
+          login: data.login,
+          email: data.email,
+          account: data.account,
+          isAuthorized: true
+        })
+      )
+    );
   }
 
   @Action(LogoutUser)
-  logoutUser({patchState, dispatch}: StateContext<UserStateModel>){
+  logoutUser({ patchState, dispatch }: StateContext<UserStateModel>) {
     dispatch(new RemoveTokens());
     patchState({
       isAuthorized: false,
       login: undefined,
       email: undefined,
       account: undefined
-    })
+    });
     this.router.navigate(['']);
   }
-
-
-
 }

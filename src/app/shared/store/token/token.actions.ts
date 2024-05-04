@@ -1,31 +1,27 @@
-import {LoginPayload} from "shared/models/login.payload";
-import {HttpHandler, HttpHandlerFn, HttpRequest} from "@angular/common/http";
+import { LoginPayload } from 'shared/models/login.payload';
 
-
-export class RefreshTokens{
+export class RefreshTokens {
   static readonly type = '[tokens] refresh';
 }
 
-export class SetTokens{
+export class SetTokens {
   static readonly type = '[tokens] set';
-  constructor(public payload:LoginPayload) {
-  }
+  constructor(public payload: LoginPayload) {}
 }
 
-export class GetTokens{
+export class GetTokens {
   static readonly type = '[tokens] get';
 }
 
-export class TokenExpired{
+export class TokenExpired {
   static readonly type = '[tokens] expired';
 }
 
-export class SetTokenInterceptor{
-  static readonly type = '[tokens] set interceptor';
-  constructor(public req: HttpRequest<any>, public next: HttpHandlerFn) {
-  }
+export class RefreshTokenSuccess {
+  static readonly type = '[tokens] refresh tokens success';
+  constructor(public payload: LoginPayload) {}
 }
 
-export class RemoveTokens{
-  static readonly type = '[tokens] remove'
+export class RemoveTokens {
+  static readonly type = '[tokens] remove';
 }

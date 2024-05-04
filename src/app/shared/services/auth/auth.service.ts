@@ -1,13 +1,14 @@
-import {HttpClient, HttpEvent, HttpHandler, HttpHandlerFn, HttpParams, HttpRequest} from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginResponse } from 'shared/models/login.response';
 import { UserStateModel } from 'shared/models/user';
 import { Select, Store } from '@ngxs/store';
-import {LoginUser, LogoutUser} from "shared/store/auth/auth.actions";
-import {AuthState} from "shared/store/auth/auth.state";
-import {TokenState} from "shared/store/token/token.state";
-import {RefreshTokens, SetTokenInterceptor} from "shared/store/token/token.actions";
+import { LoginUser, LogoutUser } from 'shared/store/auth/auth.actions';
+import { AuthState } from 'shared/store/auth/auth.state';
+import { TokenState } from 'shared/store/token/token.state';
+import { GetTokens, RefreshTokens } from 'shared/store/token/token.actions';
+import { UserIsAuth } from 'shared/store/app/app.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,10 @@ export class AuthService {
   public account: Observable<string> | undefined;
 
   @Select(TokenState.accessToken)
-  public accessToken?: Observable<string>;
+  public accessToken$?: Observable<string>;
+
+  @Select(TokenState.refreshToken)
+  public refreshToken$?: Observable<string>;
 
   constructor(
     private httpClient: HttpClient,
@@ -40,27 +44,31 @@ export class AuthService {
   public login(loginResponse: LoginResponse): Observable<UserStateModel> {
     return this.store.dispatch(new LoginUser(loginResponse));
   }
+
   public logout(): void {
     this.store.dispatch(new LogoutUser());
   }
 
-  public refreshToken(req: HttpRequest<any>) {
-    this.store.dispatch(new RefreshTokens());
+  public refreshToken(): Observable<HttpRequest<any>> {
+    return this.store.dispatch(new RefreshTokens());
   }
-
-  public setAuthorization(req: HttpRequest<any>){
-    this.accessToken?.subscribe((data)=>{
-      if (data){
-        req=req.clone({
-          setHeaders:{
-            Authorization: `Bearer ${data}`
-          }
-        })
-      }
-    })
+  public setAuthorization(req: HttpRequest<any>) {
+    const token = this.store.selectSnapshot(TokenState.accessToken);
+    if (token) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
     return req;
   }
-  public setTokenInterceptor(req: HttpRequest<any>, next: HttpHandlerFn):  Observable<HttpEvent<unknown>>{
-    return this.store.dispatch(new SetTokenInterceptor(req, next));
+
+  getTokens() {
+    this.store.dispatch(new GetTokens());
+  }
+
+  isUserAuth() {
+    this.store.dispatch(new UserIsAuth());
   }
 }
