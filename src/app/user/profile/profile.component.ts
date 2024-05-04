@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'shared/services/auth/auth.service';
+import { Observable } from 'rxjs';
+import { UserStateModel } from 'shared/models/user';
 import { Chart, registerables } from 'chart.js';
 import { CategoryStateModel } from 'shared/models/category';
 
@@ -10,13 +13,14 @@ Chart.register(...registerables);
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
+  protected user?: Observable<UserStateModel> = this.authService.user$;
   hasAvatar: boolean = false;
   isEditMode: boolean = false;
-  userName: string = 'Witold';
-  userEmail: string = 'witalikspelina@gmail.com';
+  userName?: string;
+  userEmail?: string;
   userPassword: string = '12345678';
-  tempUserName: string = '';
-  tempUserEmail: string = '';
+  tempUserName?: string = '';
+  tempUserEmail?: string = '';
   tempUserPassword: string = '';
   pieChart: any;
 
@@ -34,6 +38,10 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {
     this.RenderChart();
+    this.user?.subscribe(data => {
+      this.userName = data.login?.toString();
+      this.userEmail = data.email;
+    });
   }
 
   RenderChart() {
@@ -67,6 +75,8 @@ export class ProfileComponent implements OnInit {
     if (!id) this.pieChart.legend.options.onClick(null, this.pieChart.legend.legendItems[0], this.pieChart.legend);
     else this.pieChart.legend.options.onClick(null, this.pieChart.legend.legendItems[id], this.pieChart.legend);
   }
+
+  constructor(private authService: AuthService) {}
 
   toEditMode() {
     this.tempUserName = this.userName;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {slider} from "../../route-animations";
+import { AuthService } from 'shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -7,5 +7,6 @@ import {slider} from "../../route-animations";
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-  isAuthentificated = false;
+  isAuthentificated = this.authService.isAuthorized;
+  constructor(private authService: AuthService) {}
 }

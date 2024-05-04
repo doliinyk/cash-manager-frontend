@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { slider } from './route-animations';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  animations: [slider]
+  styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+export class AppComponent implements OnInit {
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.getTokens();
+    this.authService.isUserAuth();
   }
 }

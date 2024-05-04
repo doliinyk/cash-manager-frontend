@@ -1,4 +1,9 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,14 +23,18 @@ import { AuthModule } from './core/auth/auth.module';
 import { MainComponent } from './core/main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { MessageBarComponent } from 'shared/components/message-bar/message-bar.component';
+import { AppState } from 'shared/store/app/app.state';
+import { TokenInterceptor } from 'shared/services/auth/token.interceptor';
+import { TokenState } from 'shared/store/token/token.state';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
   imports: [
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+        useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
       useDefaultLang: true,
@@ -36,14 +45,19 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    NgxsModule.forRoot([]),
+    NgxsModule.forRoot([AppState, TokenState]),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     AuthModule,
     FlexLayoutModule,
     NgOptimizedImage
   ],
-  providers: [],
+  providers: [[provideHttpClient(withInterceptors([TokenInterceptor]))]],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  const path = window.location.origin + '/assets/i18n/';
+  return new TranslateHttpLoader(http, path, '.json');
+}
