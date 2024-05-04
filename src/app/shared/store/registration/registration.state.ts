@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { RegistrationStateModel } from 'shared/models/register';
@@ -24,15 +23,13 @@ export class RegistrationState {
 
   constructor(
     private httpClient: HttpClient,
-    private localizationService: LocalizationService,
-    private router: Router
+    private localizationService: LocalizationService
   ) {}
 
   @Action(RegisterUser)
   registerUser(_context: StateContext<RegistrationStateModel>, { payload }: RegisterUser): Observable<void> {
     const locale: string = this.localizationService.getLocalization();
-    const params = new HttpParams().set('locale', locale).set('redirectUrl', this.router.url);
-    console.log(payload);
+    const params = new HttpParams().set('locale', locale).set('redirectUrl', location.href.replace('registration','auth/activation'));
     return this.httpClient.post<void>('http://localhost:8080/api/v1/auth/register', payload, { params: params });
   }
 }
