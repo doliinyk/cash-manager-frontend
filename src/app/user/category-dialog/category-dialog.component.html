@@ -1,0 +1,35 @@
+<mat-dialog-content fxLayout="column" fxLayoutGap="10px">
+  <div class="new-category-container">
+    <span>Нова</span>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <div class="new-category-inputs" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+        <button mat-icon-button (click)="colorPicker.click()" [style.color]="pickedColor">
+          <mat-icon>palette</mat-icon>
+        </button>
+        <input type="color" class="color-picker-invisible" (input)="onColorChanged($event)" #colorPicker/>
+        <mat-form-field appearance="outline" color="warn">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" placeholder="Категорія" #newCategoryInput/>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button class="add-button" color="warn" (click)="onAppendCategory()">Додати</button>
+    </div>
+  </div>
+  <div>
+  <span>Категорії</span>
+  <mat-selection-list role="list">
+    @for (category of categories; track category) {
+      <mat-list-option>
+        <div matListItemIcon class="category-color" [style.background-color]="category.color"></div>
+        <span matListItemTitle> {{ category.title }}</span>
+      </mat-list-option>
+    }
+  </mat-selection-list>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-icon-button [disabled]="categoryPicked === 0">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-raised-button color="warn" matDialogClose>Ok</button>
+</mat-dialog-actions>

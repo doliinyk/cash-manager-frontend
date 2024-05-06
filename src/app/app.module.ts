@@ -1,9 +1,4 @@
-import {
-  HttpClient,
-  HttpClientModule,
-  provideHttpClient,
-  withInterceptors
-} from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +22,7 @@ import { MessageBarComponent } from 'shared/components/message-bar/message-bar.c
 import { AppState } from 'shared/store/app/app.state';
 import { TokenInterceptor } from 'shared/services/auth/token.interceptor';
 import { TokenState } from 'shared/store/token/token.state';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
@@ -50,7 +46,8 @@ import { TokenState } from 'shared/store/token/token.state';
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     AuthModule,
     FlexLayoutModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule
   ],
   providers: [[provideHttpClient(withInterceptors([TokenInterceptor]))]],
   bootstrap: [AppComponent]

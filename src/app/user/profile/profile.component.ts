@@ -4,8 +4,13 @@ import { Observable } from 'rxjs';
 import { UserStateModel } from 'shared/models/user';
 import { Chart, registerables } from 'chart.js';
 import { CategoryStateModel } from 'shared/models/category';
+import { MatDialog } from '@angular/material/dialog';
+import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
+import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 Chart.register(...registerables);
+Chart.register(ChartDataLabels);
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +23,8 @@ export class ProfileComponent implements OnInit {
   isEditMode: boolean = false;
   userName?: string;
   userEmail?: string;
-  userPassword: string = '12345678';
   tempUserName?: string = '';
   tempUserEmail?: string = '';
-  tempUserPassword: string = '';
   pieChart: any;
 
   categories: CategoryStateModel[] = [
@@ -35,6 +38,16 @@ export class ProfileComponent implements OnInit {
     { id: 5, color: 'gray', title: 'gray' },
     { id: 6, color: 'violet', title: 'violet' }
   ];
+
+  percentage: number[] = [10, 10, 10, 10, 10, 10, 40];
+
+  openPasswordDialog() {
+    this.dialog.open(PasswordDialogComponent);
+  }
+
+  openCategoryDialog() {
+    this.dialog.open(CategoryDialogComponent);
+  }
 
   public ngOnInit(): void {
     this.RenderChart();
@@ -53,8 +66,7 @@ export class ProfileComponent implements OnInit {
         labels: titles,
         datasets: [
           {
-            label: '%',
-            data: [10, 10, 10, 10, 10, 10, 40],
+            data: this.percentage,
             backgroundColor: colors,
             borderColor: colors,
             borderWidth: 1
@@ -63,6 +75,17 @@ export class ProfileComponent implements OnInit {
       },
       options: {
         plugins: {
+          datalabels: {
+            formatter: (value: number, ctx: any): string => {
+              let sum = 0;
+              let dataArr: number[] = ctx.chart.data.datasets[0].data;
+              dataArr.map((data: number) => {
+                sum += data;
+              });
+              return ((value * 100) / sum).toFixed(2) + '%';
+            },
+            color: '#fff',
+          },
           legend: {
             display: false
           }
@@ -72,16 +95,15 @@ export class ProfileComponent implements OnInit {
   }
 
   categoryItemClick(id: number | undefined) {
-    if (!id) this.pieChart.legend.options.onClick(null, this.pieChart.legend.legendItems[0], this.pieChart.legend);
-    else this.pieChart.legend.options.onClick(null, this.pieChart.legend.legendItems[id], this.pieChart.legend);
+    if (!id) id = 0
+    this.pieChart.legend.options.onClick(null, this.pieChart.legend.legendItems[id], this.pieChart.legend);
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
   toEditMode() {
     this.tempUserName = this.userName;
     this.tempUserEmail = this.userEmail;
-    this.tempUserPassword = this.userPassword;
     this.isEditMode = true;
   }
 
@@ -92,7 +114,6 @@ export class ProfileComponent implements OnInit {
   declineChanges() {
     this.userName = this.tempUserName;
     this.userEmail = this.tempUserEmail;
-    this.userPassword = this.tempUserPassword;
     this.isEditMode = false;
   }
 

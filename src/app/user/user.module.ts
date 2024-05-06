@@ -9,10 +9,12 @@ import { MaterialModule } from 'shared/modules/material.module';
 import { UserRoutingModule } from './user-routing.module';
 import { PaymentsComponent } from './payments/payments.component';
 import { ProfileComponent } from './profile/profile.component';
+import {CategoryDialogComponent} from "./category-dialog/category-dialog.component";
+import {PasswordDialogComponent} from "./password-dialog/password-dialog.component";
 
 @NgModule({
-  declarations: [PaymentsComponent, ProfileComponent],
-  exports: [PaymentsComponent, ProfileComponent],
+  declarations: [PaymentsComponent, ProfileComponent, CategoryDialogComponent, PasswordDialogComponent],
+  exports: [PaymentsComponent, ProfileComponent, CategoryDialogComponent, PasswordDialogComponent],
   imports: [
     CommonModule,
     MaterialModule,
