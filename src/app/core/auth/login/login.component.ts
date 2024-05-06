@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'shared/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {slider} from "../../../route-animations";
+import { slider } from '../../../route-animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  animations: [
-    slider
-  ]
+  animations: [slider]
 })
 export class LoginComponent {
   loginForm: FormGroup;
+
   constructor(
     private readonly authService: AuthService,
     private formBuilder: FormBuilder
@@ -22,6 +21,7 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(40), Validators.nullValidator]]
     });
   }
+
   login() {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value);
