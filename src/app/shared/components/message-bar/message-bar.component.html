@@ -11,8 +11,8 @@
     </div>
   </span>
   @if (!data.unclosable) {
-    <div role="button" tabindex="0" (click)="onClose()" data-testid="closing-button">
+    <a role="button" tabindex="0" (click)="onClose()" data-testid="closing-button">
       <mat-icon class="action">close</mat-icon>
-    </div>
+    </a>
   }
 </div>

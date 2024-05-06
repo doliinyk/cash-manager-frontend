@@ -3,6 +3,6 @@ export type MessageBarType = 'success' | 'warningYellow' | 'warningBlue' | 'erro
 export enum MessageBarIcon {
   success = 'done',
   warningYellow = 'priority_high',
-  warningBlue = 'priority_high',
+  warningBlue = 'priority_medium',
   error = 'close'
 }
