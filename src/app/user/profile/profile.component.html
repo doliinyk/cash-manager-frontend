@@ -1,5 +1,5 @@
 <div class="overall-page">
-  <div class="profile-containter" fxLayout="column" fxLayoutAlign="none center" fxLayoutGap="20px">
+  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%">
     @if (!isEditMode) {
       <button mat-button class="edit-button" (click)="toEditMode()">
         <span>Редагувати</span>
@@ -74,11 +74,13 @@
             <span class="pieChart-vallet">1337</span>
           }
         </div>
-        <div class="piechar-row-categories" fxLayout="row" fxLayoutAlign="none center">
-          @for (category of categories; track category) {
-            <div class="category-item" fxLayout="row" fxLayoutGap="10px" (click)="categoryItemClick(category.id)">
-              <div class="category-item-color" [style.background]="category.color"></div>
-              <div class="category-item-name" fxLayoutAlign="center center">{{ category.title }}</div>
+        <div class="piechar-row-categories">
+          @for (category of this.categoryService.getCategories(); track category) {
+            <div class="category-item" fxLayout="row" (click)="categoryItemClick($index)">
+              <span class="category-item-name" fxLayoutAlign="center center">
+                <div class="category-item-color" [style.background]="category.color"></div>
+                {{ category.title }}
+              </span>
             </div>
           }
         </div>

@@ -116,6 +116,8 @@
 }
 
 .pieChart-vallet {
+  font-family: Outfit, sans-serif;
+  font-size: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -127,13 +129,18 @@
 .piechar-row-categories {
   width: 50%;
   height: 100%;
+  display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
+  box-sizing: border-box;
+  padding: 40px;
 }
 
 .category-item {
-  flex: 50%;
-  margin: 10px 0;
+  flex: 30%;
+  height: 35px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .category-item:hover {
@@ -141,13 +148,16 @@
 }
 
 .category-item-name {
-  font-size: 20px;
+  font-size: 16px;
+  height: 35px;
+  background-color: #f1f1f1;
 }
 
 .category-item-color {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 15px;
+  margin-right: 10px;
 }
 
 .gistogram-row {

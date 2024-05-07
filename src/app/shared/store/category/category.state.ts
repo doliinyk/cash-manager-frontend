@@ -11,4 +11,6 @@ import { CategoryStateModel } from 'shared/models/category';
   }
 })
 @Injectable()
-export class CategoryState {}
+export class CategoryState {
+
+}

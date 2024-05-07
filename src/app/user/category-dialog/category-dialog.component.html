@@ -6,19 +6,23 @@
         <button mat-icon-button (click)="colorPicker.click()" [style.color]="pickedColor">
           <mat-icon>palette</mat-icon>
         </button>
-        <input type="color" class="color-picker-invisible" (input)="onColorChanged($event)" #colorPicker/>
+        <input type="color" class="color-picker-invisible" (input)="onColorChanged($event)" #colorPicker required/>
         <mat-form-field appearance="outline" color="warn">
           <mat-label>Назва</mat-label>
-          <input matInput type="text" placeholder="Категорія" #newCategoryInput/>
+          <input matInput type="text" placeholder="Категорія" [formControl]="newNameFormControl" #newCategoryInput/>
         </mat-form-field>
       </div>
-      <button mat-raised-button class="add-button" color="warn" (click)="onAppendCategory()">Додати</button>
+      @if (newNameFormControl.invalid && (newNameFormControl.dirty || newNameFormControl.touched)) {
+        <div *ngIf="newNameFormControl.hasError('required')">Поле назви є обов'язковим</div>
+        <div *ngIf="newNameFormControl.hasError('maxlength')">Максимум символів: 20</div>
+      }
+      <button mat-raised-button class="add-button" color="warn" [disabled]="!newNameFormControl.valid" (click)="onAppendCategory()">Додати</button>
     </div>
   </div>
   <div>
   <span>Категорії</span>
   <mat-selection-list role="list">
-    @for (category of categories; track category) {
+    @for (category of this.categoryService.getCategories(); track category) {
       <mat-list-option>
         <div matListItemIcon class="category-color" [style.background-color]="category.color"></div>
         <span matListItemTitle> {{ category.title }}</span>
