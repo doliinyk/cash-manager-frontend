@@ -5,9 +5,9 @@ import { CategoryStateModel } from 'shared/models/category';
 @State<CategoryStateModel>({
   name: 'category',
   defaults: {
-    id: undefined,
     color: undefined,
-    title: undefined
+    title: undefined,
+    data: undefined,
   }
 })
 @Injectable()

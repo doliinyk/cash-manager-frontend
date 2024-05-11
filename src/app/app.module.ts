@@ -25,7 +25,13 @@ import { TokenState } from 'shared/store/token/token.state';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    MessageBarComponent
+  ],
   imports: [
     TranslateModule.forRoot({
       loader: {

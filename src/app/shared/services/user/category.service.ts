@@ -1,4 +1,4 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable, OnDestroy, OnInit} from '@angular/core';
 import { CategoryStateModel } from 'shared/models/category';
 import { HttpClient } from '@angular/common/http';
 import {Observable, Subscription} from "rxjs";
@@ -7,10 +7,8 @@ import {Observable, Subscription} from "rxjs";
   providedIn: 'root'
 })
 export class CategoryService implements OnDestroy {
-
+  categories: CategoryStateModel[] = [];
   subscription: Subscription;
-
-  categories: CategoryStateModel[] = []
 
   addCategory(category: CategoryStateModel) {
     this.categories.push(category);
@@ -25,8 +23,11 @@ export class CategoryService implements OnDestroy {
   }
 
   getColors() {
-    console.log(this.categories)
-    console.log(this.categories.map(category => category.color || ' '));
+    console.log('Tyta');
+    console.log(this.categories);
+    const titles = this.categories.map(category => category.title || 'XD');
+    console.log('Titles')
+    console.log(titles);
   }
 
   hexToRgbA(hex: string | undefined) {
@@ -41,17 +42,16 @@ export class CategoryService implements OnDestroy {
     return hex;
   }
 
-  getData() : Observable<any> {
+  getData(): Observable<any> {
     return this.http.get<any>('http://localhost:8080/api/v1/categories/expenses');
   }
 
   constructor(private http: HttpClient) {
     this.subscription = this.getData().subscribe(response => {
       for (let key in response) {
-        this.categories.push({color: this.hexToRgbA(key), title: response[key].title, data: 10});
+        this.categories.push({ color: this.hexToRgbA(key), title: response[key].title, data: 10 });
       }
     });
-    this.getColors();
   }
 
   ngOnDestroy() {

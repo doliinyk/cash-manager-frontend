@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'shared/services/auth/auth.service';
 import { Observable } from 'rxjs';
 import { UserStateModel } from 'shared/models/user';
@@ -8,7 +8,7 @@ import { PasswordDialogComponent } from '../password-dialog/password-dialog.comp
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { CategoryService } from 'shared/services/user/category.service';
-import {CategoryStateModel} from "shared/models/category";
+import { PieChartComponent} from "shared/components/pie-chart/pie-chart.component";
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
   tempUserName?: string = '';
   tempUserEmail?: string = '';
   pieChart: any;
-  categories: CategoryStateModel[];
 
   openPasswordDialog() {
     this.dialog.open(PasswordDialogComponent);
@@ -42,7 +41,6 @@ export class ProfileComponent implements OnInit {
       this.userName = data.login?.toString();
       this.userEmail = data.email;
     });
-    this.RenderChart();
   }
 
   categoryItemClick(id: number | undefined) {
@@ -54,10 +52,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     protected categoryService: CategoryService,
     private dialog: MatDialog
-  ) {
-    this.categories = this.categoryService.getCategories();
-    console.log(this.categories)
-  }
+  ) {}
 
   toEditMode() {
     this.tempUserName = this.userName;
@@ -77,44 +72,5 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-  }
-
-  RenderChart() {
-    let colors = this.categories.map(category => category.color);
-    let titles = this.categories.map(category => category.title);
-    let data = this.categories.map(category => category.data);
-    console.log(colors)
-    this.pieChart = new Chart('pieChart', {
-      type: 'doughnut',
-      data: {
-        labels: titles,
-        datasets: [
-          {
-            data: data,
-            backgroundColor: colors,
-            borderColor: colors,
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        plugins: {
-          datalabels: {
-            formatter: (value: number, ctx: any): string => {
-              let sum = 0;
-              let dataArr: number[] = ctx.chart.data.datasets[0].data;
-              dataArr.map((data: number) => {
-                sum += data;
-              });
-              return ((value * 100) / sum).toFixed(2) + '%';
-            },
-            color: '#fff'
-          },
-          legend: {
-            display: false
-          }
-        }
-      }
-    });
   }
 }

@@ -69,7 +69,7 @@
     <div class="stats-container" fxLayout="column">
       <div class="piechart-row" fxLayout="row">
         <div class="piechart-row-piechart" fxLayoutAlign="center center">
-          <canvas id="pieChart"></canvas>
+          <app-pie-chart [pieChart]="pieChart"></app-pie-chart>
           @if (!isEditMode) {
             <span class="pieChart-vallet">1337</span>
           }
