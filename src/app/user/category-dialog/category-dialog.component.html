@@ -22,7 +22,7 @@
   <div>
   <span>Категорії</span>
   <mat-selection-list role="list">
-    @for (category of this.categoryService.getCategories(); track category) {
+    @for (category of this.categories; track category) {
       <mat-list-option>
         <div matListItemIcon class="category-color" [style.background-color]="category.color"></div>
         <span matListItemTitle> {{ category.title }}</span>

@@ -1,37 +1,34 @@
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { CategoryService } from 'shared/services/user/category.service';
 import { CategoryStateModel } from 'shared/models/category';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements AfterViewInit, OnDestroy {
+export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
   categories?: CategoryStateModel[];
-  titles?: (string | undefined)[];
-  colors?: (string | undefined)[];
-  values?: (number | undefined)[];
+  titles: string[] = [];
+  colors: string[] = [];
+  values: number[] = [];
   @Input() pieChart: any;
-  private subscription: Subscription;
 
-  constructor(private categoryService: CategoryService) {
-    this.subscription = this.categoryService.getCategoriesObservable().subscribe(categories => {
-      this.categories = categories;
-      this.colors = this.categories.map(category => category.color);
-      this.titles = this.categories.map(category => category.title);
-      this.values = this.categories.map(category => category.data);
-      this.RenderChart();
-    });
+  constructor(private categoryService: CategoryService) {}
+
+  ngOnInit(): void {
+    this.categories = this.categoryService.getCategories();
+    const titles = this.categories.map(category => category.title);
+    const colors = this.categories.map(category => category.color);
+    console.log(this.categories);
+    console.log(this.titles);
+    this.RenderChart(titles, colors);
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 
-  RenderChart() {
+  RenderChart(titles: (string | undefined)[], colors: (string | undefined)[]) {
     this.pieChart = new Chart('pieChart', {
       type: 'doughnut',
       data: {
@@ -64,9 +61,5 @@ export class PieChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit() {
-    if (this.pieChart) {
-      this.pieChart.update();
-    }
-  }
+  ngAfterViewInit() {}
 }

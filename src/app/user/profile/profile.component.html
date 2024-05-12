@@ -45,17 +45,9 @@
     <button mat-raised-button class="profile-field" color="warn" [disabled]="!isEditMode" (click)="openPasswordDialog()">
       Змінити пароль
     </button>
-    <button mat-raised-button class="profile-field" color="warn" [disabled]="!isEditMode" (click)="openCategoryDialog()">
+    <button mat-raised-button class="profile-field" color="warn" (click)="openCategoryDialog()">
       Категорії
     </button>
-    <!--    <div class="profile-info-table" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">-->
-    <!--      <i class="fa-solid fa-lightbulb"></i>-->
-    <!--      @if (isEditMode) {-->
-    <!--        <span>Щоб змінити пароль введіть старий та новий пароль</span>-->
-    <!--      } @else {-->
-    <!--        <span>Щоб змінити пароль перейдіть в режим редагування</span>-->
-    <!--      }-->
-    <!--    </div>-->
   </div>
   <div class="analytics-container" fxLayout="column">
     <div class="period-buttons-container" fxLayoutAlign="none center" fxLayoutGap="20px">
@@ -75,7 +67,7 @@
           }
         </div>
         <div class="piechar-row-categories">
-          @for (category of this.categoryService.getCategories(); track category) {
+          @for (category of this.categories; track category) {
             <div class="category-item" fxLayout="row" (click)="categoryItemClick($index)">
               <span class="category-item-name" fxLayoutAlign="center center">
                 <div class="category-item-color" [style.background]="category.color"></div>
@@ -86,7 +78,11 @@
         </div>
       </div>
       <mat-divider></mat-divider>
-      <div class="gistogram-row"></div>
+      <div class="gistogram-row">
+        <div class="gistogram-row-barchart" fxLayoutAlign="center center">
+          <app-bar-chart></app-bar-chart>
+        </div>
+      </div>
     </div>
   </div>
 </div>

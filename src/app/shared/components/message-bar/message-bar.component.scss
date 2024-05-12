@@ -8,12 +8,13 @@
   color: #444444;
   min-width: 550px;
 
-  font-family: Innerspace;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 13px;
   line-height: 19px;
 }
+
 :host ::ng-deep .mat-icon {
   height: 1.2rem;
   width: 1.2rem;
@@ -33,6 +34,7 @@
 
   color: #444444;
   cursor: pointer;
+
   &:hover {
     opacity: 0.5;
   }
@@ -40,32 +42,37 @@
 
 ::ng-deep .success {
   background: #c4ebc5;
+
   .icon {
     border: solid 1px #199953;
     color: #199953;
   }
 }
+
 ::ng-deep .error {
   background: #f8e4dd;
+
   .icon {
     border: solid 1px #ff5252;
     color: #ff5252;
   }
 }
+
 ::ng-deep .warningBlue {
   background: #e1f1f9;
 }
+
 ::ng-deep .warningYellow {
   background: #ffbd00 30%;
 }
 
 .info {
-  font-family: 'Open Sans';
+  font-family: Mulish, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 19px;
-  letter-spacing: 0em;
+  letter-spacing: 0;
   text-align: left;
   margin: 0;
 }

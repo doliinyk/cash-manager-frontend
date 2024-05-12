@@ -12,10 +12,11 @@ import { ProfileComponent } from './profile/profile.component';
 import {CategoryDialogComponent} from "./category-dialog/category-dialog.component";
 import {PasswordDialogComponent} from "./password-dialog/password-dialog.component";
 import {PieChartComponent} from "shared/components/pie-chart/pie-chart.component";
+import {BarChartComponent} from "shared/components/bar-chart/bar-chart.component";
 
 @NgModule({
-  declarations: [PaymentsComponent, ProfileComponent, CategoryDialogComponent, PasswordDialogComponent, PieChartComponent],
-  exports: [PaymentsComponent, ProfileComponent, CategoryDialogComponent, PasswordDialogComponent, PieChartComponent],
+  declarations: [PaymentsComponent, ProfileComponent, CategoryDialogComponent, PasswordDialogComponent, PieChartComponent, BarChartComponent],
+  exports: [PaymentsComponent, ProfileComponent, CategoryDialogComponent, PasswordDialogComponent, PieChartComponent, BarChartComponent],
   imports: [
     CommonModule,
     MaterialModule,

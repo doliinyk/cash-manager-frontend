@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'shared/services/auth/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserStateModel } from 'shared/models/user';
 import { Chart, registerables } from 'chart.js';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,7 +8,8 @@ import { PasswordDialogComponent } from '../password-dialog/password-dialog.comp
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { CategoryService } from 'shared/services/user/category.service';
-import { PieChartComponent} from "shared/components/pie-chart/pie-chart.component";
+import { PieChartComponent } from 'shared/components/pie-chart/pie-chart.component';
+import { CategoryStateModel } from 'shared/models/category';
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
   tempUserName?: string = '';
   tempUserEmail?: string = '';
   pieChart: any;
+  categories?: CategoryStateModel[];
 
   openPasswordDialog() {
     this.dialog.open(PasswordDialogComponent);
@@ -41,6 +43,10 @@ export class ProfileComponent implements OnInit {
       this.userName = data.login?.toString();
       this.userEmail = data.email;
     });
+    this.categories = this.categoryService.getCategories();
+    console.log("Init")
+    console.log(this.categories)
+    console.log(this.categories.map(category => category.title|| 'Nihuya'))
   }
 
   categoryItemClick(id: number | undefined) {
