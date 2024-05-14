@@ -23,7 +23,7 @@ export class CategoryDialogComponent implements OnInit {
   onAppendCategory() {}
 
   ngOnInit() {
-   this.categories = this.categoryService.getCategories();
+   // this.categories = this.categoryService.getCategories();
   }
 
   constructor(protected categoryService: CategoryService) {}

@@ -9,11 +9,7 @@ export class CategoryService {
   apiUrl = 'http://localhost:8080/api/v1/categories/expenses';
 
   getCategories() {
-    let categories: CategoryStateModel[] = [];
-    this.http.get<CategoryStateModel[]>(this.apiUrl).subscribe(category => {
-      for (let key in category) categories.push({ color: this.hexToRgbA(key), title: category[key].title });
-    });
-    return categories;
+    return this.http.get<CategoryStateModel[]>(this.apiUrl)
   }
 
   hexToRgbA(hex: string | undefined) {

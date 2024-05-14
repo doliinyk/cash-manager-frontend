@@ -18,12 +18,12 @@ export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categories = this.categoryService.getCategories();
-    const titles = this.categories.map(category => category.title);
-    const colors = this.categories.map(category => category.color);
-    console.log(this.categories);
-    console.log(this.titles);
-    this.RenderChart(titles, colors);
+    // this.categories = this.categoryService.getCategories();
+    // const titles = this.categories.map(category => category.title);
+    // const colors = this.categories.map(category => category.color);
+    // console.log(this.categories);
+    // console.log(this.titles);
+    // this.RenderChart(titles, colors);
   }
 
   ngOnDestroy() {}

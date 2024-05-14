@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   tempUserName?: string = '';
   tempUserEmail?: string = '';
   pieChart: any;
-  categories?: CategoryStateModel[];
+  categories: CategoryStateModel[] = [];
 
   openPasswordDialog() {
     this.dialog.open(PasswordDialogComponent);
@@ -43,7 +43,13 @@ export class ProfileComponent implements OnInit {
       this.userName = data.login?.toString();
       this.userEmail = data.email;
     });
-    this.categories = this.categoryService.getCategories();
+    const categoriesObs = this.categoryService.getCategories();
+    categoriesObs.subscribe(category => {
+      for (let key in category) {
+        this.categories.push({ color: key, title: category[key].title });
+      }
+      console.log(this.categories.map(category => category.title|| 'Nihuya'))
+    })
     console.log("Init")
     console.log(this.categories)
     console.log(this.categories.map(category => category.title|| 'Nihuya'))
