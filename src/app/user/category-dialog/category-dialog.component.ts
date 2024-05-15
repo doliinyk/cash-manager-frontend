@@ -21,6 +21,7 @@ export class CategoryDialogComponent implements OnInit {
   }
 
   onAppendCategory() {
+    console.log(this.newCategoryInput.nativeElement.value)
     this.categoryService.createCategory({ color: this.pickedColor, title: this.newCategoryInput.nativeElement.value });
   }
 

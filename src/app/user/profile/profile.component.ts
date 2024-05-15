@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     });
     const categoriesObs = this.categoryService.getCategories();
     categoriesObs.subscribe(category => {
-      for (let key in category) {
+      for (const key in category) {
         this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
       }
     });

@@ -76,14 +76,14 @@
     <div class="stats-container" fxLayout="column">
       <div class="piechart-row" fxLayout="row">
         <div class="piechart-row-piechart" fxLayoutAlign="center center">
-          <app-pie-chart [pieChart]="pieChart"></app-pie-chart>
+          <app-pie-chart></app-pie-chart>
           @if (!isEditMode) {
             <span class="pieChart-vallet">1337</span>
           }
         </div>
         <div class="piechar-row-categories">
           @for (category of this.categories; track category) {
-            <div class="category-item" fxLayout="row" (click)="categoryItemClick($index)">
+            <div class="category-item" fxLayout="row">
               <span class="category-item-name" fxLayoutAlign="center center">
                 <div class="category-item-color" [style.background]="category.color"></div>
                 {{ category.title }}

@@ -16,7 +16,7 @@
         <div *ngIf="newNameFormControl.hasError('required')">Поле назви є обов'язковим</div>
         <div *ngIf="newNameFormControl.hasError('maxlength')">Максимум символів: 20</div>
       }
-      <button mat-raised-button class="add-button" color="warn" [disabled]="!newNameFormControl.valid" (click)="onAppendCategory()">Додати</button>
+      <button mat-raised-button class="add-button" type="submit" color="warn" [disabled]="!newNameFormControl.valid" (click)="onAppendCategory()">Додати</button>
     </div>
   </div>
   <div>

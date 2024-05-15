@@ -47,7 +47,7 @@ export class PieChartComponent implements OnInit {
           datalabels: {
             formatter: (value: number, ctx: any): string => {
               let sum = 0;
-              let dataArr: number[] = ctx.chart.data.datasets[0].data;
+              const dataArr: number[] = ctx.chart.data.datasets[0].data;
               dataArr.map((data: number) => {
                 sum += data;
               });
