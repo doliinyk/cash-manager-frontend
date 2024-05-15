@@ -20,7 +20,6 @@ Chart.register(ChartDataLabels);
 })
 export class ProfileComponent implements OnInit {
   protected user?: Observable<UserStateModel> = this.authService.user$;
-  hasAvatar: boolean = false;
   isEditMode: boolean = false;
   userName?: string;
   userEmail?: string;
@@ -69,10 +68,5 @@ export class ProfileComponent implements OnInit {
     this.userName = this.tempUserName;
     this.userEmail = this.tempUserEmail;
     this.isEditMode = false;
-  }
-
-  onFileSelected(event: any) {
-    // const file: File = event.target.files[0];
-    // TODO: Avatar change
   }
 }
