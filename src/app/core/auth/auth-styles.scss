@@ -2,32 +2,43 @@
 
 .overall-page {
   height: $page-height;
+  position: relative;
+  background: #f1f1f1;
 }
 
 form {
   width: 350px;
   height: auto;
-  background-color: #f1f1f1;
   border-radius: 50px;
-  -webkit-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
-  box-shadow: 2px 6px 44px 0 rgba(0, 0, 0, 0.25);
-  padding: 25px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  -moz-box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  padding: 15px 15px 30px 15px;
+  background: #f1f1f1;
 }
 
 .color-grad {
   width: 100%;
   height: 50px;
-  background: rgb(206, 77, 36);
-  background: $secondary-gradient;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: darkorange;
   font-size: 35px;
-  margin-bottom: 5px;
+  font-weight: normal;
+  margin-bottom: 12px;
+}
+
+.back-button {
+  font-size: 40px;
+  opacity: 0.3;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: auto;
+  height: auto;
+}
+
+.back-button-text {
+  font-size: 20px;
+  font-family: Mulish, sans-serif;
 }
 
 mat-form-field,
@@ -61,11 +72,11 @@ a {
 }
 
 .reg-register-button {
-  width: 86%;
+  width: 80%;
 }
 
 .two-buttons .log-register-button {
-  background: $secondary-gradient;
+  background: darkorange;
   color: #f1f1f1;
 }
 

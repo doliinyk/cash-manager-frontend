@@ -1,67 +1,123 @@
+@import '../shared/styles/variables';
+
 .mat-toolbar {
-  background: linear-gradient(90deg, rgba(194, 35, 35, 1) 20%, rgba(219, 125, 37, 1) 54%, rgba(255, 230, 0, 1) 100%);
-  height: 7vh;
-}
-
-.text-main {
-  font-size: 45px;
-  font-family: Outfit, sans-serif;
-  color: #493c3c;
-  background-color: #ffffff;
-  border-radius: 5px;
-  padding: 8px 20px;
-  margin-right: 24px;
-  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
-}
-
-.button-profile {
-  font-size: 30px;
-  font-family: Outfit, sans-serif;
-  color: #ffffff;
-  padding: 29px 20px;
-  border-radius: 5px;
-  background-color: rgba(196, 176, 176, 0.1899999976158142);
-  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
-  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
-}
-
-.button-login {
-  font-size: 20px;
-  margin-left: 24px;
-  font-family: Outfit, sans-serif;
-  padding: 29px 20px;
-  border-radius: 5px;
-  border: 1px;
-  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
-  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
-  background:
-    radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 3px, transparent 3px) 0 0%/5px 5px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px) 100% 0%/5px 5px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px) 0% 100%/5px 5px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100% 100%/5px 5px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px) calc(100% - 10px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px) calc(100% - 4px) no-repeat,
-    linear-gradient(90deg, transparent 0%, #ce4d24 0%, rgba(0, 0, 0, 0.51) 100%);
+  height: 80px;
+  width: 100vw;
+  background: #f1f1f1;
+  border: 2px solid #e6e6e6;
   box-sizing: border-box;
+  padding: 0 15% 0 15%;
 }
 
-.text-login {
-  background: #ce4d24;
-  background: linear-gradient(to right, #ce4d24 0%, rgba(0, 0, 0, 51%) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.title {
+  min-width: 270px;
+  height: 45px;
+  padding: 0 10px 0 10px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 0 24px 0 10px;
+  -webkit-box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
+  box-shadow: -1px 3px 10px -3px rgba(0, 0, 0, 0.65);
+}
+
+.title-text {
+  color: orange;
+  font-family: Outfit, sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.buttons-text {
+  color: $main-text-color;
+  font-weight: 700;
+}
+
+.button-profile-current,
+.button-profile-not-current {
+  font-size: 17px;
+  height: 45px;
+  width: auto;
+  padding: 0 20px 0 20px;
+  border-radius: 20px;
+}
+
+.button-profile-current {
+  box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px;
+  //background: rgba(196, 176, 176, 0.1899999976158142);
+  background: orange;
+}
+
+.button-profile-not-current {
+  background-color: transparent;
+}
+
+.balance {
+  color: $main-text-color;
+  height: 45px;
+  font-size: 23px;
+  border-radius: 20px;
+  padding: 0 10px 0 10px;
+  border: 2px solid #e6e6e6;
+}
+
+.balance-text {
+  font-size: 25px;
+  font-family: Outfit, sans-serif;
+  font-weight: 300;
+  margin-left: 20px;
 }
 
 .button-language {
-  font-size: 20px;
-  font-family: Outfit, sans-serif;
-  background: white;
-  padding: 29px 20px;
-  border-radius: 5px;
-  text-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
-  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
+  width: auto;
+  height: 45px;
+  border-radius: 20px;
 }
 
 .text-language {
-  color: black;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: $main-text-color;
 }
+
+.button-login {
+  font-size: 15px;
+  height: 45px;
+  width: auto;
+  border-radius: 20px;
+  padding: 0 20px 0 20px;
+  box-shadow: rgba(0, 0, 0, 19%) 0 4px 4px;
+  background: orange;
+  //background:
+  //  radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 3px, transparent 3px) 0 0%/5px 5px no-repeat,
+  //  radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px) 100% 0%/5px 5px no-repeat,
+  //  radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px) 0% 100%/5px 5px no-repeat,
+  //  radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100% 100%/5px 5px no-repeat,
+  //  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px) calc(100% - 10px) no-repeat,
+  //  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px) calc(100% - 4px) no-repeat,
+  //  linear-gradient(90deg, transparent 0%, #ce4d24 0%, rgba(0, 0, 0, 0.51) 100%);
+}
+
+.text-login {
+  color: white;
+  //background: #ce4d24;
+  //background: linear-gradient(to right, #ce4d24 0%, rgba(0, 0, 0, 51%) 100%);
+  //-webkit-background-clip: text;
+  //-webkit-text-fill-color: transparent;
+}
+
+.logout-button {
+  background: orange;
+  font-size: 15px;
+  border-radius: 20px;
+  height: 45px;
+  width: 100px;
+  box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px;
+}
+
+.logout-text {
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+

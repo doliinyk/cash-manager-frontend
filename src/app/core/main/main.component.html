@@ -1,1 +1,25 @@
-<div class="main"></div>
+<div class="overall-page" fxLayout="column" fxLayoutAlign="none center">
+  <div class="text-main" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px">
+    <div class="text-main-child" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="30px">
+      <div class="text-main-child-step" fxLayoutAlign="center center">1</div>
+      <span>Записуйте трати та прибутки, переглядайте історію</span>
+    </div>
+    <div class="text-main-child" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="30px">
+      <div class="text-main-child-step" fxLayoutAlign="center center">2</div>
+      <span>Користуйтесь готовими, та додайте власні категорії витрат</span>
+    </div>
+    <div class="text-main-child" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="30px">
+      <div class="text-main-child-step" fxLayoutAlign="center center">3</div>
+      <span>Переглядайте аналітику за окремий період часу по декільком показникам</span>
+    </div>
+    @if (isAuthentificated | async) {
+      <button mat-button class="button-login" routerLink="/user/profile">
+        <span class="text-login"> До профілю</span>
+      </button>
+    } @else {
+      <button mat-button class="button-login" routerLink="/registration">
+        <span class="text-login"> Зареєстуватись зараз</span>
+      </button>
+    }
+  </div>
+</div>

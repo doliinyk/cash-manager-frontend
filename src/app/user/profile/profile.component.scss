@@ -1,0 +1,191 @@
+@import '../../shared/styles/variables';
+
+.overall-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  align-items: end;
+  height: $page-height;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.profile-containter {
+  height: 93%;
+  width: 30%;
+  border-radius: 5px;
+  background: #f1f1f1;
+  border: 2px solid #e6e6e6;
+  position: relative;
+  padding-top: 30px;
+}
+
+.edit-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: gray;
+}
+
+.save-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: green;
+}
+
+.decline-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+}
+
+.analytics-container {
+  height: 100%;
+  width: 60%;
+  border-radius: 5px;
+}
+
+.period-buttons-container {
+  height: 7%;
+}
+
+.stats-container {
+  height: 93%;
+  border: 2px solid #e6e6e6;
+  border-radius: 5px;
+}
+
+.mat-button-toggle-group {
+  width: auto;
+}
+
+.avatar {
+  height: 200px;
+  width: 200px;
+  border: 3px solid lightgray;
+  border-radius: 50%;
+  overflow: hidden;
+  color: darkorange;
+  font-size: 5rem;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.profile-field {
+  width: 60%;
+  height: 50px;
+}
+
+.avatar-button {
+  color: darkorange;
+  background: white;
+  position: absolute;
+  top: 70%;
+  left: 70%;
+  box-shadow: rgba(0, 0, 0, 10%) 0 4px 4px;
+}
+
+.file-picker-invisible {
+  display: none;
+}
+
+.profile-info-table {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 30px;
+  color: gray;
+}
+
+.piechart-row,
+.gistogram-row {
+  width: 100%;
+  height: 50%;
+}
+
+.piechart-row-piechart {
+  height: 100%;
+  width: 40%;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.pieChart-vallet {
+  font-family: Outfit, sans-serif;
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.piechar-row-categories {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.category-item {
+  flex: 30%;
+  height: 35px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.category-item:hover {
+  cursor: pointer;
+}
+
+.category-item-name {
+  font-size: 16px;
+  height: 35px;
+  background-color: #f1f1f1;
+}
+
+.category-item-color {
+  width: 35px;
+  height: 35px;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+.gistogram-row-barchart {
+  height: 95%;
+  width: 60%;
+}
+
+.gistogram-row-other {
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 25px;
+  width: 40%;
+  height: 100%;
+}
+
+.others {
+  width: 100%;
+}
+
+.gistogram-row-other-title {
+  background: orange;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.gistogram-row-other-subtitle {
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+}

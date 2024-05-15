@@ -1,12 +1,14 @@
 {
   "NAV": {
     "PROFILE": "Профіль",
+    "PAYMENTS": "Платежі",
     "LOGIN": "Вхід/Реєстрація",
     "LOCALE": {
       "EN": "Англійська",
       "UK": "Українська",
       "PL": "Польська"
-    }
+    },
+    "LOGOUT": "Вийти"
   },
   "LOGIN": {
     "TITLE": "Вхід",
@@ -22,5 +24,28 @@
     "EMAIL_PH": "Електронна пошта",
     "PASSWORD_PH": "Пароль",
     "REGISTER_BUTTON": "Надіслати"
+  },
+  "EMAIL": {
+    "CONGRATS": "Вітаємо!",
+    "ACTIVATED": "Ваш аккаунт був успішно активований!",
+    "ERROR": "Упс! Щось пішло не так!",
+    "ERROR_BUTTON": "На головну"
+  },
+  "PROFILE": {
+    "EDIT_BUTTON": "Редагувати",
+    "SAVE_BUTTON": "Зберегти",
+    "DECLINE_BUTTON": "Відхилити",
+    "NAME_FIELD_LABEL": "Ім'я",
+    "NAME_FIELD_PLACEHOLDER": "Ім'я",
+    "EMAIL_FIELD_LABEL": "Електронна пошта",
+    "EMAIL_FIELD_PLACEHOLDER": "Електронна пошта",
+    "CHANGE_PASSWORD_BUTTON": "Змінити пароль",
+    "CATEGORIES_BUTTON": "Категорії",
+    "PERIOD_LABEL": "Період",
+    "ALL_TIME_BUTTON": "Весь час",
+    "AVERAGE_LABEL": "Середні",
+    "INCOME_LABEL": "Надходження",
+    "EXPENSES_LABEL": "Витрати",
+    "MONTHLY_LABEL": "За місяць"
   }
 }

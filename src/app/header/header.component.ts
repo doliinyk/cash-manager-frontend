@@ -4,6 +4,8 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { LocalizationService } from 'shared/services/localization/localization.service';
 import { Languages } from 'shared/enums/languages';
+import { Router } from '@angular/router';
+import { AuthService } from 'shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +18,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected isSmallScreen = false;
   protected language: string = 'uk';
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
+  protected currentRoute?: string;
+  protected currentPage?: string;
+  protected isAuthentificated = this.authService.isAuthorized;
+  protected account = this.authService.account;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly localizationService: LocalizationService
+    private readonly localizationService: LocalizationService,
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -35,8 +43,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  getCurrentPage() {
+    return this.router.url;
+  }
+
   public useLanguage(language: string): void {
     this.localizationService.setLocalization(language);
     this.language = language;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

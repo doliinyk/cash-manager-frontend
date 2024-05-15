@@ -1,0 +1,127 @@
+<div class="overall-page">
+  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%">
+    @if (!isEditMode) {
+      <button mat-button class="edit-button" (click)="toEditMode()">
+        <span>{{ 'PROFILE.EDIT_BUTTON' | translate }}</span>
+        <mat-icon>edit</mat-icon>
+      </button>
+    } @else {
+      <button mat-button class="save-button" (click)="saveChanges()">
+        <span>{{ 'PROFILE.SAVE_BUTTON' | translate }}</span>
+        <mat-icon>done</mat-icon>
+      </button>
+      <button mat-button class="decline-button" (click)="declineChanges()">
+        <span>{{ 'PROFILE.DECLINE_BUTTON' | translate }}</span>
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+    <div class="avatar-container">
+      <div type="file" class="avatar" fxLayoutAlign="center center">
+        <!--        <input type="file" class="file-picker-invisible" (change)="onFileSelected($event)" #filepicker />-->
+        <i class="fa-solid fa-user"></i>
+        <!--        @if (isEditMode) {-->
+        <!--          <button mat-fab class="avatar-button" (click)="filepicker.click()">-->
+        <!--            <mat-icon>edit</mat-icon>-->
+        <!--          </button>-->
+        <!--        }-->
+      </div>
+    </div>
+
+    <mat-form-field class="profile-field" color="warn" appearance="outline">
+      <mat-label>{{ 'PROFILE.NAME_FIELD_LABEL' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="{{ 'PROFILE.NAME_FIELD_PLACEHOLDER' | translate }}"
+        [readonly]="!isEditMode"
+        [(ngModel)]="userName" />
+    </mat-form-field>
+    <mat-form-field class="profile-field" color="warn" appearance="outline">
+      <mat-label>{{ 'PROFILE.EMAIL_FIELD_LABEL' | translate }}</mat-label>
+      <input
+        matInput
+        type="email"
+        placeholder="{{ 'PROFILE.EMAIL_FIELD_PLACEHOLDER' | translate }}"
+        [readonly]="!isEditMode"
+        [(ngModel)]="userEmail" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="profile-field"
+      color="warn"
+      [disabled]="!isEditMode"
+      (click)="openPasswordDialog()">
+      {{ 'PROFILE.CHANGE_PASSWORD_BUTTON' | translate }}
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-raised-button class="profile-field" color="warn" (click)="openCategoryDialog()">
+      {{ 'PROFILE.CATEGORIES_BUTTON' | translate }}
+    </button>
+  </div>
+  <div class="analytics-container" fxLayout="column">
+    <div class="period-buttons-container" fxLayoutAlign="none center" fxLayoutGap="20px">
+      <span>{{ 'PROFILE.PERIOD_LABEL' | translate }}</span>
+      <mat-button-toggle-group appearance="legacy">
+        <mat-button-toggle value="sevenDays" checked>7</mat-button-toggle>
+        <mat-button-toggle value="thirtyDays">30</mat-button-toggle>
+        <mat-button-toggle value="allTime">{{ 'PROFILE.ALL_TIME_BUTTON' | translate }}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="stats-container" fxLayout="column">
+      <div class="piechart-row" fxLayout="row">
+        <div class="piechart-row-piechart" fxLayoutAlign="center center">
+          <app-pie-chart></app-pie-chart>
+          @if (!isEditMode) {
+            <span class="pieChart-vallet">1337</span>
+          }
+        </div>
+        <div class="piechar-row-categories">
+          @for (category of this.categories; track category) {
+            <div class="category-item" fxLayout="row">
+              <span class="category-item-name" fxLayoutAlign="center center">
+                <div class="category-item-color" [style.background]="category.color"></div>
+                {{ category.title }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="gistogram-row" fxLayout="row">
+        <div class="gistogram-row-barchart">
+          <app-bar-chart></app-bar-chart>
+        </div>
+        <div class="gistogram-row-other" fxLayout="column" fxLayoutAlign="center center">
+          <div class="others" fxLayout="column">
+            <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.AVERAGE_LABEL' | translate }}</span>
+              <span>₴</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+          </div>
+          <div class="others" fxLayout="column">
+            <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.MONTHLY_LABEL' | translate }}</span>
+              <span>%</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

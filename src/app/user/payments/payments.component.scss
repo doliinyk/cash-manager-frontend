@@ -1,0 +1,156 @@
+@import '../../shared/styles/variables';
+
+.overall-page {
+  height: $page-height;
+  box-sizing: border-box;
+  padding: 0 27px 0 27px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+}
+
+.filter-new-container {
+  height: 95%;
+  min-width: 51%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4%;
+}
+
+.payments-container {
+  height: 95%;
+  width: 50%;
+  border-radius: 5px;
+  border: 2px solid #e6e6e6;
+}
+
+.new-tools {
+  width: 100%;
+  height: 48%;
+  border-radius: 5px;
+  border: 2px solid #e6e6e6;
+}
+
+.filter-tools {
+  width: 100%;
+  height: 48%;
+  border-radius: 5px;
+  border: 2px solid #e6e6e6;
+}
+
+.filter-form {
+  height: 100%;
+}
+
+.new-text {
+  border-radius: 5px 5px 0 0;
+  font-size: 30px;
+  color: orange;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.text {
+  margin-left: 10px;
+}
+
+.filter-select {
+  margin-left: 50px;
+}
+
+mat-stepper {
+  width: 100%;
+  background: #f1f1f1;
+}
+
+.scroll-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+form {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.stepper-button {
+  margin-top: 30px;
+}
+
+.text-form-field {
+  width: 29%;
+  height: 50px;
+}
+
+.sum-suffix {
+  margin-right: 20px;
+  color: gray;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.search-field {
+  width: 60%;
+  height: 50px;
+}
+
+.search-preffix {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.apply-filter-button,
+.clear-filter-button {
+  font-size: 13px;
+}
+
+.apply-filter-button {
+  width: 150px;
+  height: 50px;
+}
+
+.clear-filter-button {
+  width: 90px;
+  height: 50px;
+  margin-left: 50px;
+}
+
+@media screen and (max-width: 1300px), (max-height: 808px) {
+  .overall-page {
+    flex-direction: column;
+    padding: 25px 0 25px 0;
+    gap: 10px;
+    height: auto;
+  }
+
+  .filter-new-container {
+    width: 90%;
+    gap: 10px;
+  }
+
+  .new-tools {
+    height: auto;
+  }
+
+  .filter-tools {
+    height: auto;
+  }
+
+  .payments-container {
+    height: auto;
+    width: 90%;
+  }
+}

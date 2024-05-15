@@ -1,18 +1,58 @@
-<mat-toolbar color="primary" fxLayout="row" role="heading">
-  <span class="text-main">CashChecker</span>
-  @if (!isSmallScreen) {
-    <button mat-button class="button-profile" *ngIf="!isSmallScreen">
-      <span>{{ 'NAV.PROFILE' | translate }}</span>
-    </button>
+<mat-toolbar fxLayout="row" role="heading">
+  <button mat-button class="title" fxLayoutAlign="center center" routerLink="">
+    <span class="title-text" fxLayoutAlign="center center"> CashChecker </span>
+  </button>
+
+  @if ((isAuthentificated | async) && !isSmallScreen) {
+    <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0.7vw">
+      <button
+        mat-button
+        [ngClass]="{
+          'button-profile-current': getCurrentPage() === '/user/profile',
+          'button-profile-not-current': getCurrentPage() !== '/user/profile'
+        }"
+        routerLink="/user/profile">
+        <span class="buttons-text">{{ 'NAV.PROFILE' | translate }}</span>
+      </button>
+      <button
+        mat-button
+        [ngClass]="{
+          'button-profile-current': getCurrentPage() === '/user/payments',
+          'button-profile-not-current': getCurrentPage() !== '/user/payments'
+        }"
+        routerLink="/user/payments">
+        <span class="buttons-text">{{ 'NAV.PAYMENTS' | translate }}</span>
+      </button>
+    </div>
   }
-  <span class="example-spacer" fxFlex></span>
+
+  <span class="spacer" fxFlex></span>
+
   @if (!isSmallScreen) {
-    <button mat-button class="button-language" [matMenuTriggerFor]="menu">
-      <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
-    </button>
-    <button mat-button class="button-login">
-      <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
-    </button>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0.7vw">
+      @if (isAuthentificated | async) {
+        <span class="balance" fxLayout="row" fxLayoutAlign="none center">
+          <i class="fa-solid fa-wallet"></i>
+          <span class="balance-text">{{ account | async }}</span>
+        </span>
+      }
+      <button mat-raised-button class="button-language" [matMenuTriggerFor]="menu">
+        <span fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="13px">
+          <i class="fa-solid fa-earth-americas"></i>
+          <span class="text-language">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</span>
+        </span>
+      </button>
+      @if ((isAuthentificated | async) === false) {
+        <button mat-button class="button-login" routerLink="/login">
+          <span class="text-login">{{ 'NAV.LOGIN' | translate }}</span>
+        </button>
+      } @else {
+        <button mat-button class="logout-button" fxLayoutAlign="center center" (click)="logout()">
+          <span class="logout-text">Вийти</span>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      }
+    </div>
   } @else {
     <button mat-icon-button [matMenuTriggerFor]="mobileMenu" fxFlexAlign="end center">
       <mat-icon>menu</mat-icon>
@@ -28,7 +68,14 @@
 </mat-menu>
 
 <mat-menu #mobileMenu="matMenu">
-  <button mat-menu-item>{{ 'NAV.PROFILE' | translate }}</button>
-  <button mat-menu-item>{{ 'NAV.LOGIN' | translate }}</button>
+  @if (isAuthentificated | async) {
+    <button mat-menu-item routerLink="/user/profile">{{ 'NAV.PROFILE' | translate }}</button>
+    <button mat-menu-item routerLink="/user/payments">{{ 'NAV.PAYMENTS' | translate }}</button>
+  } @else {
+    <button mat-menu-item routerLink="/login">{{ 'NAV.LOGIN' | translate }}</button>
+  }
   <button mat-menu-item [matMenuTriggerFor]="menu">{{ 'NAV.LOCALE.' + language.toUpperCase() | translate }}</button>
+  @if (isAuthentificated | async) {
+    <button mat-menu-item (click)="logout()">{{ 'NAV.LOGOUT' | translate }}</button>
+  }
 </mat-menu>
