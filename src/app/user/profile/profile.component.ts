@@ -72,6 +72,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+    // const file: File = event.target.files[0];
+    // TODO: Avatar change
   }
 }

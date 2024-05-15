@@ -28,7 +28,7 @@ export class CategoryDialogComponent implements OnInit {
   ngOnInit() {
     const categoriesObs = this.categoryService.getCategories();
     categoriesObs.subscribe(category => {
-      for (let key in category) {
+      for (const key in category) {
         this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
       }
       console.log(this.categories.map(category => category.title || 'Nihuya'));

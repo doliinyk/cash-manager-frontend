@@ -46,7 +46,7 @@ export class TokenState {
           return dispatch(new RefreshTokenSuccess(payload));
         }),
         catchError((error: HttpErrorResponse) => {
-          console.log(error.message)
+          console.log(error.message);
           return dispatch(new TokenExpired());
         })
       );
