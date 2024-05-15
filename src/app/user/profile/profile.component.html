@@ -2,16 +2,16 @@
   <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%">
     @if (!isEditMode) {
       <button mat-button class="edit-button" (click)="toEditMode()">
-        <span>Редагувати</span>
+        <span>{{ 'PROFILE.EDIT_BUTTON' | translate }}</span>
         <mat-icon>edit</mat-icon>
       </button>
     } @else {
       <button mat-button class="save-button" (click)="saveChanges()">
-        <span>Зберегти</span>
+        <span>{{ 'PROFILE.SAVE_BUTTON' | translate }}</span>
         <mat-icon>done</mat-icon>
       </button>
       <button mat-button class="decline-button" (click)="declineChanges()">
-        <span>Відхилити</span>
+        <span>{{ 'PROFILE.DECLINE_BUTTON' | translate }}</span>
         <mat-icon>close</mat-icon>
       </button>
     }
@@ -34,28 +34,43 @@
     </div>
 
     <mat-form-field class="profile-field" color="warn" appearance="outline">
-      <mat-label>Ім'я</mat-label>
-      <input matInput type="text" placeholder="Ім'я" [readonly]="!isEditMode" [(ngModel)]="userName" />
+      <mat-label>{{ 'PROFILE.NAME_FIELD_LABEL' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="{{ 'PROFILE.NAME_FIELD_PLACEHOLDER' | translate }}"
+        [readonly]="!isEditMode"
+        [(ngModel)]="userName" />
     </mat-form-field>
     <mat-form-field class="profile-field" color="warn" appearance="outline">
-      <mat-label>Електронна пошта</mat-label>
-      <input matInput type="email" placeholder="Електронна пошта" [readonly]="!isEditMode" [(ngModel)]="userEmail" />
+      <mat-label>{{ 'PROFILE.EMAIL_FIELD_LABEL' | translate }}</mat-label>
+      <input
+        matInput
+        type="email"
+        placeholder="{{ 'PROFILE.EMAIL_FIELD_PLACEHOLDER' | translate }}"
+        [readonly]="!isEditMode"
+        [(ngModel)]="userEmail" />
     </mat-form-field>
-    <mat-divider></mat-divider>
-    <button mat-raised-button class="profile-field" color="warn" [disabled]="!isEditMode" (click)="openPasswordDialog()">
-      Змінити пароль
+    <button
+      mat-raised-button
+      class="profile-field"
+      color="warn"
+      [disabled]="!isEditMode"
+      (click)="openPasswordDialog()">
+      {{ 'PROFILE.CHANGE_PASSWORD_BUTTON' | translate }}
     </button>
+    <mat-divider></mat-divider>
     <button mat-raised-button class="profile-field" color="warn" (click)="openCategoryDialog()">
-      Категорії
+      {{ 'PROFILE.CATEGORIES_BUTTON' | translate }}
     </button>
   </div>
   <div class="analytics-container" fxLayout="column">
     <div class="period-buttons-container" fxLayoutAlign="none center" fxLayoutGap="20px">
-      <span>Період</span>
+      <span>{{ 'PROFILE.PERIOD_LABEL' | translate }}</span>
       <mat-button-toggle-group appearance="legacy">
         <mat-button-toggle value="sevenDays" checked>7</mat-button-toggle>
         <mat-button-toggle value="thirtyDays">30</mat-button-toggle>
-        <mat-button-toggle value="allTime">Весь час</mat-button-toggle>
+        <mat-button-toggle value="allTime">{{ 'PROFILE.ALL_TIME_BUTTON' | translate }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
     <div class="stats-container" fxLayout="column">
@@ -78,9 +93,39 @@
         </div>
       </div>
       <mat-divider></mat-divider>
-      <div class="gistogram-row">
-        <div class="gistogram-row-barchart" fxLayoutAlign="center center">
+      <div class="gistogram-row" fxLayout="row">
+        <div class="gistogram-row-barchart">
           <app-bar-chart></app-bar-chart>
+        </div>
+        <div class="gistogram-row-other" fxLayout="column" fxLayoutAlign="center center">
+          <div class="others" fxLayout="column">
+            <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.AVERAGE_LABEL' | translate }}</span>
+              <span>₴</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+          </div>
+          <div class="others" fxLayout="column">
+            <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.MONTHLY_LABEL' | translate }}</span>
+              <span>%</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+              <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
+              <span>number</span>
+            </span>
+          </div>
         </div>
       </div>
     </div>

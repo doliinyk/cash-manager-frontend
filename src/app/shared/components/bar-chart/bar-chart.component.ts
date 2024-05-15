@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Chart} from "chart.js";
+import { Component, Input, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-bar-chart',
@@ -15,13 +15,25 @@ export class BarChartComponent implements OnInit {
     datasets: [
       {
         label: 'Прибутки',
-        data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-        backgroundColor: 'blue'
+        data: [10, 100, 10, 10, 100, 10, 10, 100, 10, 10, 10, 10],
+        backgroundColor: 'rgba(83, 179, 240, 0.58)',
+        borderColor: 'rgba(44, 129, 242, 0.8)',
+        borderWidth: 2,
+        barPercentage: 1,
+        categoryPercentage: 1,
+        borderRadius: 20,
+        borderSkipped: false
       },
       {
         label: 'Витрати',
-        data: [-10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10],
-        backgroundColor: 'red'
+        data: [-100, -10, -10, -10, -10, -100, -10, -10, -10, -10, -10, -10],
+        backgroundColor: 'rgba(236, 103, 118, 0.58)',
+        borderColor: 'rgba(234, 34, 61, 0.8)',
+        borderWidth: 2,
+        barPercentage: 1,
+        categoryPercentage: 1,
+        borderRadius: 20,
+        borderSkipped: false
       }
     ]
   };
@@ -35,13 +47,25 @@ export class BarChartComponent implements OnInit {
       type: 'bar',
       data: this.data,
       options: {
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            grid: {
+              display: false
+            }
+          }
+        },
         responsive: true,
         plugins: {
           legend: {
-            position: 'top'
+            display: false
           },
           title: {
-            display: true
+            display: false
           }
         }
       }

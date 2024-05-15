@@ -9,7 +9,7 @@ import { CategoryStateModel } from 'shared/models/category';
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
-  categories?: CategoryStateModel[];
+  categories: CategoryStateModel[] = [];
   titles: string[] = [];
   colors: string[] = [];
   values: number[] = [];
@@ -18,17 +18,21 @@ export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    // this.categories = this.categoryService.getCategories();
-    // const titles = this.categories.map(category => category.title);
-    // const colors = this.categories.map(category => category.color);
-    // console.log(this.categories);
-    // console.log(this.titles);
-    // this.RenderChart(titles, colors);
+    const categoriesObs = this.categoryService.getCategories();
+    categoriesObs.subscribe(category => {
+      for (let key in category) {
+        this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
+        this.values.push(10)
+      }
+      this.titles = this.categories.map(category => category.title || 'Error')
+      this.colors = this.categories.map(category => category.color || "#fff")
+      this.RenderChart();
+    })
   }
 
   ngOnDestroy() {}
 
-  RenderChart(titles: (string | undefined)[], colors: (string | undefined)[]) {
+  RenderChart() {
     this.pieChart = new Chart('pieChart', {
       type: 'doughnut',
       data: {
@@ -41,6 +45,7 @@ export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
         ]
       },
       options: {
+        responsive: true,
         plugins: {
           datalabels: {
             formatter: (value: number, ctx: any): string => {

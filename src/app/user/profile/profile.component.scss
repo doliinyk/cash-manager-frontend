@@ -109,7 +109,7 @@
 
 .piechart-row-piechart {
   height: 100%;
-  width: 50%;
+  width: 40%;
   position: relative;
   padding: 20px;
   box-sizing: border-box;
@@ -126,7 +126,7 @@
 }
 
 .piechar-row-categories {
-  width: 50%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -159,13 +159,33 @@
   margin-right: 10px;
 }
 
-.gistogram-row {
+.gistogram-row-barchart {
+  height: 95%;
+  width: 60%;
 }
 
-.gistogram-row-barchart {
-  height: 100%;
-  width: 50%;
-  position: relative;
+.gistogram-row-other {
   padding: 20px;
   box-sizing: border-box;
+  font-size: 25px;
+  width: 40%;
+  height: 100%;
+}
+
+.others {
+  width: 100%;
+}
+
+.gistogram-row-other-title {
+  background: orange;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.gistogram-row-other-subtitle {
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
 }

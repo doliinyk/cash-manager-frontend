@@ -26,9 +26,26 @@
     "REGISTER_BUTTON": "Send"
   },
   "EMAIL": {
-    "CONGRATS" : "Congratulations!",
-    "ACTIVATED" : "Your account was successfully activated!",
+    "CONGRATS": "Congratulations!",
+    "ACTIVATED": "Your account was successfully activated!",
     "ERROR": "Oops! Something went wrong!",
     "ERROR_BUTTON": "To main page"
+  },
+  "PROFILE": {
+    "EDIT_BUTTON": "Edit",
+    "SAVE_BUTTON": "Save",
+    "DECLINE_BUTTON": "Decline",
+    "NAME_FIELD_LABEL": "Name",
+    "NAME_FIELD_PLACEHOLDER": "Name",
+    "EMAIL_FIELD_LABEL": "Email",
+    "EMAIL_FIELD_PLACEHOLDER": "Email",
+    "CHANGE_PASSWORD_BUTTON": "Change Password",
+    "CATEGORIES_BUTTON": "Categories",
+    "PERIOD_LABEL": "Period",
+    "ALL_TIME_BUTTON": "All Time",
+    "AVERAGE_LABEL": "Average",
+    "INCOME_LABEL": "Income",
+    "EXPENSES_LABEL": "Expenses",
+    "MONTHLY_LABEL": "Monthly"
   }
 }
