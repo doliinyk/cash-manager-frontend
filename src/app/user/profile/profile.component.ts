@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
   userEmail?: string;
   tempUserName?: string = '';
   tempUserEmail?: string = '';
-  pieChart: any;
   categories: CategoryStateModel[] = [];
 
   openPasswordDialog() {
@@ -48,11 +47,6 @@ export class ProfileComponent implements OnInit {
         this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
       }
     });
-  }
-
-  categoryItemClick(id: number | undefined) {
-    if (!id) id = 0;
-    this.pieChart.legend.options.onClick(null, this.pieChart.legend.legendItems[id], this.pieChart.legend);
   }
 
   constructor(

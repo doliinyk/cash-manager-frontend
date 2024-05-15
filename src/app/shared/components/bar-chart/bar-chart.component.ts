@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -7,7 +7,6 @@ import { Chart } from 'chart.js';
   styleUrl: './bar-chart.component.scss'
 })
 export class BarChartComponent implements OnInit {
-  @Input() barChart: any;
   labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   data = {
@@ -43,7 +42,7 @@ export class BarChartComponent implements OnInit {
   }
 
   RenderChart() {
-    this.barChart = new Chart('barChart', {
+    new Chart('barChart', {
       type: 'bar',
       data: this.data,
       options: {

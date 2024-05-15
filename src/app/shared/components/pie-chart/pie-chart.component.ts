@@ -1,39 +1,36 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { CategoryService } from 'shared/services/user/category.service';
 import { CategoryStateModel } from 'shared/models/category';
+import { CategoryService } from 'shared/services/user/category.service';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
+export class PieChartComponent implements OnInit {
   categories: CategoryStateModel[] = [];
   titles: string[] = [];
   colors: string[] = [];
   values: number[] = [];
-  @Input() pieChart: any;
 
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     const categoriesObs = this.categoryService.getCategories();
     categoriesObs.subscribe(category => {
-      for (let key in category) {
+      for (const key in category) {
         this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
-        this.values.push(10)
+        this.values.push(10);
       }
-      this.titles = this.categories.map(category => category.title || 'Error')
-      this.colors = this.categories.map(category => category.color || "#fff")
+      this.titles = this.categories.map(category => category.title || 'Error');
+      this.colors = this.categories.map(category => category.color || '#fff');
       this.RenderChart();
-    })
+    });
   }
 
-  ngOnDestroy() {}
-
   RenderChart() {
-    this.pieChart = new Chart('pieChart', {
+    new Chart('pieChart', {
       type: 'doughnut',
       data: {
         labels: this.titles,
@@ -65,6 +62,4 @@ export class PieChartComponent implements AfterViewInit, OnInit, OnDestroy {
       }
     });
   }
-
-  ngAfterViewInit() {}
 }
