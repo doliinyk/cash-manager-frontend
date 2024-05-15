@@ -1,7 +1,7 @@
-import { HttpErrorResponse, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from 'shared/services/auth/auth.service';
 import { catchError, concatMap, throwError } from 'rxjs';
+import { AuthService } from 'shared/services/auth/auth.service';
 
 export const TokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);

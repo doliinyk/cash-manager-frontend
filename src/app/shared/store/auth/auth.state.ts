@@ -49,7 +49,10 @@ export class AuthState {
     console.log(headers);
     return this.httpClient.post<LoginPayload>('http://localhost:8080/api/v1/auth/login', {}, { headers: headers }).pipe(
       tap((loginPayload: LoginPayload) => dispatch(new UserLoginSuccess(loginPayload))),
-      catchError((error: HttpErrorResponse) => dispatch(new UserLoginFailed()))
+      catchError((error: HttpErrorResponse) => {
+        console.log(error.message)
+        return dispatch(new UserLoginFailed());
+      })
     );
   }
 

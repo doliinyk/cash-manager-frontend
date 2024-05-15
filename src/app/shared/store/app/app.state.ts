@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ShowMessageBar, UserIsAuth } from 'shared/store/app/app.actions';
 import { Action, StateContext } from '@ngxs/store';
 import { MessageBarComponent } from 'shared/components/message-bar/message-bar.component';
+import { ShowMessageBar, UserIsAuth } from 'shared/store/app/app.actions';
 import { GetUser } from 'shared/store/auth/auth.actions';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class AppState {
   constructor(private snackBar: MatSnackBar) {}
 
   @Action(ShowMessageBar)
-  showMessageBar({}: StateContext<void>, { payload }: ShowMessageBar): void {
+  showMessageBar({ payload }: ShowMessageBar): void {
     const duration = payload.infinityDuration || payload.duration === null ? undefined : payload.duration || 5000;
 
     this.snackBar.openFromComponent(MessageBarComponent, {

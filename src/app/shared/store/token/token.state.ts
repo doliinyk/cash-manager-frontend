@@ -45,7 +45,10 @@ export class TokenState {
         tap(payload => {
           return dispatch(new RefreshTokenSuccess(payload));
         }),
-        catchError((error: HttpErrorResponse) => dispatch(new TokenExpired()))
+        catchError((error: HttpErrorResponse) => {
+          console.log(error.message)
+          return dispatch(new TokenExpired());
+        })
       );
   }
   @Action(SetTokens)

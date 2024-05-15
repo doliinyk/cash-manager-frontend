@@ -29,7 +29,9 @@ export class RegistrationState {
   @Action(RegisterUser)
   registerUser(_context: StateContext<RegistrationStateModel>, { payload }: RegisterUser): Observable<void> {
     const locale: string = this.localizationService.getLocalization();
-    const params = new HttpParams().set('locale', locale).set('redirectUrl', location.href.replace('registration','auth/activation'));
+    const params = new HttpParams()
+      .set('locale', locale)
+      .set('redirectUrl', location.href.replace('registration', 'auth/activation'));
     return this.httpClient.post<void>('http://localhost:8080/api/v1/auth/register', payload, { params: params });
   }
 }

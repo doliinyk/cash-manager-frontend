@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-password-dialog',
@@ -7,8 +7,8 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrl: './password-dialog.component.scss'
 })
 export class PasswordDialogComponent {
-  userPasswordCurrent = ""
-  userPasswordNew = ""
+  userPasswordCurrent = '';
+  userPasswordNew = '';
 
   constructor(public dialogRef: MatDialogRef<PasswordDialogComponent>) {}
 }
