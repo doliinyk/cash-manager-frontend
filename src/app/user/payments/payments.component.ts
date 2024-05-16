@@ -4,9 +4,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { map, Observable, Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
-import { CategoryExpenseService } from 'shared/services/user/category.expense.service';
-import { CategoryIncomeService } from 'shared/services/user/category.income.service';
-
+import {CategoriesService} from "shared/services/categories/categories.service";
 interface TransactionType {
   value: string;
   viewValue: string;
@@ -19,12 +17,7 @@ interface TransactionType {
 })
 export class PaymentsComponent implements OnInit, OnDestroy {
   stepperOrientation: Observable<StepperOrientation>;
-  expenseCategories: CategoryStateModel[] = [];
-  incomeCategories: CategoryStateModel[] = [];
-  allCategories: CategoryStateModel[] = [];
-  selectedCategories: CategoryStateModel[] = [];
-  expenseCategoriesSubscription: Subscription | undefined;
-  incomeCategoriesSubscription: Subscription | undefined;
+  selectedCategories: Observable<CategoryStateModel[]>;
   transactionField = new FormControl('', Validators.required);
   nameField = new FormControl('', Validators.required);
   categoryField = new FormControl('', Validators.required);
@@ -47,23 +40,13 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ];
 
   public ngOnInit(): void {
-    this.expenseCategoriesSubscription = this.categoryExpenseService.categories$.subscribe(categories => {
-      this.expenseCategories = categories;
-      this.allCategories = this.incomeCategories.concat(this.expenseCategories);
-    });
-    this.incomeCategoriesSubscription = this.categoryIncomeService.categories$.subscribe(categories => {
-      this.incomeCategories = categories;
-      this.allCategories = this.expenseCategories.concat(this.incomeCategories);
-    });
   }
 
   public ngOnDestroy(): void {
-    this.expenseCategoriesSubscription?.unsubscribe();
-    this.incomeCategoriesSubscription?.unsubscribe();
   }
 
   onTransactionChanged(event: string) {
-    this.selectedCategories = event === 'income-0' ? this.incomeCategories : this.expenseCategories;
+    this.selectedCategories = event === 'income-0' ? this.categoriesService.incomeCategories$ : this.categoriesService.expenseCategories$;
   }
 
   onSubmit() {
@@ -74,8 +57,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
-    private categoryExpenseService: CategoryExpenseService,
-    private categoryIncomeService: CategoryIncomeService
+    protected categoriesService: CategoriesService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
