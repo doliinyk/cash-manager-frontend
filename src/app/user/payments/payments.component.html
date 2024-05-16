@@ -49,7 +49,7 @@
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Категорія</mat-label>
               <mat-select formControlName="category">
-                @for (category of selectedCategories; track category) {
+                @for (category of selectedCategories|async; track category) {
                   <mat-option [value]="$index">{{ category.title }}</mat-option>
                 }
               </mat-select>
@@ -127,7 +127,7 @@
           <mat-form-field class="filter-select , text-form-field" color="warn" appearance="outline">
             <mat-label>Категорія</mat-label>
             <mat-select multiple>
-              @for (category of allCategories; track category) {
+              @for (category of categoriesService.allCategories$ | async; track category) {
                 <mat-option [value]="$index">{{ category.title }}</mat-option>
               }
             </mat-select>

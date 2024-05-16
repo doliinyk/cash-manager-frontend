@@ -6,9 +6,10 @@ import { Observable, Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { UserStateModel } from 'shared/models/user';
 import { AuthService } from 'shared/services/auth/auth.service';
-import { CategoryExpenseService } from 'shared/services/user/category.expense.service';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
+import {CategoriesService} from "shared/services/categories/categories.service";
+import {Categories} from "shared/enums/categories";
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -25,8 +26,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userEmail?: string;
   tempUserName?: string = '';
   tempUserEmail?: string = '';
-  categories: CategoryStateModel[] = [];
-  subscription: Subscription | undefined;
 
   openPasswordDialog() {
     this.dialog.open(PasswordDialogComponent);
@@ -37,23 +36,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.user?.subscribe(data => {
-      this.userName = data.login?.toString();
-      this.userEmail = data.email;
-    });
-    this.subscription = this.categoryService.categories$.subscribe(categories => {
-      this.categories = categories;
-    });
+    this.categoriesService.getAllCategories();
   }
 
   public ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+
   }
 
   constructor(
     private authService: AuthService,
-    protected categoryService: CategoryExpenseService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    protected categoriesService: CategoriesService
   ) {}
 
   toEditMode() {

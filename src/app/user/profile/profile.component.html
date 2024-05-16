@@ -1,5 +1,5 @@
 <div class="overall-page">
-  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%">
+  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%" *ngIf="user | async as user">
     @if (!isEditMode) {
       <button mat-button class="edit-button" (click)="toEditMode()">
         <span>{{ 'PROFILE.EDIT_BUTTON' | translate }}</span>
@@ -34,7 +34,7 @@
         type="text"
         placeholder="{{ 'PROFILE.NAME_FIELD_PLACEHOLDER' | translate }}"
         [readonly]="!isEditMode"
-        [(ngModel)]="userName" />
+        [(ngModel)]="user.login" />
     </mat-form-field>
     <mat-form-field class="profile-field" color="warn" appearance="outline">
       <mat-label>{{ 'PROFILE.EMAIL_FIELD_LABEL' | translate }}</mat-label>
@@ -43,7 +43,7 @@
         type="email"
         placeholder="{{ 'PROFILE.EMAIL_FIELD_PLACEHOLDER' | translate }}"
         [readonly]="!isEditMode"
-        [(ngModel)]="userEmail" />
+        [(ngModel)]="user.email" />
     </mat-form-field>
     <button
       mat-raised-button
@@ -76,7 +76,7 @@
           }
         </div>
         <div class="piechar-row-categories">
-          @for (category of this.categories; track category) {
+          @for (category of this.categoriesService.expenseCategories$ | async; track category) {
             <div class="category-item" fxLayout="row">
               <span class="category-item-name" fxLayoutAlign="center center">
                 <div class="category-item-color" [style.background]="category.colorCode"></div>

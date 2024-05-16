@@ -23,6 +23,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { MainComponent } from './core/main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import {CategoryState} from "shared/store/category/category.state";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
@@ -41,7 +42,7 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    NgxsModule.forRoot([AppState, TokenState]),
+    NgxsModule.forRoot([AppState, TokenState, CategoryState]),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     AuthModule,
