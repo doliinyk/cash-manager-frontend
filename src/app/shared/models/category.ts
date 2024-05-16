@@ -1,4 +1,4 @@
 export interface CategoryStateModel {
-  color?: string;
+  colorCode?: string;
   title?: string;
 }

@@ -79,7 +79,7 @@
           @for (category of this.categories; track category) {
             <div class="category-item" fxLayout="row">
               <span class="category-item-name" fxLayoutAlign="center center">
-                <div class="category-item-color" [style.background]="category.color"></div>
+                <div class="category-item-color" [style.background]="category.colorCode"></div>
                 {{ category.title }}
               </span>
             </div>

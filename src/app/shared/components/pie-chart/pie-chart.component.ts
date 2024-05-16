@@ -1,36 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
-import { CategoryService } from 'shared/services/user/category.service';
+import { CategoryExpenseService } from 'shared/services/user/category.expense.service';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnInit, OnDestroy {
   categories: CategoryStateModel[] = [];
   titles: string[] = [];
   colors: string[] = [];
   values: number[] = [];
+  pieChart: any;
+  subscription: Subscription | undefined;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryExpenseService) {}
 
   ngOnInit(): void {
-    const categoriesObs = this.categoryService.getCategories();
-    categoriesObs.subscribe(category => {
-      for (const key in category) {
-        this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
-        this.values.push(10);
+    this.subscription = this.categoryService.categories$.subscribe(categories => {
+      if (categories && categories.length > 0) {
+        this.categories = categories;
+        this.updateChartData();
       }
-      this.titles = this.categories.map(category => category.title || 'Error');
-      this.colors = this.categories.map(category => category.color || '#fff');
-      this.RenderChart();
     });
   }
 
-  RenderChart() {
-    new Chart('pieChart', {
+  public ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
+  updateChartData() {
+    this.titles = this.categories.map(category => category.title || 'Error');
+    this.colors = this.categories.map(category => category.colorCode || '#fff');
+    for (const key in this.categories) {
+      this.values.push(10);
+    }
+    this.renderChart();
+  }
+
+  renderChart() {
+    this.pieChart = new Chart('pieChart', {
       type: 'doughnut',
       data: {
         labels: this.titles,

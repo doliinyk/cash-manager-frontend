@@ -71,4 +71,6 @@ export class AuthService {
   isUserAuth() {
     this.store.dispatch(new UserIsAuth());
   }
+
+
 }
