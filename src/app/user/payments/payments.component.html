@@ -8,13 +8,13 @@
         </span>
       </div>
 
-      <mat-stepper [orientation]="(stepperOrientation | async)!" color="warn" #stepper>
-        <mat-step>
-          <form>
+      <mat-stepper [linear]="true" [orientation]="(stepperOrientation | async)!" color="warn" #stepper>
+        <mat-step [completed]="transactionField.valid">
+          <form [formGroup]="formGroup">
             <ng-template matStepLabel>Виберіть тип</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Тип</mat-label>
-              <mat-select>
+              <mat-select formControlName="transactionType" (selectionChange)="onTransactionChanged($event.value)">
                 @for (transactionType of transactionTypes; track transactionType) {
                   <mat-option [value]="transactionType.value">{{ transactionType.viewValue }}</mat-option>
                 }
@@ -25,12 +25,12 @@
             </div>
           </form>
         </mat-step>
-        <mat-step>
-          <form>
+        <mat-step [completed]="nameField.valid">
+          <form [formGroup]="formGroup">
             <ng-template matStepLabel>Введіть назву</ng-template>
             <mat-form-field class="search-field" color="warn" appearance="outline">
               <mat-label>Назва</mat-label>
-              <input matInput type="text" placeholder="Назва" [formControl]="nameField" required />
+              <input matInput type="text" placeholder="Назва" formControlName="name" required />
               @if (nameField.value) {
                 <button matSuffix mat-icon-button aria-label="Clear" (click)="nameField.setValue('')">
                   <mat-icon>close</mat-icon>
@@ -43,14 +43,14 @@
             </div>
           </form>
         </mat-step>
-        <mat-step>
-          <form>
+        <mat-step [completed]="categoryField.valid">
+          <form [formGroup]="formGroup">
             <ng-template matStepLabel>Виберіть категорію</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Категорія</mat-label>
-              <mat-select>
-                @for (category of categories; track category) {
-                  <mat-option [value]="category.value">{{ category.viewValue }}</mat-option>
+              <mat-select formControlName="category">
+                @for (category of selectedCategories; track category) {
+                  <mat-option [value]="$index">{{ category.title }}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -60,12 +60,12 @@
             </div>
           </form>
         </mat-step>
-        <mat-step>
-          <form>
+        <mat-step [completed]="amountField.valid">
+          <form [formGroup]="formGroup">
             <ng-template matStepLabel>Введіть суму</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Сума</mat-label>
-              <input matInput type="number" maxlength="10" placeholder="Сума" required />
+              <input matInput formControlName="amount" type="number" maxlength="10" placeholder="Сума" required />
               <span matSuffix class="sum-suffix">
                 <i class="fa-solid fa-hryvnia-sign"></i>
               </span>
@@ -76,19 +76,27 @@
             </div>
           </form>
         </mat-step>
-        <mat-step>
-          <form>
+        <mat-step [completed]="dateField.valid">
+          <form [formGroup]="formGroup">
             <ng-template matStepLabel>Виберіть дату</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Дата</mat-label>
-              <input matInput [matDatepicker]="picker" required />
+              <input matInput formControlName="date" [matDatepicker]="picker" required />
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <div fxLayoutAlign="none center" fxLayoutGap="10px">
-              <button class="stepper-button" mat-raised-button color="warn">Додати</button>
+              <button
+                class="stepper-button"
+                mat-raised-button
+                type="submit"
+                [disabled]="!dateField.valid"
+                (click)="onSubmit()"
+                color="warn">
+                Додати
+              </button>
               <button class="stepper-button" mat-button matStepperPrevious>Назад</button>
-              <button class="stepper-button" mat-button (click)="stepper.reset()">Спочатку</button>
+              <button class="stepper-button" mat-button (click)="formGroup.reset(); stepper.reset()">Спочатку</button>
             </div>
           </form>
         </mat-step>
@@ -119,8 +127,8 @@
           <mat-form-field class="filter-select , text-form-field" color="warn" appearance="outline">
             <mat-label>Категорія</mat-label>
             <mat-select multiple>
-              @for (category of categories; track category) {
-                <mat-option [value]="category.value">{{ category.viewValue }}</mat-option>
+              @for (category of allCategories; track category) {
+                <mat-option [value]="$index">{{ category.title }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
