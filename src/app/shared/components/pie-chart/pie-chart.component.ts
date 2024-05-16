@@ -36,6 +36,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
     this.titles = this.categories.map(category => category.title || 'Error');
     this.colors = this.categories.map(category => category.colorCode || '#fff');
     for (const key in this.categories) {
+      console.log(key);
       this.values.push(10);
     }
     this.renderChart();

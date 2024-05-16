@@ -18,9 +18,7 @@ export class CategoryIncomeService {
         map(categoryData => {
           const categories: CategoryStateModel[] = [];
           for (const key in categoryData) {
-            if (categoryData.hasOwnProperty(key)) {
-              categories.push({ colorCode: this.hexToRgbA(key), title: categoryData[key].title });
-            }
+            categories.push({ colorCode: this.hexToRgbA(key), title: categoryData[key].title });
           }
           return categories;
         }),

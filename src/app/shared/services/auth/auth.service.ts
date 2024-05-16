@@ -52,6 +52,7 @@ export class AuthService {
   public refreshToken(): Observable<HttpRequest<any>> {
     return this.store.dispatch(new RefreshTokens());
   }
+
   public setAuthorization(req: HttpRequest<any>) {
     const token = this.store.selectSnapshot(TokenState.accessToken);
     if (token) {
@@ -71,6 +72,4 @@ export class AuthService {
   isUserAuth() {
     this.store.dispatch(new UserIsAuth());
   }
-
-
 }
