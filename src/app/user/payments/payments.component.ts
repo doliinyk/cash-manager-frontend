@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
@@ -16,7 +16,7 @@ interface TransactionType {
   templateUrl: './payments.component.html',
   styleUrl: './payments.component.scss'
 })
-export class PaymentsComponent implements OnInit, OnDestroy {
+export class PaymentsComponent {
   stepperOrientation: Observable<StepperOrientation>;
   selectedCategories: Observable<CategoryStateModel[]>;
   transactionField = new FormControl('', Validators.required);
@@ -40,14 +40,9 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     { value: 'regular-2', viewValue: 'Регулярний' }
   ];
 
-  public ngOnInit(): void {
-  }
-
-  public ngOnDestroy(): void {
-  }
-
   onTransactionChanged(event: string) {
-    this.selectedCategories = event === 'income-0' ? this.categoriesService.incomeCategories$ : this.categoriesService.expenseCategories$;
+    this.selectedCategories =
+      event === 'income-0' ? this.categoriesService.incomeCategories$ : this.categoriesService.expenseCategories$;
   }
 
   onSubmit() {

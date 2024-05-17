@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -17,7 +17,7 @@ Chart.register(ChartDataLabels);
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
   protected user?: Observable<UserStateModel> = this.authService.user$;
   isEditMode: boolean = false;
   userName?: string;
@@ -36,8 +36,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.categoriesService.getAllCategories();
   }
-
-  public ngOnDestroy(): void {}
 
   constructor(
     private authService: AuthService,
