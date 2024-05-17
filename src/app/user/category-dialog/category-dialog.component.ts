@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CategoriesService } from 'shared/services/categories/categories.service';
@@ -9,7 +9,7 @@ import { Categories } from 'shared/enums/categories';
   templateUrl: './category-dialog.component.html',
   styleUrl: './category-dialog.component.scss'
 })
-export class CategoryDialogComponent implements OnInit, OnDestroy {
+export class CategoryDialogComponent implements OnDestroy {
   @ViewChild('newCategoryInput') newCategoryInput!: ElementRef;
   newNameFormControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
   subscription: Subscription | undefined;
@@ -29,8 +29,6 @@ export class CategoryDialogComponent implements OnInit, OnDestroy {
       colorCode: this.pickedColor
     });
   }
-
-  ngOnInit() {}
 
   public ngOnDestroy(): void {
     this.subscription?.unsubscribe();
