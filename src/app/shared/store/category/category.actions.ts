@@ -1,17 +1,20 @@
-import {CategoryStateModel} from "shared/models/category";
+import { CategoryStateModel } from 'shared/models/category';
 
-export class GetCategories{
+export class GetCategories {
   static readonly type = '[categories] get';
-  constructor(public url: string) {
-  }
+
+  constructor(public url: string) {}
 }
 
-export class GetAllCategories{
+export class GetAllCategories {
   static readonly type = '[categories] get all';
 }
 
-export class CreateCategory{
+export class CreateCategory {
   static readonly type = '[category] create';
-  constructor(public url:string, public category: CategoryStateModel) {
-  }
+
+  constructor(
+    public url: string,
+    public category: CategoryStateModel
+  ) {}
 }

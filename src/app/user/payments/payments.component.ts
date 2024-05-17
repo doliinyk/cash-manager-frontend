@@ -2,9 +2,10 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { map, Observable, Subscription } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
-import {CategoriesService} from "shared/services/categories/categories.service";
+import { CategoriesService } from 'shared/services/categories/categories.service';
+
 interface TransactionType {
   value: string;
   viewValue: string;

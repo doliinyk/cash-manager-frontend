@@ -13,8 +13,6 @@ import { PasswordDialogComponent } from './password-dialog/password-dialog.compo
 import { PaymentsComponent } from './payments/payments.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserRoutingModule } from './user-routing.module';
-import {NgxsModule} from "@ngxs/store";
-import {CategoryState} from "shared/store/category/category.state";
 
 @NgModule({
   declarations: [

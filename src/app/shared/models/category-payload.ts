@@ -1,3 +1,3 @@
-export interface CategoryPayload{
-  colorCode?: {title?: string}
+export interface CategoryPayload {
+  colorCode?: { title?: string };
 }

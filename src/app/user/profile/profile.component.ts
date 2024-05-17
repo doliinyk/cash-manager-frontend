@@ -2,14 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Observable, Subscription } from 'rxjs';
-import { CategoryStateModel } from 'shared/models/category';
+import { Observable } from 'rxjs';
 import { UserStateModel } from 'shared/models/user';
 import { AuthService } from 'shared/services/auth/auth.service';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
-import {CategoriesService} from "shared/services/categories/categories.service";
-import {Categories} from "shared/enums/categories";
+import { CategoriesService } from 'shared/services/categories/categories.service';
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -39,9 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.categoriesService.getAllCategories();
   }
 
-  public ngOnDestroy(): void {
-
-  }
+  public ngOnDestroy(): void {}
 
   constructor(
     private authService: AuthService,

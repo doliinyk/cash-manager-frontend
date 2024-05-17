@@ -1,6 +1,6 @@
-import {CategoryStateModel} from "shared/models/category";
+import { CategoryStateModel } from 'shared/models/category';
 
-export interface CategoriesStateModel{
+export interface CategoriesStateModel {
   incomeCategories: CategoryStateModel[];
   expenseCategories: CategoryStateModel[];
 }

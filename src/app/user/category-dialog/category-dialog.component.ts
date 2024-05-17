@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CategoryStateModel } from 'shared/models/category';
-import {CategoriesService} from "shared/services/categories/categories.service";
-import {Categories} from "shared/enums/categories";
+import { CategoriesService } from 'shared/services/categories/categories.service';
+import { Categories } from 'shared/enums/categories';
 
 @Component({
   selector: 'app-category-dialog',
@@ -25,14 +24,13 @@ export class CategoryDialogComponent implements OnInit, OnDestroy {
   }
 
   onAppendCategory() {
-    this.categoriesService.createCategory(Categories.expenses,{
+    this.categoriesService.createCategory(Categories.expenses, {
       title: this.newCategoryInput.nativeElement.value,
       colorCode: this.pickedColor
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public ngOnDestroy(): void {
     this.subscription?.unsubscribe();

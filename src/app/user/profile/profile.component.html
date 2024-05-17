@@ -1,5 +1,10 @@
 <div class="overall-page">
-  <div class="profile-containter" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%" *ngIf="user | async as user">
+  <div
+    class="profile-containter"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="5%"
+    *ngIf="user | async as user">
     @if (!isEditMode) {
       <button mat-button class="edit-button" (click)="toEditMode()">
         <span>{{ 'PROFILE.EDIT_BUTTON' | translate }}</span>
