@@ -23,7 +23,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { MainComponent } from './core/main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import {CategoryState} from "shared/store/category/category.state";
+import { CategoryState } from 'shared/store/category/category.state';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],

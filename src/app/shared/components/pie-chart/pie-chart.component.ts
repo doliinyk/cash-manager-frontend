@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Chart} from 'chart.js';
-import {Subject, Subscription, takeUntil} from 'rxjs';
-import {CategoryStateModel} from 'shared/models/category';
-import {CategoriesService} from "shared/services/categories/categories.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
+import { Subject, takeUntil } from 'rxjs';
+import { CategoryStateModel } from 'shared/models/category';
+import { CategoriesService } from 'shared/services/categories/categories.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -17,13 +17,12 @@ export class PieChartComponent implements OnInit, OnDestroy {
   pieChart: any;
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private categoriesService: CategoriesService) {
-  }
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
-     this.categoriesService.expenseCategories$.pipe(takeUntil(this.destroy$)).subscribe(data => {
-      this.updateChartData(data)
-    })
+    this.categoriesService.expenseCategories$.pipe(takeUntil(this.destroy$)).subscribe(data => {
+      this.updateChartData(data);
+    });
   }
 
   public ngOnDestroy(): void {
@@ -42,8 +41,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
   }
 
   renderChart() {
-    if (this.pieChart)
-      this.pieChart.destroy();
+    if (this.pieChart) this.pieChart.destroy();
     this.pieChart = new Chart('pieChart', {
       type: 'doughnut',
       data: {
