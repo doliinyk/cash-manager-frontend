@@ -12,6 +12,10 @@
           <input matInput type="text" placeholder="Категорія" [formControl]="newNameFormControl" #newCategoryInput />
         </mat-form-field>
       </div>
+      <mat-radio-group color="warn">
+        <mat-radio-button value="expense" checked>Витрата</mat-radio-button>
+        <mat-radio-button value="income">Прибуток</mat-radio-button>
+      </mat-radio-group>
       @if (newNameFormControl.invalid && (newNameFormControl.dirty || newNameFormControl.touched)) {
         <div *ngIf="newNameFormControl.hasError('required')">Поле назви є обов'язковим</div>
         <div *ngIf="newNameFormControl.hasError('maxlength')">Максимум символів: 20</div>
@@ -30,7 +34,7 @@
   <div>
     <span>Категорії</span>
     <mat-selection-list role="list">
-      @for (category of this.categoriesService.expenseCategories$ | async; track category) {
+      @for (category of this.categoriesService.allCategories$ | async; track category) {
         <mat-list-option>
           <div matListItemIcon class="category-color" [style.background-color]="category.colorCode"></div>
           <span matListItemTitle> {{ category.title }}</span>
