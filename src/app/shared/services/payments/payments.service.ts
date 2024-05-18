@@ -23,19 +23,25 @@ export class PaymentsService {
   public allExpenses$?: Observable<ExpenseStateModel[]>;
   @Select(PaymentsState.allIncomes)
   public allIncomes$?: Observable<IncomeStateModel[]>;
+  @Select(PaymentsState.totalExpenses)
+  public totalExpenses$?: Observable<number>;
+  @Select(PaymentsState.totalIncomes)
+  public totalIncomes$?: Observable<number>;
+  @Select(PaymentsState.total)
+  public total$?: Observable<number>;
 
   constructor(private readonly store: Store) {}
 
-  getExpenses(url: string) {
-    this.store.dispatch(new GetExpenses(url));
+  getExpenses(url: string, page: number, size: number) {
+    this.store.dispatch(new GetExpenses(url, page, size));
   }
 
-  getIncomes(url: string) {
-    this.store.dispatch(new GetIncomes(url));
+  getIncomes(url: string, page: number, size: number) {
+    this.store.dispatch(new GetIncomes(url, page, size));
   }
 
   getAllPayments() {
-    this.store.dispatch(new GetAllPayments());
+    this.store.dispatch(new GetAllPayments(0, 10));
   }
 
   createExpensePayment(url: string, payment: ExpenseStateModel) {

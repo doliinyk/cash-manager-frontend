@@ -59,12 +59,6 @@ export class CategoryState {
     );
   }
 
-  @Action(GetAllCategories)
-  getAllCategories({ dispatch }: StateContext<CategoryStateModel>) {
-    dispatch(new GetCategories(Categories.expenses));
-    dispatch(new GetCategories(Categories.incomes));
-  }
-
   hexToRgbA(hex: string | undefined) {
     if (hex) {
       hex.slice(0, 1);
@@ -75,6 +69,12 @@ export class CategoryState {
       return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + 0.5 + ')';
     }
     return hex;
+  }
+
+  @Action(GetAllCategories)
+  getAllCategories({ dispatch }: StateContext<CategoryStateModel>) {
+    dispatch(new GetCategories(Categories.expenses));
+    dispatch(new GetCategories(Categories.incomes));
   }
 
   @Action(CreateCategory)

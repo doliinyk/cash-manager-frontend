@@ -128,6 +128,39 @@ input[type='number'] {
   margin-left: 50px;
 }
 
+mat-paginator {
+  background: #f1f1f1;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+table,
+td,
+th {
+  background: #f1f1f1;
+  font-size: 15px;
+}
+
+td,
+th {
+  max-width: 90px;
+  min-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cell-category {
+  border-radius: 10px;
+  padding: 10px;
+  color: black;
+  max-width: 100px;
+}
+
+.cell-description {
+  min-width: 150px;
+}
+
 @media screen and (max-width: 1300px), (max-height: 808px) {
   .overall-page {
     flex-direction: column;

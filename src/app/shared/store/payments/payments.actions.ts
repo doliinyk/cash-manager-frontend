@@ -4,17 +4,30 @@ import { IncomeStateModel } from 'shared/models/income-payment';
 export class GetExpenses {
   static readonly type = '[payments] get expenses';
 
-  constructor(public url: string) {}
+  constructor(
+    public url: string,
+    public page: number,
+    public size: number
+  ) {}
 }
 
 export class GetIncomes {
   static readonly type = '[payments] get incomes';
 
-  constructor(public url: string) {}
+  constructor(
+    public url: string,
+    public page: number,
+    public size: number
+  ) {}
 }
 
 export class GetAllPayments {
   static readonly type = '[payments] get all';
+
+  constructor(
+    public page: number,
+    public size: number
+  ) {}
 }
 
 export class CreateExpensePayment {

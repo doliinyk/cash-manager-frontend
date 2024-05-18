@@ -1,10 +1,15 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesService } from 'shared/services/categories/categories.service';
+import { PaymentsService } from 'shared/services/payments/payments.service';
+import { ExpenseStateModel } from 'shared/models/expense-payment';
+import { Payments } from 'shared/enums/payments';
+import { IncomeStateModel } from 'shared/models/income-payment';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 interface TransactionType {
   value: string;
@@ -16,7 +21,7 @@ interface TransactionType {
   templateUrl: './payments.component.html',
   styleUrl: './payments.component.scss'
 })
-export class PaymentsComponent {
+export class PaymentsComponent implements OnInit, OnDestroy {
   stepperOrientation: Observable<StepperOrientation>;
   selectedCategories: Observable<CategoryStateModel[]>;
   transactionField = new FormControl('', Validators.required);
@@ -31,6 +36,10 @@ export class PaymentsComponent {
     amount: this.amountField,
     date: this.dateField
   });
+  categories: CategoryStateModel[] = [];
+  private subcription: Subscription;
+  displayedColumns: string[] = ['category', 'description', 'date', 'amount'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   searchField = new FormControl('');
 
@@ -47,16 +56,62 @@ export class PaymentsComponent {
 
   onSubmit() {
     const transactionData = this.formGroup.value;
-    console.log(transactionData);
+    if (this.transactionField.value === this.transactionTypes[0].value) {
+      const incomeData: IncomeStateModel = {
+        description: transactionData.name,
+        profit: +transactionData.amount,
+        incomeDate: new Date(transactionData.date).toISOString(),
+        category: { title: transactionData.category }
+      };
+      console.log(incomeData);
+      this.paymentService.createIncomePayment(Payments.incomes, incomeData);
+    } else {
+      const expenseData: ExpenseStateModel = {
+        description: transactionData.name,
+        cost: +transactionData.amount,
+        expensesDate: new Date(transactionData.date).toISOString(),
+        category: { title: transactionData.category }
+      };
+      console.log(expenseData);
+      this.paymentService.createExpensePayment(Payments.expenses, expenseData);
+    }
+  }
+
+  onPageChange(event: PageEvent, type: string) {
+    if (type === 'expense') this.paymentService.getExpenses(Payments.expenses, event.pageIndex, event.pageSize);
+    else if (type === 'incomes') this.paymentService.getIncomes(Payments.incomes, event.pageIndex, event.pageSize);
+  }
+
+  getColorByTitle(categoryTitle: string) {
+    let color = '#ffffff';
+    const category = this.categories.find(cat => cat.title === categoryTitle);
+    if (category) {
+      color = category.colorCode;
+    }
+    return color;
   }
 
   constructor(
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
-    protected categoriesService: CategoriesService
+    protected categoriesService: CategoriesService,
+    protected paymentService: PaymentsService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+  }
+
+  getDateByISO(date: string) {
+    return `${new Date(date).getDate()}.${new Date(date).getMonth() + 1}.${new Date(date).getFullYear()}`;
+  }
+
+  ngOnInit() {
+    this.paymentService.getAllPayments();
+    this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
+  }
+
+  ngOnDestroy() {
+    this.subcription.unsubscribe();
   }
 }
