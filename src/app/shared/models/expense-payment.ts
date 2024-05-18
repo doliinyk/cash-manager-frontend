@@ -1,4 +1,4 @@
-import {CategoryStateModel} from "shared/models/category";
+import { CategoryStateModel } from 'shared/models/category';
 
 export interface ExpenseStateModel {
   description?: string;
