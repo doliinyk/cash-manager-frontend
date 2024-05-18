@@ -1,14 +1,4 @@
-export interface Category {
-  title: string;
-}
-
-export interface Expense {
-  id: string;
-  description: string;
-  cost: number;
-  expensesDate: string;
-  category: Category;
-}
+import { ExpenseStateModel } from 'shared/models/expense-payment';
 
 export interface Sort {
   direction: string;
@@ -27,11 +17,11 @@ export interface Pageable {
   paged: boolean;
 }
 
-export interface Payload {
+export interface ExpensePayload {
   totalElements: number;
   totalPages: number;
   size: number;
-  content: Expense[];
+  content: ExpenseStateModel[];
   number: number;
   sort: Sort[];
   first: boolean;

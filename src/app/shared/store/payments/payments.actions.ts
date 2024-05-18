@@ -1,8 +1,14 @@
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
 
-export class GetPayments {
-  static readonly type = '[payments] get';
+export class GetExpenses {
+  static readonly type = '[payments] get expenses';
+
+  constructor(public url: string) {}
+}
+
+export class GetIncomes {
+  static readonly type = '[payments] get incomes';
 
   constructor(public url: string) {}
 }

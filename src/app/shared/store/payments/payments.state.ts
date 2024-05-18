@@ -1,14 +1,20 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { CategoryStateModel } from 'shared/models/category';
-import { CategoriesStateModel } from 'shared/models/categories';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CreateCategory, GetAllCategories, GetCategories } from 'shared/store/category/category.actions';
-import { CategoryPayload } from 'shared/models/category-payload';
 import { tap } from 'rxjs';
-import { Categories } from 'shared/enums/categories';
-import {PaymentsStateModel} from "shared/models/payments";
-import {GetPayments} from "shared/store/payments/payments.actions";
+import { PaymentsStateModel } from 'shared/models/payments';
+import {
+  CreateExpensePayment,
+  CreateIncomePayment,
+  GetAllPayments,
+  GetExpenses,
+  GetIncomes
+} from 'shared/store/payments/payments.actions';
+import { ExpenseStateModel } from 'shared/models/expense-payment';
+import { IncomeStateModel } from 'shared/models/income-payment';
+import { ExpensePayload } from 'shared/models/expense-payments-payload';
+import { IncomePayload } from 'shared/models/income-payments-payload';
+import { Payments } from 'shared/enums/payments';
 
 @State<PaymentsStateModel>({
   name: 'payment',
@@ -41,46 +47,45 @@ export class PaymentsState {
 
   constructor(private httpClient: HttpClient) {}
 
-  @Action(GetPayments)
-  getCategories({ patchState }: StateContext<CategoriesStateModel>, { url }: GetCategories) {
-    return this.httpClient.get<CategoryPayload[]>(url).pipe(
-      tap((payload: CategoryPayload[]) => {
-        const categories: CategoryStateModel[] = Object.keys(payload).map(colorCode => ({
-          colorCode: this.hexToRgbA(colorCode),
-          title: payload[colorCode].title
-        }));
-        if (Categories.incomes === url)
-          patchState({
-            incomeCategories: categories
-          });
-        else
-          patchState({
-            expenseCategories: categories
-          });
+  @Action(GetExpenses)
+  getExpenses({ patchState }: StateContext<PaymentsStateModel>, { url }: GetExpenses) {
+    return this.httpClient.get<ExpensePayload>(`${url}?page=0&size=5&sort=string`).pipe(
+      tap((payload: ExpensePayload) => {
+        patchState({
+          allExpenses: payload.content
+        });
       })
     );
   }
 
-  @Action(GetAllCategories)
-  getAllCategories({ dispatch }: StateContext<CategoryStateModel>) {
-    dispatch(new GetCategories(Categories.expenses));
-    dispatch(new GetCategories(Categories.incomes));
+  @Action(GetIncomes)
+  getIncomes({ patchState }: StateContext<PaymentsStateModel>, { url }: GetIncomes) {
+    return this.httpClient.get<ExpensePayload>(`${url}?page=0&size=5&sort=true`).pipe(
+      tap((payload: IncomePayload) => {
+        patchState({
+          allIncomes: payload.content
+        });
+      })
+    );
   }
 
-  hexToRgbA(hex: string | undefined) {
-    if (hex) {
-      hex.slice(0, 1);
-      const r = parseInt(hex.slice(1, 3), 16),
-        g = parseInt(hex.slice(3, 5), 16),
-        b = parseInt(hex.slice(5, 7), 16);
-
-      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + 0.5 + ')';
-    }
-    return hex;
+  @Action(GetAllPayments)
+  getAllPayments({ dispatch }: StateContext<PaymentsStateModel>) {
+    dispatch(new GetExpenses(Payments.expenses));
+    dispatch(new GetIncomes(Payments.incomes));
   }
 
-  @Action(CreateCategory)
-  createCategory({ dispatch }: StateContext<CategoryStateModel>, { url, category }: CreateCategory) {
-    return this.httpClient.post<CategoryStateModel>(url, category).pipe(tap(() => dispatch(new GetAllCategories())));
+  @Action(CreateExpensePayment)
+  createExpensePayment({ dispatch }: StateContext<ExpenseStateModel>, { url, payment }: CreateExpensePayment) {
+    return this.httpClient
+      .post<ExpenseStateModel>(url, payment)
+      .pipe(tap(() => dispatch(new GetExpenses(Payments.expenses))));
+  }
+
+  @Action(CreateIncomePayment)
+  createIncomePayment({ dispatch }: StateContext<IncomeStateModel>, { url, payment }: CreateIncomePayment) {
+    return this.httpClient
+      .post<IncomeStateModel>(url, payment)
+      .pipe(tap(() => dispatch(new GetIncomes(Payments.incomes))));
   }
 }

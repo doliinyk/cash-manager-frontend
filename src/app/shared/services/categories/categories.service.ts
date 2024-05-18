@@ -11,7 +11,7 @@ import { CategoriesStateModel } from 'shared/models/categories';
 })
 export class CategoriesService {
   @Select(CategoryState.categories)
-  public categories$?: Observable<CategoriesStateModel[]>;
+  public categories$?: Observable<CategoriesStateModel>;
   @Select(CategoryState.incomeCategories)
   public incomeCategories$?: Observable<CategoryStateModel[]>;
   @Select(CategoryState.expenseCategories)

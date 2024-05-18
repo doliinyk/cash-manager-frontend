@@ -1,14 +1,4 @@
-export interface Category {
-  title: string;
-}
-
-export interface Income {
-  id: string;
-  description: string;
-  cost: number;
-  incomeDate: string;
-  category: Category;
-}
+import { IncomeStateModel } from 'shared/models/income-payment';
 
 export interface Sort {
   direction: string;
@@ -27,11 +17,11 @@ export interface Pageable {
   paged: boolean;
 }
 
-export interface Payload {
+export interface IncomePayload {
   totalElements: number;
   totalPages: number;
   size: number;
-  content: Income[];
+  content: IncomeStateModel[];
   number: number;
   sort: Sort[];
   first: boolean;
