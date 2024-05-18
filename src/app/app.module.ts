@@ -24,6 +24,7 @@ import { MainComponent } from './core/main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoryState } from 'shared/store/category/category.state';
+import {PaymentsState} from "shared/store/payments/payments.state";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
@@ -42,7 +43,7 @@ import { CategoryState } from 'shared/store/category/category.state';
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    NgxsModule.forRoot([AppState, TokenState, CategoryState]),
+    NgxsModule.forRoot([AppState, TokenState, CategoryState, PaymentsState]),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     AuthModule,
