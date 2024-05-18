@@ -30,6 +30,30 @@ export class GetAllPayments {
   ) {}
 }
 
+export class GetExpensesByDate {
+  static readonly type = '[payments] get expenses by date';
+
+  constructor(
+    public url: string,
+    public page: number,
+    public size: number,
+    public from: string,
+    public to: string
+  ) {}
+}
+
+export class GetIncomesByDate {
+  static readonly type = '[payments] get incomes by date';
+
+  constructor(
+    public url: string,
+    public page: number,
+    public size: number,
+    public from: string,
+    public to: string
+  ) {}
+}
+
 export class CreateExpensePayment {
   static readonly type = '[payment] create expense';
 

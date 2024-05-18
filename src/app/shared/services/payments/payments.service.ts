@@ -8,10 +8,13 @@ import {
   CreateIncomePayment,
   GetAllPayments,
   GetExpenses,
-  GetIncomes
+  GetExpensesByDate,
+  GetIncomes,
+  GetIncomesByDate
 } from 'shared/store/payments/payments.actions';
 import { PaymentsState } from 'shared/store/payments/payments.state';
 import { PaymentsStateModel } from 'shared/models/payments';
+import { Payments } from 'shared/enums/payments';
 
 @Injectable({
   providedIn: 'root'
@@ -32,16 +35,24 @@ export class PaymentsService {
 
   constructor(private readonly store: Store) {}
 
-  getExpenses(url: string, page: number, size: number) {
-    this.store.dispatch(new GetExpenses(url, page, size));
+  getExpenses(page: number, size: number) {
+    this.store.dispatch(new GetExpenses(Payments.expenses, page, size));
   }
 
-  getIncomes(url: string, page: number, size: number) {
-    this.store.dispatch(new GetIncomes(url, page, size));
+  getIncomes(page: number, size: number) {
+    this.store.dispatch(new GetIncomes(Payments.incomes, page, size));
   }
 
   getAllPayments() {
-    this.store.dispatch(new GetAllPayments(0, 10));
+    this.store.dispatch(new GetAllPayments(1, 10));
+  }
+
+  getExpensesByDate(from: string, to: string) {
+    this.store.dispatch(new GetExpensesByDate(Payments.expenses, 1, 1000000, from, to));
+  }
+
+  getIncomesByDate(from: string, to: string) {
+    this.store.dispatch(new GetIncomesByDate(Payments.incomes, 1, 1000000, from, to));
   }
 
   createExpensePayment(url: string, payment: ExpenseStateModel) {

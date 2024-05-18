@@ -219,7 +219,37 @@
         </div>
       </mat-tab>
       <mat-tab label="Прибутки">
-        <div></div>
+        <div>
+          <mat-paginator
+            fxLayoutAlign="none center"
+            [length]="this.paymentService.totalIncomes$ | async"
+            [pageSize]="10"
+            (page)="onPageChange($event, 'income')"></mat-paginator>
+          <table mat-table [dataSource]="this.paymentService.allIncomes$ | async">
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef>Категорія</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
+                  {{ element.category.title }}
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Назва</th>
+              <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Дата</th>
+              <td mat-cell *matCellDef="let element">{{ getDateByISO(element.incomeDate) }}</td>
+            </ng-container>
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+              <td mat-cell *matCellDef="let element">{{ element.profit }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
       </mat-tab>
       <mat-tab label="Регулярні">
         <div></div>

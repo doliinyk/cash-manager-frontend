@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, Validators} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { map, Observable, Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesService } from 'shared/services/categories/categories.service';
@@ -10,7 +10,6 @@ import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { Payments } from 'shared/enums/payments';
 import { IncomeStateModel } from 'shared/models/income-payment';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import {MatTableDataSource} from "@angular/material/table";
 
 interface TransactionType {
   value: string;
@@ -43,9 +42,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   private subcription: Subscription;
 
   displayedColumns: string[] = ['category', 'description', 'date', 'amount'];
-  dataSource: MatTableDataSource<ExpenseStateModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
 
   searchField = new FormControl('');
 
@@ -57,10 +54,6 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paymentService.getAllPayments();
-    // this.paymentService.allExpenses$.subscribe(data => {
-    //   this.dataSource.data = data;
-    //   this.dataSource.paginator = this.paginator;
-    // });
     this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
   }
 
@@ -93,7 +86,6 @@ export class PaymentsComponent implements OnInit, OnDestroy {
         incomeDate: new Date(transactionData.date).toISOString(),
         category: { title: transactionData.category }
       };
-      console.log(incomeData);
       this.paymentService.createIncomePayment(Payments.incomes, incomeData);
     } else {
       const expenseData: ExpenseStateModel = {
@@ -102,14 +94,13 @@ export class PaymentsComponent implements OnInit, OnDestroy {
         expensesDate: new Date(transactionData.date).toISOString(),
         category: { title: transactionData.category }
       };
-      console.log(expenseData);
       this.paymentService.createExpensePayment(Payments.expenses, expenseData);
     }
   }
 
   onPageChange(event: PageEvent, type: string) {
-    if (type === 'expense') this.paymentService.getExpenses(Payments.expenses, event.pageIndex, event.pageSize);
-    else if (type === 'incomes') this.paymentService.getIncomes(Payments.incomes, event.pageIndex, event.pageSize);
+    if (type === 'income') this.paymentService.getIncomes(event.pageIndex, event.pageSize);
+    else this.paymentService.getExpenses(event.pageIndex, event.pageSize);
   }
 
   getColorByTitle(categoryTitle: string) {
@@ -124,7 +115,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   dateValidator(control: AbstractControl): { [key: string]: any } | null {
     const currentDate = new Date();
     if (control.value && new Date(control.value) > currentDate) {
-      return { 'invalidDate': true };
+      return { invalidDate: true };
     }
     return null;
   }
