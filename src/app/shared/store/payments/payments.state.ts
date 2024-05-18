@@ -10,21 +10,24 @@ import {
   GetExpenses,
   GetExpensesByDate,
   GetIncomes,
-  GetIncomesByDate
+  GetIncomesByDate, GetRegulars
 } from 'shared/store/payments/payments.actions';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
 import { ExpensePayload } from 'shared/models/expense-payments-payload';
 import { IncomePayload } from 'shared/models/income-payments-payload';
 import { Payments } from 'shared/enums/payments';
+import {RegularPayload} from "shared/models/regular-payments-payload";
 
 @State<PaymentsStateModel>({
   name: 'payment',
   defaults: {
     allExpenses: [],
     allIncomes: [],
+    allRegulars: [],
     totalExpenses: undefined,
-    totalIncomes: undefined
+    totalIncomes: undefined,
+    totalRegulars: undefined
   }
 })
 @Injectable()
@@ -45,6 +48,11 @@ export class PaymentsState {
   }
 
   @Selector()
+  static allRegulars(state: PaymentsStateModel) {
+    return state.allRegulars;
+  }
+
+  @Selector()
   static totalExpenses(state: PaymentsStateModel) {
     return state.totalExpenses;
   }
@@ -55,8 +63,8 @@ export class PaymentsState {
   }
 
   @Selector()
-  static total(state: PaymentsStateModel) {
-    return state.totalExpenses + state.totalIncomes;
+  static totalRegulars(state: PaymentsStateModel) {
+    return state.totalRegulars;
   }
 
   constructor(private httpClient: HttpClient) {}
@@ -85,10 +93,23 @@ export class PaymentsState {
     );
   }
 
+  @Action(GetRegulars)
+  getRegulars({ patchState }: StateContext<PaymentsStateModel>, { url, size, page }: GetRegulars) {
+    return this.httpClient.get<RegularPayload>(url, { params: { page, size, sort: 'lastPaymentDate,DESC' } }).pipe(
+      tap((payload: RegularPayload) => {
+        patchState({
+          allRegulars: payload.content,
+          totalRegulars: payload.totalElements
+        });
+      })
+    );
+  }
+
   @Action(GetAllPayments)
   getAllPayments({ dispatch }: StateContext<PaymentsStateModel>, page: number, size: number) {
     dispatch(new GetExpenses(Payments.expenses, page, size));
     dispatch(new GetIncomes(Payments.incomes, page, size));
+    dispatch(new GetRegulars(Payments.regulars, page, size));
   }
 
   @Action(GetExpensesByDate)

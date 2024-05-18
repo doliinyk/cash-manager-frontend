@@ -21,6 +21,16 @@ export class GetIncomes {
   ) {}
 }
 
+export class GetRegulars {
+  static readonly type = '[payments] get regulars';
+
+  constructor(
+    public url: string,
+    public page: number,
+    public size: number
+  ) {}
+}
+
 export class GetAllPayments {
   static readonly type = '[payments] get all';
 
