@@ -10,6 +10,7 @@ import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { Payments } from 'shared/enums/payments';
 import { IncomeStateModel } from 'shared/models/income-payment';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import {MatTableDataSource} from "@angular/material/table";
 
 interface TransactionType {
   value: string;
@@ -24,6 +25,7 @@ interface TransactionType {
 export class PaymentsComponent implements OnInit, OnDestroy {
   stepperOrientation: Observable<StepperOrientation>;
   selectedCategories: Observable<CategoryStateModel[]>;
+
   transactionField = new FormControl('', Validators.required);
   nameField = new FormControl('', Validators.required);
   categoryField = new FormControl('', Validators.required);
@@ -36,10 +38,14 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     amount: this.amountField,
     date: this.dateField
   });
+
   categories: CategoryStateModel[] = [];
   private subcription: Subscription;
+
   displayedColumns: string[] = ['category', 'description', 'date', 'amount'];
+  dataSource: MatTableDataSource<ExpenseStateModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   searchField = new FormControl('');
 
@@ -108,6 +114,10 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paymentService.getAllPayments();
+    // this.paymentService.allExpenses$.subscribe(data => {
+    //   this.dataSource.data = data;
+    //   this.dataSource.paginator = this.paginator;
+    // });
     this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
   }
 

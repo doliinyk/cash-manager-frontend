@@ -47,5 +47,19 @@
     "INCOME_LABEL": "Income",
     "EXPENSES_LABEL": "Expenses",
     "MONTHLY_LABEL": "Monthly"
+  },
+  "CATEGORY_DIALOG": {
+    "NEW_CATEGORY": "New category",
+    "NAME_LABEL": "Name",
+    "NAME_PLACEHOLDER": "Category",
+    "EXPENSE": "Expense",
+    "INCOME": "Income",
+    "NAME_REQUIRED_ERROR": "Name field is required",
+    "NAME_MAXLENGTH_ERROR": "Maximum characters: 20",
+    "ADD_BUTTON": "Add",
+    "CATEGORIES_EXPENSES": "Categories (Expenses)",
+    "CATEGORIES_INCOME": "Categories (Income)",
+    "DELETE_BUTTON": "Delete",
+    "CLOSE_BUTTON": "Close"
   }
 }

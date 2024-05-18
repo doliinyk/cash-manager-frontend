@@ -14,6 +14,7 @@ export class CategoryDialogComponent {
 
   pickedColor = '#000000';
   categoryPicked = 0;
+  pickedType = Categories.expenses;
 
   constructor(public categoriesService: CategoriesService) {}
 
@@ -22,9 +23,11 @@ export class CategoryDialogComponent {
   }
 
   onAppendCategory() {
-    this.categoriesService.createCategory(Categories.expenses, {
+    this.categoriesService.createCategory(this.pickedType, {
       title: this.newCategoryInput.nativeElement.value,
       colorCode: this.pickedColor
     });
   }
+
+  protected readonly Categories = Categories;
 }

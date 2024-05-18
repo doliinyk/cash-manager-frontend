@@ -47,5 +47,19 @@
     "INCOME_LABEL": "Dochód",
     "EXPENSES_LABEL": "Wydatki",
     "MONTHLY_LABEL": "Miesięcznie"
+  },
+  "CATEGORY_DIALOG": {
+    "NEW_CATEGORY": "Nowa kategoria",
+    "NAME_LABEL": "Nazwa",
+    "NAME_PLACEHOLDER": "Kategoria",
+    "EXPENSE": "Wydatek",
+    "INCOME": "Dochód",
+    "NAME_REQUIRED_ERROR": "Pole nazwy jest wymagane",
+    "NAME_MAXLENGTH_ERROR": "Maksymalna liczba znaków: 20",
+    "ADD_BUTTON": "Dodaj",
+    "CATEGORIES_EXPENSES": "Kategorie (Wydatki)",
+    "CATEGORIES_INCOME": "Kategorie (Dochody)",
+    "DELETE_BUTTON": "Usuń",
+    "CLOSE_BUTTON": "Zamknij"
   }
 }
