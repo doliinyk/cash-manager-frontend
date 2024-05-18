@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, Validators} from '@angular/forms';
 import { map, Observable, Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesService } from 'shared/services/categories/categories.service';
@@ -30,7 +30,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   nameField = new FormControl('', Validators.required);
   categoryField = new FormControl('', Validators.required);
   amountField = new FormControl('', [Validators.required, Validators.maxLength(10)]);
-  dateField = new FormControl('', Validators.required);
+  dateField = new FormControl('', [Validators.required, this.dateValidator]);
   formGroup = this._formBuilder.group({
     transactionType: this.transactionField,
     name: this.nameField,
@@ -54,6 +54,30 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     { value: 'expense-1', viewValue: 'Витрата' },
     { value: 'regular-2', viewValue: 'Регулярний' }
   ];
+
+  ngOnInit() {
+    this.paymentService.getAllPayments();
+    // this.paymentService.allExpenses$.subscribe(data => {
+    //   this.dataSource.data = data;
+    //   this.dataSource.paginator = this.paginator;
+    // });
+    this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
+  }
+
+  ngOnDestroy() {
+    this.subcription.unsubscribe();
+  }
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    breakpointObserver: BreakpointObserver,
+    protected categoriesService: CategoriesService,
+    protected paymentService: PaymentsService
+  ) {
+    this.stepperOrientation = breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+  }
 
   onTransactionChanged(event: string) {
     this.selectedCategories =
@@ -97,31 +121,15 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     return color;
   }
 
-  constructor(
-    private _formBuilder: FormBuilder,
-    breakpointObserver: BreakpointObserver,
-    protected categoriesService: CategoriesService,
-    protected paymentService: PaymentsService
-  ) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+  dateValidator(control: AbstractControl): { [key: string]: any } | null {
+    const currentDate = new Date();
+    if (control.value && new Date(control.value) > currentDate) {
+      return { 'invalidDate': true };
+    }
+    return null;
   }
 
   getDateByISO(date: string) {
     return `${new Date(date).getDate()}.${new Date(date).getMonth() + 1}.${new Date(date).getFullYear()}`;
-  }
-
-  ngOnInit() {
-    this.paymentService.getAllPayments();
-    // this.paymentService.allExpenses$.subscribe(data => {
-    //   this.dataSource.data = data;
-    //   this.dataSource.paginator = this.paginator;
-    // });
-    this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
-  }
-
-  ngOnDestroy() {
-    this.subcription.unsubscribe();
   }
 }
