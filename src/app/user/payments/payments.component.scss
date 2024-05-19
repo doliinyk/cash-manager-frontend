@@ -128,6 +128,10 @@ input[type='number'] {
   margin-left: 50px;
 }
 
+mat-tab {
+  overflow: hidden;
+}
+
 mat-paginator {
   background: #f1f1f1;
   font-size: 15px;

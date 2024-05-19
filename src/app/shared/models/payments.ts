@@ -1,12 +1,15 @@
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
-import {RegularStateModel} from "shared/models/regular-payment";
+import {ExpenseRegularStateModel} from "shared/models/regular-expense-payment";
+import {IncomeRegularStateModel} from "shared/models/regular-income-payments";
 
 export interface PaymentsStateModel {
   allExpenses: ExpenseStateModel[];
   allIncomes: IncomeStateModel[];
-  allRegulars: RegularStateModel[];
+  allExpenseRegulars: ExpenseRegularStateModel[];
+  allIncomeRegulars: IncomeRegularStateModel[];
   totalExpenses: number;
   totalIncomes: number;
-  totalRegulars: number;
+  totalExpenseRegulars: number;
+  totalIncomeRegulars: number;
 }

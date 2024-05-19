@@ -1,4 +1,4 @@
-import { RegularStateModel } from 'shared/models/regular-payment';
+import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
 
 export interface Sort {
   direction: string;
@@ -17,11 +17,11 @@ export interface Pageable {
   paged: boolean;
 }
 
-export interface RegularPayload {
+export interface IncomeRegularPayload {
   totalElements: number;
   totalPages: number;
   size: number;
-  content: RegularStateModel[];
+  content: IncomeRegularStateModel[];
   number: number;
   sort: Sort[];
   first: boolean;

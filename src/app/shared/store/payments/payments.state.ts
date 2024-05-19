@@ -7,27 +7,32 @@ import {
   CreateExpensePayment,
   CreateIncomePayment,
   GetAllPayments,
+  GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
+  GetIncomeRegulars,
   GetIncomes,
-  GetIncomesByDate, GetRegulars
+  GetIncomesByDate
 } from 'shared/store/payments/payments.actions';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
 import { ExpensePayload } from 'shared/models/expense-payments-payload';
 import { IncomePayload } from 'shared/models/income-payments-payload';
 import { Payments } from 'shared/enums/payments';
-import {RegularPayload} from "shared/models/regular-payments-payload";
+import { ExpenseRegularPayload } from 'shared/models/regular-expense-payments-payload';
+import { IncomeRegularPayload } from 'shared/models/regular-income-payments-payload';
 
 @State<PaymentsStateModel>({
   name: 'payment',
   defaults: {
     allExpenses: [],
     allIncomes: [],
-    allRegulars: [],
+    allExpenseRegulars: [],
+    allIncomeRegulars: [],
     totalExpenses: undefined,
     totalIncomes: undefined,
-    totalRegulars: undefined
+    totalExpenseRegulars: undefined,
+    totalIncomeRegulars: undefined
   }
 })
 @Injectable()
@@ -48,8 +53,13 @@ export class PaymentsState {
   }
 
   @Selector()
-  static allRegulars(state: PaymentsStateModel) {
-    return state.allRegulars;
+  static allExpenseRegulars(state: PaymentsStateModel) {
+    return state.allExpenseRegulars;
+  }
+
+  @Selector()
+  static allIncomeRegulars(state: PaymentsStateModel) {
+    return state.allIncomeRegulars;
   }
 
   @Selector()
@@ -63,8 +73,13 @@ export class PaymentsState {
   }
 
   @Selector()
-  static totalRegulars(state: PaymentsStateModel) {
-    return state.totalRegulars;
+  static totalExpenseRegulars(state: PaymentsStateModel) {
+    return state.totalExpenseRegulars;
+  }
+
+  @Selector()
+  static totalIncomeRegulars(state: PaymentsStateModel) {
+    return state.totalIncomeRegulars;
   }
 
   constructor(private httpClient: HttpClient) {}
@@ -93,23 +108,40 @@ export class PaymentsState {
     );
   }
 
-  @Action(GetRegulars)
-  getRegulars({ patchState }: StateContext<PaymentsStateModel>, { url, size, page }: GetRegulars) {
-    return this.httpClient.get<RegularPayload>(url, { params: { page, size, sort: 'lastPaymentDate,DESC' } }).pipe(
-      tap((payload: RegularPayload) => {
-        patchState({
-          allRegulars: payload.content,
-          totalRegulars: payload.totalElements
-        });
-      })
-    );
+  @Action(GetExpenseRegulars)
+  getExpenseRegulars({ patchState }: StateContext<PaymentsStateModel>, { url, size, page }: GetExpenseRegulars) {
+    return this.httpClient
+      .get<ExpenseRegularPayload>(url, { params: { page, size, sort: 'lastPaymentDate,DESC' } })
+      .pipe(
+        tap((payload: ExpenseRegularPayload) => {
+          patchState({
+            allExpenseRegulars: payload.content,
+            totalExpenseRegulars: payload.totalElements
+          });
+        })
+      );
+  }
+
+  @Action(GetIncomeRegulars)
+  getIncomeRegulars({ patchState }: StateContext<PaymentsStateModel>, { url, size, page }: GetIncomeRegulars) {
+    return this.httpClient
+      .get<IncomeRegularPayload>(url, { params: { page, size, sort: 'lastPaymentDate,DESC' } })
+      .pipe(
+        tap((payload: IncomeRegularPayload) => {
+          patchState({
+            allIncomeRegulars: payload.content,
+            totalIncomeRegulars: payload.totalElements
+          });
+        })
+      );
   }
 
   @Action(GetAllPayments)
   getAllPayments({ dispatch }: StateContext<PaymentsStateModel>, page: number, size: number) {
     dispatch(new GetExpenses(Payments.expenses, page, size));
     dispatch(new GetIncomes(Payments.incomes, page, size));
-    dispatch(new GetRegulars(Payments.regulars, page, size));
+    dispatch(new GetExpenseRegulars(Payments.expenseregulars, page, size));
+    dispatch(new GetIncomeRegulars(Payments.incomeregulars, page, size));
   }
 
   @Action(GetExpensesByDate)

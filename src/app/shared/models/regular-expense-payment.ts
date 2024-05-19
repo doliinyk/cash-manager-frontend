@@ -1,6 +1,6 @@
 import { CategoryStateModel } from 'shared/models/category';
 
-export interface RegularStateModel {
+export interface ExpenseRegularStateModel {
   periodicity?: number;
   description?: string;
   cost?: number;
