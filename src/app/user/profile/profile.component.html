@@ -73,7 +73,7 @@
       </mat-button-toggle-group>
     </div>
     <div class="stats-container" fxLayout="column">
-      <div class="piechart-row" fxLayout="row">
+      <div class="piechart-row" fxLayout="row" fxLayoutAlign="center center">
         <div class="piechart-row-piechart" fxLayoutAlign="center center">
           <app-pie-chart></app-pie-chart>
           @if (!isEditMode) {
@@ -92,7 +92,7 @@
         </div>
       </div>
       <mat-divider></mat-divider>
-      <div class="gistogram-row" fxLayout="row">
+      <div class="gistogram-row">
         <div class="gistogram-row-barchart">
           <app-bar-chart></app-bar-chart>
         </div>

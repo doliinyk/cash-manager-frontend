@@ -29,7 +29,9 @@ export class CategoryDialogComponent {
   }
 
   onDeleteCategory(event: any) {
-    console.log(event);
+    console.log(event)
+    this.categoriesService.deleteCategory(Categories.expenses, event);
+    this.categoriesService.deleteCategory(Categories.incomes, event);
   }
 
   protected readonly Categories = Categories;
