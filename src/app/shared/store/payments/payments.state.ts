@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { PaymentsStateModel } from 'shared/models/payments';
 import {
-  CreateExpensePayment,
-  CreateIncomePayment,
+  CreateExpensePayment, CreateExpenseRegularPayment,
+  CreateIncomePayment, CreateIncomeRegularPayment,
   GetAllPayments,
   GetExpenseRegulars,
   GetExpenses,
@@ -21,6 +21,8 @@ import { IncomePayload } from 'shared/models/income-payments-payload';
 import { Payments } from 'shared/enums/payments';
 import { ExpenseRegularPayload } from 'shared/models/regular-expense-payments-payload';
 import { IncomeRegularPayload } from 'shared/models/regular-income-payments-payload';
+import {IncomeRegularStateModel} from "shared/models/regular-income-payments";
+import {ExpenseRegularStateModel} from "shared/models/regular-expense-payment";
 
 @State<PaymentsStateModel>({
   name: 'payment',
@@ -150,7 +152,7 @@ export class PaymentsState {
     { url, page, size, from, to }: GetExpensesByDate
   ) {
     return this.httpClient
-      .get<ExpensePayload>(url, { params: { page, size, sort: 'expensesDate, DESC', from, to } })
+      .get<ExpensePayload>(`${url}/by-date`, { params: { page, size, sort: 'expensesDate, DESC', from, to} })
       .pipe(
         tap((payload: ExpensePayload) => {
           patchState({
@@ -163,10 +165,10 @@ export class PaymentsState {
 
   @Action(GetIncomesByDate)
   getIncomeByDate({ patchState }: StateContext<PaymentsStateModel>, { url, page, size, from, to }: GetIncomesByDate) {
-    return this.httpClient.get<IncomePayload>(url, { params: { page, size, sort: 'indcome, DESC', from, to } }).pipe(
-      tap((payload: ExpensePayload) => {
+    return this.httpClient.get<IncomePayload>(url, { params: { page, size, sort: 'incomeDate, DESC', from, to } }).pipe(
+      tap((payload: IncomePayload) => {
         patchState({
-          allExpenses: payload.content,
+          allIncomes: payload.content,
           totalExpenses: payload.totalElements
         });
       })
@@ -177,13 +179,27 @@ export class PaymentsState {
   createExpensePayment({ dispatch }: StateContext<ExpenseStateModel>, { url, payment }: CreateExpensePayment) {
     return this.httpClient
       .post<ExpenseStateModel>(url, payment)
-      .pipe(tap(() => dispatch(new GetExpenses(Payments.expenses, 1, 10))));
+      .pipe(tap(() => dispatch(new GetExpenses(Payments.expenses, 0, 10))));
   }
 
   @Action(CreateIncomePayment)
   createIncomePayment({ dispatch }: StateContext<IncomeStateModel>, { url, payment }: CreateIncomePayment) {
     return this.httpClient
       .post<IncomeStateModel>(url, payment)
-      .pipe(tap(() => dispatch(new GetIncomes(Payments.incomes, 1, 10))));
+      .pipe(tap(() => dispatch(new GetIncomes(Payments.incomes, 0, 10))));
+  }
+
+  @Action(CreateExpenseRegularPayment)
+  createExpenseRegularPayment({ dispatch }: StateContext<ExpenseRegularStateModel>, { url, payment }: CreateExpenseRegularPayment) {
+    return this.httpClient
+      .post<ExpenseRegularStateModel>(url, payment)
+      .pipe(tap(() => dispatch(new GetExpenseRegulars(Payments.expenseregulars, 0, 10))));
+  }
+
+  @Action(CreateIncomeRegularPayment)
+  createIncomeRegularPayment({ dispatch }: StateContext<IncomeRegularStateModel>, { url, payment }: CreateIncomeRegularPayment) {
+    return this.httpClient
+      .post<IncomeRegularStateModel>(url, payment)
+      .pipe(tap(() => dispatch(new GetIncomeRegulars(Payments.incomeregulars, 0, 10))));
   }
 }

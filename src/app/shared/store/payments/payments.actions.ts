@@ -91,3 +91,21 @@ export class CreateIncomePayment {
     public payment: IncomeStateModel
   ) {}
 }
+
+export class CreateExpenseRegularPayment {
+  static readonly type = '[payment] create expense regular';
+
+  constructor(
+    public url: string,
+    public payment: IncomeStateModel
+  ) {}
+}
+
+export class CreateIncomeRegularPayment {
+  static readonly type = '[payment] create income regular';
+
+  constructor(
+    public url: string,
+    public payment: IncomeStateModel
+  ) {}
+}

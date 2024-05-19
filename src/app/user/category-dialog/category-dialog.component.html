@@ -43,27 +43,25 @@
     </div>
   </div>
   <div>
-    <mat-selection-list role="list" [multiple]="false">
+    <mat-selection-list role="list" #categoriesList [multiple]="false">
       <span>{{ 'CATEGORY_DIALOG.CATEGORIES_EXPENSES' | translate }}</span>
       <div *ngFor="let category of categoriesService.expenseCategories$ | async">
-        <mat-list-option>
+        <mat-list-option [value]="category">
           <div matListItemIcon class="category-color" [style.background-color]="category.colorCode"></div>
           <span matListItemTitle>{{ category.title }}</span>
         </mat-list-option>
       </div>
       <mat-divider></mat-divider>
       <span>{{ 'CATEGORY_DIALOG.CATEGORIES_INCOME' | translate }}</span>
-      <div *ngFor="let category of categoriesService.incomeCategories$ | async">
-        <mat-list-option>
+        <mat-list-option *ngFor="let category of categoriesService.incomeCategories$ | async" [value]="category">
           <div matListItemIcon class="category-color" [style.background-color]="category.colorCode"></div>
           <span matListItemTitle>{{ category.title }}</span>
         </mat-list-option>
-      </div>
     </mat-selection-list>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-icon-button [disabled]="categoryPicked === 0">
+  <button mat-icon-button [disabled]="!categoriesList.selectedOptions.hasValue()" (click)="onDeleteCategory(categoriesList.selectedOptions.selected[0])">
     <mat-icon>delete</mat-icon>
   </button>
   <button mat-raised-button color="warn" matDialogClose>{{ 'CATEGORY_DIALOG.CLOSE_BUTTON' | translate }}</button>

@@ -3,7 +3,12 @@ import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesStateModel } from 'shared/models/categories';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CreateCategory, GetAllCategories, GetCategories } from 'shared/store/category/category.actions';
+import {
+  CreateCategory,
+  DeleteCategory,
+  GetAllCategories,
+  GetCategories
+} from 'shared/store/category/category.actions';
 import { CategoryPayload } from 'shared/models/category-payload';
 import { tap } from 'rxjs';
 import { Categories } from 'shared/enums/categories';
@@ -80,5 +85,12 @@ export class CategoryState {
   @Action(CreateCategory)
   createCategory({ dispatch }: StateContext<CategoryStateModel>, { url, category }: CreateCategory) {
     return this.httpClient.post<CategoryStateModel>(url, category).pipe(tap(() => dispatch(new GetAllCategories())));
+  }
+
+  @Action(DeleteCategory)
+  deleteCategory({ dispatch }: StateContext<CategoryStateModel>, { url, category }: DeleteCategory) {
+    return this.httpClient
+      .delete<void>(url, { body: { title: category.title } })
+      .pipe(tap(() => dispatch(new GetAllCategories())));
   }
 }

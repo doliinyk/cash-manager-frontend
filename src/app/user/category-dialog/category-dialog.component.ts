@@ -13,7 +13,6 @@ export class CategoryDialogComponent {
   newNameFormControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
 
   pickedColor = '#000000';
-  categoryPicked = 0;
   pickedType = Categories.expenses;
 
   constructor(public categoriesService: CategoriesService) {}
@@ -27,6 +26,10 @@ export class CategoryDialogComponent {
       title: this.newCategoryInput.nativeElement.value,
       colorCode: this.pickedColor
     });
+  }
+
+  onDeleteCategory(event: any) {
+    console.log(event);
   }
 
   protected readonly Categories = Categories;

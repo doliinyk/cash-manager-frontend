@@ -5,7 +5,9 @@ import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
 import {
   CreateExpensePayment,
+  CreateExpenseRegularPayment,
   CreateIncomePayment,
+  CreateIncomeRegularPayment,
   GetAllPayments,
   GetExpenseRegulars,
   GetExpenses,
@@ -62,15 +64,15 @@ export class PaymentsService {
   }
 
   getAllPayments() {
-    this.store.dispatch(new GetAllPayments(1, 10));
+    this.store.dispatch(new GetAllPayments(0, 10));
   }
 
   getExpensesByDate(from: string, to: string) {
-    this.store.dispatch(new GetExpensesByDate(Payments.expenses, 1, 1000000, from, to));
+    this.store.dispatch(new GetExpensesByDate(Payments.expenses, 0, 1000000, from, to));
   }
 
   getIncomesByDate(from: string, to: string) {
-    this.store.dispatch(new GetIncomesByDate(Payments.incomes, 1, 1000000, from, to));
+    this.store.dispatch(new GetIncomesByDate(Payments.incomes, 0, 1000000, from, to));
   }
 
   createExpensePayment(url: string, payment: ExpenseStateModel) {
@@ -79,5 +81,13 @@ export class PaymentsService {
 
   createIncomePayment(url: string, payment: IncomeStateModel) {
     this.store.dispatch(new CreateIncomePayment(url, payment));
+  }
+
+  createExpenseRegularPayment(url: string, payment: ExpenseRegularStateModel) {
+    this.store.dispatch(new CreateExpenseRegularPayment(url, payment));
+  }
+
+  createIncomeRegularPayment(url: string, payment: IncomeRegularStateModel) {
+    this.store.dispatch(new CreateIncomeRegularPayment(url, payment));
   }
 }

@@ -18,3 +18,12 @@ export class CreateCategory {
     public category: CategoryStateModel
   ) {}
 }
+
+export class DeleteCategory {
+  static readonly type = '[category] delete';
+
+  constructor(
+    public url: string,
+    public category: CategoryStateModel
+  ) {}
+}

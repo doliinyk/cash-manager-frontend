@@ -8,6 +8,7 @@ import { AuthService } from 'shared/services/auth/auth.service';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
 import { CategoriesService } from 'shared/services/categories/categories.service';
+import { PaymentsService } from 'shared/services/payments/payments.service';
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -35,12 +36,19 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {
     this.categoriesService.getAllCategories();
+    // const now = new Date();
+    // const currentDate = now.toISOString();
+    //
+    // const previousYear = new Date();
+    // previousYear.setFullYear(now.getFullYear() - 1);
+    // const previousYearDate = previousYear.toISOString();
   }
 
   constructor(
     private authService: AuthService,
     private dialog: MatDialog,
-    protected categoriesService: CategoriesService
+    protected categoriesService: CategoriesService,
+    protected paymentsService: PaymentsService
   ) {}
 
   toEditMode() {

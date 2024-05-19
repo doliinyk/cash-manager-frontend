@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { CreateCategory, GetAllCategories, GetCategories } from 'shared/store/category/category.actions';
+import {CreateCategory, DeleteCategory, GetAllCategories, GetCategories} from 'shared/store/category/category.actions';
 import { Observable } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoryState } from 'shared/store/category/category.state';
@@ -31,5 +31,9 @@ export class CategoriesService {
 
   createCategory(url: string, category: CategoryStateModel) {
     this.store.dispatch(new CreateCategory(url, category));
+  }
+
+  deleteCategory(url: string, category: CategoryStateModel) {
+    this.store.dispatch(new DeleteCategory(url, category));
   }
 }
