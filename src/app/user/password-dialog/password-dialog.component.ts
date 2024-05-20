@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { pipe, take } from 'rxjs';
 
 @Component({
   selector: 'app-password-dialog',
@@ -18,7 +19,7 @@ export class PasswordDialogComponent {
           oldPassword: this.userPasswordCurrent,
           newPassword: this.userPasswordNew
         })
-        .subscribe(response => console.log(response));
+        .subscribe(pipe(take(1), response => console.log(response)));
     }
     return null;
   }

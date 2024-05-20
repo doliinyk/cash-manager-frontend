@@ -59,13 +59,13 @@ export class AuthState {
   @Action(UserLoginSuccess)
   userLoginSuccess({ dispatch }: StateContext<UserStateModel>, { payload }: UserLoginSuccess): void {
     dispatch(new SetTokens(payload));
-    dispatch([new ShowMessageBar({ message: 'Harosh', type: 'success' }), new GetUser()]);
+    dispatch([new ShowMessageBar({ message: 'Success', type: 'success' }), new GetUser()]);
     this.router.navigate(['/user/profile']);
   }
 
   @Action(UserLoginFailed)
   userLoginFailed({ dispatch }: StateContext<UserStateModel>): void {
-    dispatch(new ShowMessageBar({ message: 'Помилка', type: 'error' }));
+    dispatch(new ShowMessageBar({ message: 'Error', type: 'error' }));
   }
 
   @Action(GetUser)

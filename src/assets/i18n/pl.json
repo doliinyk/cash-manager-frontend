@@ -31,6 +31,10 @@
     "ERROR": "Ups! Coś poszło nie tak!",
     "ERROR_BUTTON": "Do strony głównej"
   },
+  "MESSAGE_BAR": {
+    "SUCCESS": "Sukces",
+    "ERROR": "Błąd"
+  },
   "PROFILE": {
     "EDIT_BUTTON": "Edytuj",
     "SAVE_BUTTON": "Zapisz",

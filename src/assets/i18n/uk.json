@@ -25,6 +25,10 @@
     "PASSWORD_PH": "Пароль",
     "REGISTER_BUTTON": "Надіслати"
   },
+  "MESSAGE_BAR": {
+    "SUCCESS": "Успішний вхід",
+    "ERROR": "Помилка"
+  },
   "EMAIL": {
     "CONGRATS": "Вітаємо!",
     "ACTIVATED": "Ваш аккаунт був успішно активований!",

@@ -25,6 +25,10 @@
     "PASSWORD_PH": "Password",
     "REGISTER_BUTTON": "Send"
   },
+  "MESSAGE_BAR": {
+    "SUCCESS": "Success",
+    "ERROR": "Error"
+  },
   "EMAIL": {
     "CONGRATS": "Congratulations!",
     "ACTIVATED": "Your account was successfully activated!",
