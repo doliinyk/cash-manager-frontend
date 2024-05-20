@@ -219,35 +219,35 @@
     </div>
     <mat-tab-group color="warn">
       <mat-tab label="Витрати">
-          <mat-paginator
-            fxLayoutAlign="none center"
-            [length]="this.paymentService.totalExpenses$ | async"
-            [pageSize]="10"
-            (page)="onPageChange($event, 'expense')"></mat-paginator>
-          <table mat-table [dataSource]="this.paymentService.allExpenses$ | async">
-            <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef>Категорія</th>
-              <td mat-cell *matCellDef="let element">
-                <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
-                  {{ element.category.title }}
-                </div>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="description">
-              <th mat-header-cell *matHeaderCellDef>Назва</th>
-              <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
-            </ng-container>
-            <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef>Дата</th>
-              <td mat-cell *matCellDef="let element">{{ getDateByISO(element.expensesDate) }}</td>
-            </ng-container>
-            <ng-container matColumnDef="amount">
-              <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
-              <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
+        <mat-paginator
+          fxLayoutAlign="none center"
+          [length]="this.paymentService.totalExpenses$ | async"
+          [pageSize]="10"
+          (page)="onPageChange($event, 'expense')"></mat-paginator>
+        <table mat-table [dataSource]="this.paymentService.allExpenses$ | async">
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
+                {{ element.category.title }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <td mat-cell *matCellDef="let element">{{ getDateByISO(element.expensesDate) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
       </mat-tab>
       <mat-tab label="Прибутки">
         <mat-paginator

@@ -82,7 +82,9 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   onTransactionChanged(event: string) {
     this.selectedCategories =
-      event === 'income-0' || event === 'income-regular-2' ? this.categoriesService.incomeCategories$ : this.categoriesService.expenseCategories$;
+      event === 'income-0' || event === 'income-regular-2'
+        ? this.categoriesService.incomeCategories$
+        : this.categoriesService.expenseCategories$;
   }
 
   onSubmit() {

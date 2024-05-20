@@ -1,7 +1,7 @@
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
-import {ExpenseRegularStateModel} from "shared/models/regular-expense-payment";
-import {IncomeRegularStateModel} from "shared/models/regular-income-payments";
+import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
+import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
 
 export interface PaymentsStateModel {
   allExpenses: ExpenseStateModel[];
