@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesStateModel } from 'shared/models/categories';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   CreateCategory,
   DeleteCategory,
@@ -89,10 +89,12 @@ export class CategoryState {
 
   @Action(DeleteCategory)
   deleteCategory({ dispatch }: StateContext<CategoryStateModel>, { url, category }: DeleteCategory) {
-    const headers = new HttpHeaders({'Accept': '*/*',
-      'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({
+      Accept: '*/*',
+      'Content-Type': 'application/json'
+    });
     return this.httpClient
-      .delete(url, { headers: headers , body: { title: category.title }})
+      .delete(url, { headers: headers, body: { title: category.title } })
       .pipe(tap(() => dispatch(new GetAllCategories())));
   }
 }
