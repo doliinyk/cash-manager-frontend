@@ -53,10 +53,10 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  private aggregateExpensesByMonth(expenses: ExpenseStateModel[]): { [key: string]: number } {
+  aggregateExpensesByMonth(expenses: ExpenseStateModel[]): { [key: string]: number } {
     return expenses.reduce((acc, expense) => {
       const date = new Date(expense.expensesDate);
-      const month = date.toLocaleString('default', { month: 'short' });
+      const month = date.toLocaleString('en', { month: 'short' });
 
       if (!acc[month]) {
         acc[month] = 0;

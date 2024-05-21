@@ -154,7 +154,7 @@ export class PaymentsState {
     { url, page, size, fromByDate, toByDate }: GetExpensesByDate
   ) {
     return this.httpClient
-      .get<ExpensePayload>(url, { params: { page, size, sort: 'expensesDate, DESC', fromByDate, toByDate } })
+      .get<ExpensePayload>(url, { params: { page, size, sort: 'expensesDate,DESC', fromByDate, toByDate } })
       .pipe(
         tap((payload: ExpensePayload) => {
           patchState({
@@ -175,7 +175,7 @@ export class PaymentsState {
         params: {
           page,
           size,
-          sort: 'incomeDate, DESC',
+          sort: 'incomeDate,DESC',
           fromByDate,
           toByDate
         }
