@@ -1,36 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Subject, takeUntil } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
-import { CategoryService } from 'shared/services/user/category.service';
+import { CategoriesService } from 'shared/services/categories/categories.service';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnInit, OnDestroy {
   categories: CategoryStateModel[] = [];
   titles: string[] = [];
   colors: string[] = [];
   values: number[] = [];
+  pieChart: any;
+  private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
-    const categoriesObs = this.categoryService.getCategories();
-    categoriesObs.subscribe(category => {
-      for (const key in category) {
-        this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
-        this.values.push(10);
-      }
-      this.titles = this.categories.map(category => category.title || 'Error');
-      this.colors = this.categories.map(category => category.color || '#fff');
-      this.RenderChart();
+    this.categoriesService.expenseCategories$.pipe(takeUntil(this.destroy$)).subscribe(data => {
+      this.updateChartData(data);
     });
   }
 
-  RenderChart() {
-    new Chart('pieChart', {
+  public ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
+
+  updateChartData(data: CategoryStateModel[]) {
+    this.values = [];
+    this.titles = data.map(category => category.title || 'Error');
+    this.colors = data.map(category => category.colorCode || '#fff');
+    for (const key in data) {
+      this.values.push(10);
+      console.log(key);
+    }
+    this.renderChart();
+  }
+
+  renderChart() {
+    if (this.pieChart) this.pieChart.destroy();
+    this.pieChart = new Chart('pieChart', {
       type: 'doughnut',
       data: {
         labels: this.titles,

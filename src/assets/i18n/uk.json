@@ -25,6 +25,13 @@
     "PASSWORD_PH": "Пароль",
     "REGISTER_BUTTON": "Надіслати"
   },
+  "MESSAGE_BAR": {
+    "SUCCESS": "Успішний вхід",
+    "ERROR": "Помилка"
+  },
+  "EMAIL_CONFIRMATION": {
+    "TEXT": "Лист з активацією було надіслано на електронну пошту"
+  },
   "EMAIL": {
     "CONGRATS": "Вітаємо!",
     "ACTIVATED": "Ваш аккаунт був успішно активований!",
@@ -47,5 +54,19 @@
     "INCOME_LABEL": "Надходження",
     "EXPENSES_LABEL": "Витрати",
     "MONTHLY_LABEL": "За місяць"
+  },
+  "CATEGORY_DIALOG": {
+    "NEW_CATEGORY": "Нова категорія",
+    "NAME_LABEL": "Назва",
+    "NAME_PLACEHOLDER": "Категорія",
+    "EXPENSE": "Витрата",
+    "INCOME": "Прибуток",
+    "NAME_REQUIRED_ERROR": "Поле назви є обов'язковим",
+    "NAME_MAXLENGTH_ERROR": "Максимум символів: 20",
+    "ADD_BUTTON": "Додати",
+    "CATEGORIES_EXPENSES": "Категорії (Витрати)",
+    "CATEGORIES_INCOME": "Категорії (Прибутки)",
+    "DELETE_BUTTON": "Видалити",
+    "CLOSE_BUTTON": "Закрити"
   }
 }

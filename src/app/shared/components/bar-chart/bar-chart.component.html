@@ -1,3 +1,55 @@
-<div class="bar-container" fxLayoutAlign="none center">
-  <canvas id="barChart"></canvas>
+<div class="gistogram-row">
+  <div class="gistogram-row-barchart" fxLayoutAlign="center center">
+    <canvas id="barChart"></canvas>
+  </div>
+  <div class="gistogram-row-other" fxLayout="column" fxLayoutAlign="center center">
+    <div class="others" fxLayout="column">
+      <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
+        <span>{{ 'PROFILE.AVERAGE_LABEL' | translate }}</span>
+        <span>₴</span>
+      </span>
+      <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+        <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
+        <span>{{ this.averageIncomes }}</span>
+      </span>
+      <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+        <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
+        <span>{{ this.averageExpense }}</span>
+      </span>
+    </div>
+    <div class="others" fxLayout="column">
+      <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
+        <span>{{ 'PROFILE.MONTHLY_LABEL' | translate }}</span>
+        <span>%</span>
+      </span>
+      <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+        <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
+        @if (this.monthlyIncome > 0) {
+          <div class="monthly-plus" fxLayoutAlign="center center" fxLayoutGap="3px">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span class="monthly-plus-text">{{ monthlyIncome }}</span>
+          </div>
+        } @else {
+          <div class="monthly-minus" fxLayoutAlign="center center" fxLayoutGap="3px">
+            <i class="fa-solid fa-arrow-down"></i>
+            <span class="monthly-minus-text">{{ monthlyIncome }}</span>
+          </div>
+        }
+      </span>
+      <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
+        <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
+        @if (this.monthlyExpense > 0) {
+          <div class="monthly-plus" fxLayoutAlign="center center" fxLayoutGap="3px">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span class="monthly-plus-text">{{ monthlyExpense }}</span>
+          </div>
+        } @else {
+          <div class="monthly-minus" fxLayoutAlign="center center" fxLayoutGap="3px">
+            <i class="fa-solid fa-arrow-down"></i>
+            <span class="monthly-minus-text">{{ monthlyExpense }}</span>
+          </div>
+        }
+      </span>
+    </div>
+  </div>
 </div>

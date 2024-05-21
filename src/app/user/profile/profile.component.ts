@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Observable } from 'rxjs';
-import { CategoryStateModel } from 'shared/models/category';
+import { map, Observable } from 'rxjs';
 import { UserStateModel } from 'shared/models/user';
 import { AuthService } from 'shared/services/auth/auth.service';
-import { CategoryService } from 'shared/services/user/category.service';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
+import { CategoriesService } from 'shared/services/categories/categories.service';
+import { PaymentsService } from 'shared/services/payments/payments.service';
+import { ExpenseStateModel } from 'shared/models/expense-payment';
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -25,7 +26,6 @@ export class ProfileComponent implements OnInit {
   userEmail?: string;
   tempUserName?: string = '';
   tempUserEmail?: string = '';
-  categories: CategoryStateModel[] = [];
 
   openPasswordDialog() {
     this.dialog.open(PasswordDialogComponent);
@@ -36,22 +36,42 @@ export class ProfileComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.user?.subscribe(data => {
-      this.userName = data.login?.toString();
-      this.userEmail = data.email;
-    });
-    const categoriesObs = this.categoryService.getCategories();
-    categoriesObs.subscribe(category => {
-      for (const key in category) {
-        this.categories.push({ color: this.categoryService.hexToRgbA(key), title: category[key].title });
-      }
-    });
+    this.categoriesService.getAllCategories();
+    const now = new Date();
+    const currentDate = now.toISOString();
+
+    const previousYear = new Date();
+    previousYear.setFullYear(now.getFullYear() - 1);
+    const previousYearDate = previousYear.toISOString();
+    this.paymentsService.getExpensesByDate(previousYearDate, currentDate);
+    this.paymentsService.allExpenses$
+      .pipe(map(expenses => this.aggregateExpensesByMonth(expenses)))
+      .subscribe(monthlyExpenses => {
+        console.log(monthlyExpenses);
+      });
+  }
+
+  aggregateExpensesByMonth(expenses: ExpenseStateModel[]): { [key: string]: number } {
+    return expenses.reduce(
+      (acc, expense) => {
+        const date = new Date(expense.expensesDate);
+        const month = date.toLocaleString('en', { month: 'short' });
+
+        if (!acc[month]) {
+          acc[month] = 0;
+        }
+        acc[month] += expense.cost;
+        return acc;
+      },
+      {} as { [key: string]: number }
+    );
   }
 
   constructor(
     private authService: AuthService,
-    protected categoryService: CategoryService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    protected categoriesService: CategoriesService,
+    protected paymentsService: PaymentsService
   ) {}
 
   toEditMode() {
