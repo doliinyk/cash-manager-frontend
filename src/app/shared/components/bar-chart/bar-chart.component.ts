@@ -158,7 +158,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Перетворюємо об'єкт у масив
     return Object.keys(monthlyExpenses).map(month => ({
       month,
       total: monthlyExpenses[month]
