@@ -171,9 +171,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
       {
         label: 'Витрати',
         data: this.valuesExpense,
-        backgroundColor: 'rgba(236, 103, 118, 0.58)',
-        borderColor: 'rgba(234, 34, 61, 0.8)',
-        borderWidth: 2,
+        backgroundColor: 'rgba(234, 34, 61, 0.8)',
+        borderWidth: 1,
         barPercentage: 1,
         categoryPercentage: 1,
         borderRadius: 20,
@@ -182,9 +181,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
       {
         label: 'Прибутки',
         data: this.valuesIncomes,
-        backgroundColor: 'rgba(83, 179, 240, 0.58)',
-        borderColor: 'rgba(44, 129, 242, 0.8)',
-        borderWidth: 2,
+        backgroundColor: 'rgba(44, 129, 242, 0.8)',
+        borderWidth: 1,
         barPercentage: 1,
         categoryPercentage: 1,
         borderRadius: 20,
@@ -202,17 +200,20 @@ export class BarChartComponent implements OnInit, OnDestroy {
         scales: {
           x: {
             grid: {
-              display: false
+              display: true
             }
           },
           y: {
             grid: {
-              display: false
+              display: true
             }
           }
         },
         responsive: true,
         plugins: {
+          datalabels: {
+            display: false
+          },
           legend: {
             display: false
           },
