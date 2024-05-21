@@ -25,6 +25,6 @@ export class RegisterComponent {
 
   submitForm() {
     this.registrationService.registration(this.registerForm.value);
-    this.router.navigate(['']);
+    this.router.navigate(['/test']);
   }
 }

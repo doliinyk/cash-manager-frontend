@@ -35,6 +35,9 @@
     "SUCCESS": "Sukces",
     "ERROR": "Błąd"
   },
+  "EMAIL_CONFIRMATION": {
+    "TEXT": "List z aktywacją odesłano na e-maila"
+  },
   "PROFILE": {
     "EDIT_BUTTON": "Edytuj",
     "SAVE_BUTTON": "Zapisz",

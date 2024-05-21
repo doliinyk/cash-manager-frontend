@@ -1,0 +1,20 @@
+@import '../../../shared/styles/variables';
+
+.overall-page {
+  height: $page-height;
+}
+
+.email-text-col {
+  width: 30%;
+}
+
+.email-icon {
+  font-size: 200px;
+  color: darkorange;
+}
+
+.email-text {
+  font-size: 28px;
+  text-wrap: normal;
+  text-align: center;
+}

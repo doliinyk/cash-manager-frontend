@@ -29,6 +29,9 @@
     "SUCCESS": "Success",
     "ERROR": "Error"
   },
+  "EMAIL_CONFIRMATION": {
+    "TEXT": "An activation letter has been sent to e-mail"
+  },
   "EMAIL": {
     "CONGRATS": "Congratulations!",
     "ACTIVATED": "Your account was successfully activated!",

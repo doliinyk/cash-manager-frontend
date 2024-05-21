@@ -13,9 +13,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthState } from 'shared/store/auth/auth.state';
+import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, EmailActivationComponent],
+  declarations: [LoginComponent, RegisterComponent, EmailActivationComponent, EmailConfirmationComponent],
   exports: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
