@@ -123,7 +123,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
       const expenseDate = parseISO(expense.expensesDate);
       if (expenseDate >= startMonth && expenseDate <= today) {
         const monthKey = this.formatMonthKey(expenseDate);
-        if (monthlyExpenses.hasOwnProperty(monthKey)) {
+        if (Object.prototype.hasOwnProperty.call(monthlyExpenses, monthKey)) {
           monthlyExpenses[monthKey] += expense.cost;
         }
       }
@@ -152,7 +152,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
       const expenseDate = parseISO(expense.incomeDate);
       if (expenseDate >= startMonth && expenseDate <= today) {
         const monthKey = this.formatMonthKey(expenseDate);
-        if (monthlyExpenses.hasOwnProperty(monthKey)) {
+        if (Object.prototype.hasOwnProperty.call(monthlyExpenses,monthKey)) {
           monthlyExpenses[monthKey] += expense.profit;
         }
       }
