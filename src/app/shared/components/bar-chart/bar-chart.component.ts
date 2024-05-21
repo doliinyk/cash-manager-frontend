@@ -4,7 +4,7 @@ import { map, Subject, takeUntil } from 'rxjs';
 import { PaymentsService } from 'shared/services/payments/payments.service';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
-import { addMonths, subMonths, startOfMonth, endOfMonth, isSameMonth, parseISO } from 'date-fns';
+import { addMonths, parseISO, subMonths } from 'date-fns';
 
 @Component({
   selector: 'app-bar-chart',
@@ -15,6 +15,10 @@ export class BarChartComponent implements OnInit, OnDestroy {
   months: string[] = [];
   valuesExpense: number[] = [];
   valuesIncomes: number[] = [];
+  averageIncomes: number = 0;
+  averageExpense: number = 0;
+  monthlyExpense: number = 0;
+  monthlyIncome: number = 0;
   barChart: any;
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -36,6 +40,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
       )
       .subscribe(data => {
         this.updateChartData(data, 'incomes');
+        this.averageIncomes = this.calculateAverageMonthly(this.valuesIncomes);
+        this.monthlyIncome = this.calculateMonthlyPercentageChange(this.valuesIncomes);
       });
     this.paymentsService.allExpenses$
       .pipe(
@@ -44,6 +50,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
       )
       .subscribe(data => {
         this.updateChartData(data, 'expenses');
+        this.averageExpense = this.calculateAverageMonthly(this.valuesExpense);
+        this.monthlyExpense = this.calculateMonthlyPercentageChange(this.valuesExpense);
       });
   }
 
@@ -52,9 +60,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  updateChartData(data: { month: string, total: number }[], type: string) {
-    if(!this.barChart)
-      this.renderChart();
+  updateChartData(data: { month: string; total: number }[], type: string) {
+    if (!this.barChart) this.renderChart();
 
     if (this.months.length === 0) {
       this.months = data.map(data => data.month);
@@ -72,13 +79,34 @@ export class BarChartComponent implements OnInit, OnDestroy {
     if (this.valuesIncomes.length === this.valuesExpense.length) this.barChart.update();
   }
 
+  calculateMonthlyPercentageChange(data: number[]) {
+    if (data.length < 2) {
+      return 0;
+    }
+
+    const currentMonthTotal = data[data.length - 1];
+    const previousMonthTotal = data[data.length - 2];
+    const change = previousMonthTotal === 0 ? 0 : ((currentMonthTotal - previousMonthTotal) / previousMonthTotal) * 100;
+    return Math.round(change * 10) / 10;
+  }
+
+  calculateAverageMonthly(data: number[]): number {
+    if (data.length === 0) {
+      return 0;
+    }
+
+    const totalExpense = data.reduce((sum, expense) => sum + expense, 0);
+    const averageExpense = totalExpense / data.length;
+    return Math.round(averageExpense * 10) / 10;
+  }
+
   formatMonthKey(date: Date): string {
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');  // Форматуємо місяць з двома цифрами
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Форматуємо місяць з двома цифрами
     return `${year}-${month}`;
   }
 
-  groupExpensesByLast12Months(expenses: ExpenseStateModel[]): { month: string, total: number }[] {
+  groupExpensesByLast12Months(expenses: ExpenseStateModel[]): { month: string; total: number }[] {
     const today = new Date();
 
     const startMonth = subMonths(today, 11);
@@ -101,14 +129,13 @@ export class BarChartComponent implements OnInit, OnDestroy {
       }
     });
 
-
     return Object.keys(monthlyExpenses).map(month => ({
       month,
       total: monthlyExpenses[month]
     }));
   }
 
-  groupIncomesByLast12Months(expenses: IncomeStateModel[]): { month: string, total: number }[] {
+  groupIncomesByLast12Months(expenses: IncomeStateModel[]): { month: string; total: number }[] {
     const today = new Date();
 
     const startMonth = subMonths(today, 11);

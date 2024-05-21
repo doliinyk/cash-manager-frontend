@@ -90,41 +90,7 @@
         </div>
       </div>
       <mat-divider></mat-divider>
-      <div class="gistogram-row">
-        <div class="gistogram-row-barchart">
-          <app-bar-chart></app-bar-chart>
-        </div>
-        <div class="gistogram-row-other" fxLayout="column" fxLayoutAlign="center center">
-          <div class="others" fxLayout="column">
-            <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
-              <span>{{ 'PROFILE.AVERAGE_LABEL' | translate }}</span>
-              <span>₴</span>
-            </span>
-            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
-              <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
-              <span>number</span>
-            </span>
-            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
-              <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
-              <span>number</span>
-            </span>
-          </div>
-          <div class="others" fxLayout="column">
-            <span fxLayout="row" class="gistogram-row-other-title" fxLayoutAlign="space-between center">
-              <span>{{ 'PROFILE.MONTHLY_LABEL' | translate }}</span>
-              <span>%</span>
-            </span>
-            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
-              <span>{{ 'PROFILE.INCOME_LABEL' | translate }}</span>
-              <span>number</span>
-            </span>
-            <span fxLayout="row" class="gistogram-row-other-subtitle" fxLayoutAlign="space-between center">
-              <span>{{ 'PROFILE.EXPENSES_LABEL' | translate }}</span>
-              <span>number</span>
-            </span>
-          </div>
-        </div>
-      </div>
+      <app-bar-chart class="bar-chart" fxLayoutAlign="center center"></app-bar-chart>
     </div>
   </div>
 </div>
