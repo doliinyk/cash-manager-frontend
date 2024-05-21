@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'shared/services/auth/auth.service';
-import { CategoriesService } from 'shared/services/categories/categories.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +7,10 @@ import { CategoriesService } from 'shared/services/categories/categories.service
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private categoriesService: CategoriesService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.getTokens();
     this.authService.isUserAuth();
-    this.categoriesService.getAllCategories();
   }
 }

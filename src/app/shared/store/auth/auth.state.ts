@@ -8,6 +8,7 @@ import { catchError, tap } from 'rxjs';
 import { LoginPayload } from 'shared/models/login.payload';
 import { ShowMessageBar } from 'shared/store/app/app.actions';
 import { RemoveTokens, SetTokens } from 'shared/store/token/token.actions';
+import { GetAllCategories } from 'shared/store/category/category.actions';
 
 @State<UserStateModel>({
   name: 'user',
@@ -59,6 +60,7 @@ export class AuthState {
   @Action(UserLoginSuccess)
   userLoginSuccess({ dispatch }: StateContext<UserStateModel>, { payload }: UserLoginSuccess): void {
     dispatch(new SetTokens(payload));
+    dispatch(new GetAllCategories());
     dispatch([new ShowMessageBar({ message: 'Success', type: 'success' }), new GetUser()]);
     this.router.navigate(['/user/profile']);
   }
