@@ -44,14 +44,17 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     periodicity: this.periodicityField
   });
 
+  searchField = new FormControl('');
+  filterGroup = this._formBuilder.group({
+    searchDescription: this.searchField
+  });
+
   categories: CategoryStateModel[] = [];
   private subcription: Subscription;
 
   displayedColumns: string[] = ['category', 'description', 'date', 'amount'];
   displayedColumnsRegular: string[] = ['category', 'title', 'description', 'date', 'periodicity', 'amount'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  searchField = new FormControl('');
 
   transactionTypes: TransactionType[] = [
     { value: 'income-0', viewValue: 'Прибуток' },
@@ -62,6 +65,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paymentService.getAllPayments();
+    this.categoriesService.getAllCategories();
     this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
   }
 
@@ -135,6 +139,12 @@ export class PaymentsComponent implements OnInit, OnDestroy {
         break;
       }
     }
+  }
+
+  onSubmitFilter() {
+    const transactionData = this.filterGroup.value;
+    this.paymentService.getExpensesByDescription(transactionData.searchDescription);
+    this.paymentService.getIncomesByDescription(transactionData.searchDescription);
   }
 
   onPageChange(event: PageEvent, type: string) {

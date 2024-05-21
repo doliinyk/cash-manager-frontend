@@ -12,9 +12,11 @@ import {
   GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
+  GetExpensesByDescription,
   GetIncomeRegulars,
   GetIncomes,
-  GetIncomesByDate
+  GetIncomesByDate,
+  GetIncomesByDescription
 } from 'shared/store/payments/payments.actions';
 import { PaymentsState } from 'shared/store/payments/payments.state';
 import { PaymentsStateModel } from 'shared/models/payments';
@@ -65,6 +67,14 @@ export class PaymentsService {
 
   getAllPayments() {
     this.store.dispatch(new GetAllPayments(0, 10));
+  }
+
+  getExpensesByDescription(description: string) {
+    this.store.dispatch(new GetExpensesByDescription(Payments.expenses, 0, 1000000, description));
+  }
+
+  getIncomesByDescription(description: string) {
+    this.store.dispatch(new GetIncomesByDescription(Payments.incomes, 0, 1000000, description));
   }
 
   getExpensesByDate(from: string, to: string) {
