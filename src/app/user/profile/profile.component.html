@@ -76,9 +76,7 @@
       <div class="piechart-row" fxLayout="row" fxLayoutAlign="center center">
         <div class="piechart-row-piechart" fxLayoutAlign="center center">
           <app-pie-chart></app-pie-chart>
-          @if (!isEditMode) {
-            <span class="pieChart-vallet">1337</span>
-          }
+          <span class="pieChart-vallet">1337</span>
         </div>
         <div class="piechar-row-categories">
           @for (category of this.categoriesService.expenseCategories$ | async; track category) {

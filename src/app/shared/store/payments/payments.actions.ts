@@ -57,8 +57,8 @@ export class GetExpensesByDate {
     public url: string,
     public page: number,
     public size: number,
-    public from: string,
-    public to: string
+    public fromByDate: string,
+    public toByDate: string
   ) {}
 }
 
@@ -69,8 +69,8 @@ export class GetIncomesByDate {
     public url: string,
     public page: number,
     public size: number,
-    public from: string,
-    public to: string
+    public fromByDate: string,
+    public toByDate: string
   ) {}
 }
 

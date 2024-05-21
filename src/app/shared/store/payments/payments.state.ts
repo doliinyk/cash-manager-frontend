@@ -151,10 +151,10 @@ export class PaymentsState {
   @Action(GetExpensesByDate)
   getExpensesByDate(
     { patchState }: StateContext<PaymentsStateModel>,
-    { url, page, size, from, to }: GetExpensesByDate
+    { url, page, size, fromByDate, toByDate }: GetExpensesByDate
   ) {
     return this.httpClient
-      .get<ExpensePayload>(`${url}/by-date`, { params: { page, size, sort: 'expensesDate, DESC', from, to } })
+      .get<ExpensePayload>(url, { params: { page, size, sort: 'expensesDate, DESC', fromByDate, toByDate } })
       .pipe(
         tap((payload: ExpensePayload) => {
           patchState({
@@ -166,15 +166,28 @@ export class PaymentsState {
   }
 
   @Action(GetIncomesByDate)
-  getIncomeByDate({ patchState }: StateContext<PaymentsStateModel>, { url, page, size, from, to }: GetIncomesByDate) {
-    return this.httpClient.get<IncomePayload>(url, { params: { page, size, sort: 'incomeDate, DESC', from, to } }).pipe(
-      tap((payload: IncomePayload) => {
-        patchState({
-          allIncomes: payload.content,
-          totalExpenses: payload.totalElements
-        });
+  getIncomesByDate(
+    { patchState }: StateContext<PaymentsStateModel>,
+    { url, page, size, fromByDate, toByDate }: GetIncomesByDate
+  ) {
+    return this.httpClient
+      .get<IncomePayload>(url, {
+        params: {
+          page,
+          size,
+          sort: 'incomeDate, DESC',
+          fromByDate,
+          toByDate
+        }
       })
-    );
+      .pipe(
+        tap((payload: IncomePayload) => {
+          patchState({
+            allIncomes: payload.content,
+            totalExpenses: payload.totalElements
+          });
+        })
+      );
   }
 
   @Action(CreateExpensePayment)

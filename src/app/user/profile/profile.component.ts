@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import { UserStateModel } from 'shared/models/user';
 import { AuthService } from 'shared/services/auth/auth.service';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
 import { CategoriesService } from 'shared/services/categories/categories.service';
 import { PaymentsService } from 'shared/services/payments/payments.service';
+import {ExpenseStateModel} from "shared/models/expense-payment";
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -36,12 +37,33 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {
     this.categoriesService.getAllCategories();
-    // const now = new Date();
-    // const currentDate = now.toISOString();
-    //
-    // const previousYear = new Date();
-    // previousYear.setFullYear(now.getFullYear() - 1);
-    // const previousYearDate = previousYear.toISOString();
+    const now = new Date();
+    const currentDate = now.toISOString();
+
+    const previousYear = new Date();
+    previousYear.setFullYear(now.getFullYear() - 1);
+    const previousYearDate = previousYear.toISOString();
+    this.paymentsService.getExpensesByDate(previousYearDate, currentDate);
+    this.paymentsService.allExpenses$
+      .pipe(
+        map(expenses => this.aggregateExpensesByMonth(expenses))
+      )
+      .subscribe(monthlyExpenses => {
+        console.log(monthlyExpenses);
+      });
+  }
+
+  private aggregateExpensesByMonth(expenses: ExpenseStateModel[]): { [key: string]: number } {
+    return expenses.reduce((acc, expense) => {
+      const date = new Date(expense.expensesDate);
+      const month = date.toLocaleString('default', { month: 'short' });
+
+      if (!acc[month]) {
+        acc[month] = 0;
+      }
+      acc[month] += expense.cost;
+      return acc;
+    }, {} as { [key: string]: number });
   }
 
   constructor(
