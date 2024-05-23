@@ -37,7 +37,8 @@
     "EMAIL_LABLE": "Введіть електронну пошту",
     "EMAIL_PH": "Електронна пошта",
     "EMAIL_OK": "На електронну пошту надіслано лист з інструкціями",
-    "EMAIL_FAILED": "Користувача з даною поштою не існує"
+    "EMAIL_FAILED": "Користувача з даною поштою не існує",
+    "EMAIL_ERROR": "Неочікувана помилка"
   },
   "EMAIL": {
     "CONGRATS": "Вітаємо!",
@@ -61,6 +62,9 @@
     "INCOME_LABEL": "Надходження",
     "EXPENSES_LABEL": "Витрати",
     "MONTHLY_LABEL": "За місяць"
+  },
+  "PIE_CHART": {
+    "NO_EXPENSES": "Немає витрат"
   },
   "PAYMENTS": {
     "NEW": "Новий",
@@ -105,5 +109,13 @@
     "CATEGORIES_INCOME": "Категорії (Прибутки)",
     "DELETE_BUTTON": "Видалити",
     "CLOSE_BUTTON": "Закрити"
+  },
+  "PASSWORD_DIALOG": {
+    "PASSWORD_TITLE": "Змінити пароль",
+    "OLD_PASSWORD_LABEL": "Старий пароль",
+    "NEW_PASSWORD_LABEL": "Новий пароль",
+    "PASSWORD_PH": "Пароль",
+    "DECLINE": "Відміна",
+    "SEND": "Надіслати"
   }
 }

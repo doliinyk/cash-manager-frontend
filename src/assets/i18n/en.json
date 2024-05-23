@@ -37,7 +37,8 @@
     "EMAIL_LABLE": "Enter email address",
     "EMAIL_PH": "Email Address",
     "EMAIL_OK": "An email with instructions has been sent to your email address",
-    "EMAIL_FAILED": "User with this email address does not exist"
+    "EMAIL_FAILED": "User with this email address does not exist",
+    "EMAIL_ERROR": "Unexpected error"
   },
   "EMAIL": {
     "CONGRATS": "Congratulations!",
@@ -61,6 +62,9 @@
     "INCOME_LABEL": "Income",
     "EXPENSES_LABEL": "Expenses",
     "MONTHLY_LABEL": "Monthly"
+  },
+  "PIE_CHART": {
+    "NO_EXPENSES": "No expenses there"
   },
   "PAYMENTS": {
     "NEW": "New",
@@ -105,5 +109,13 @@
     "CATEGORIES_INCOME": "Categories (Income)",
     "DELETE_BUTTON": "Delete",
     "CLOSE_BUTTON": "Close"
+  },
+  "PASSWORD_DIALOG": {
+    "PASSWORD_TITLE": "Change password",
+    "OLD_PASSWORD_LABEL": "Old password",
+    "NEW_PASSWORD_LABEL": "New password",
+    "PASSWORD_PH": "Password",
+    "DECLINE": "Cancel",
+    "SEND": "Send"
   }
 }

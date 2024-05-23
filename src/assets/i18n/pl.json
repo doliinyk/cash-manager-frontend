@@ -43,7 +43,8 @@
     "EMAIL_LABLE": "Wprowadź adres e-mail",
     "EMAIL_PH": "Adres e-mail",
     "EMAIL_OK": "Na Twój adres e-mail została wysłana wiadomość z instrukcjami",
-    "EMAIL_FAILED": "Użytkownik o podanym adresie e-mail nie istnieje"
+    "EMAIL_FAILED": "Użytkownik o podanym adresie e-mail nie istnieje",
+    "EMAIL_ERROR": "Nieoczekiwany błąd"
   },
   "PROFILE": {
     "EDIT_BUTTON": "Edytuj",
@@ -61,6 +62,9 @@
     "INCOME_LABEL": "Dochód",
     "EXPENSES_LABEL": "Wydatki",
     "MONTHLY_LABEL": "Miesięcznie"
+  },
+  "PIE_CHART": {
+    "NO_EXPENSES": "Niema wydatków"
   },
   "PAYMENTS": {
     "NEW": "Nowy",
@@ -105,5 +109,13 @@
     "CATEGORIES_INCOME": "Kategorie (Dochody)",
     "DELETE_BUTTON": "Usuń",
     "CLOSE_BUTTON": "Zamknij"
+  },
+  "PASSWORD_DIALOG": {
+    "PASSWORD_TITLE": "Zmień hasło",
+    "OLD_PASSWORD_LABEL": "Stare hasło",
+    "NEW_PASSWORD_LABEL": "Nowe hasło",
+    "PASSWORD_PH": "Hasło",
+    "DECLINE": "Zwrót",
+    "SEND": "Odeslać"
   }
 }

@@ -1,19 +1,19 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
-import {TranslateService} from "@ngx-translate/core";
-import { map, Observable, Subscription } from 'rxjs';
-import { CategoryStateModel } from 'shared/models/category';
-import { CategoriesService } from 'shared/services/categories/categories.service';
-import { PaymentsService } from 'shared/services/payments/payments.service';
-import { ExpenseStateModel } from 'shared/models/expense-payment';
-import { Payments } from 'shared/enums/payments';
-import { IncomeStateModel } from 'shared/models/income-payment';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { TranslateService } from '@ngx-translate/core';
+import { map, Observable, Subscription } from 'rxjs';
+import { Payments } from 'shared/enums/payments';
+import { CategoryStateModel } from 'shared/models/category';
+import { ExpenseStateModel } from 'shared/models/expense-payment';
+import { IncomeStateModel } from 'shared/models/income-payment';
 import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
 import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
+import { CategoriesService } from 'shared/services/categories/categories.service';
+import { PaymentsService } from 'shared/services/payments/payments.service';
 
 interface TransactionType {
   value: string;
@@ -63,6 +63,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   categories: CategoryStateModel[] = [];
   private subcription: Subscription;
+  filterActive = false;
 
   displayedColumns: string[] = ['category', 'description', 'date', 'amount'];
   displayedColumnsRegular: string[] = ['category', 'title', 'description', 'date', 'periodicity', 'amount'];
@@ -76,8 +77,16 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit() {
+    let params = new HttpParams();
+    params = params.set('page', 0);
+    params = params.set('size', 10);
+    params = params.set('sort', 'expensesDate,DESC');
+    this.paymentService.getExpensesByFilterParams(params);
+    params = params.set('sort', 'incomeDate,DESC');
+    this.paymentService.getIncomesByFilterParams(params);
+    this.paymentService.getExpenseRegulars(0, 10);
+    this.paymentService.getIncomeRegulars(0, 10);
     this.updateTranslations();
-    this.paymentService.getAllPayments();
     this.categoriesService.getAllCategories();
     this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
   }
@@ -188,11 +197,13 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     }
     params.set('page', this.paginator.pageIndex);
     params.set('size', this.paginator.pageSize);
+    this.filterActive = true;
     this.paymentService.getExpensesByFilterParams(params);
     this.paymentService.getIncomesByFilterParams(params);
   }
 
   onClearFilters() {
+    this.filterActive = false;
     this.filterGroup.reset({
       searchDescription: null,
       searchCategory: null,
@@ -205,13 +216,39 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: PageEvent, type: string) {
+    let params = new HttpParams();
+    params = params.set('page', event.pageIndex);
+    params = params.set('size', event.pageSize);
+    if (this.filterActive) {
+      const transactionData = this.filterGroup.value;
+      if (transactionData.searchDescription) {
+        params = params.set('description', transactionData.searchDescription);
+      }
+      if (transactionData.searchCategory) {
+        params = params.set('categoryTitle', transactionData.searchCategory);
+      }
+      if (transactionData.searchDateFrom) {
+        params = params.set('fromByDate', new Date(transactionData.searchDateFrom).toISOString());
+      }
+      if (transactionData.searchDateTo) {
+        params = params.set('toByDate', new Date(transactionData.searchDateTo).toISOString());
+      }
+      if (transactionData.searchSizeFrom) {
+        params = params.set('fromBySize', transactionData.searchSizeFrom);
+      }
+      if (transactionData.searchSizeTo) {
+        params = params.set('toBySize', transactionData.searchSizeTo);
+      }
+    }
     switch (type) {
       case 'income': {
-        this.paymentService.getIncomes(event.pageIndex, event.pageSize);
+        params = params.set('sort', 'incomeDate,DESC');
+        this.paymentService.getIncomesByFilterParams(params);
         break;
       }
       case 'expense': {
-        this.paymentService.getExpenses(event.pageIndex, event.pageSize);
+        params = params.set('sort', 'expensesDate,DESC');
+        this.paymentService.getExpensesByFilterParams(params);
         break;
       }
       case 'income-regular': {
