@@ -43,7 +43,7 @@
 }
 
 .button-profile-current {
-  box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 4px;
   //background: rgba(196, 176, 176, 0.1899999976158142);
   background: orange;
 }
@@ -111,8 +111,8 @@
   font-size: 15px;
   border-radius: 20px;
   height: 45px;
-  width: 100px;
-  box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px;
+  width: auto;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 4px;
 }
 
 .logout-text {

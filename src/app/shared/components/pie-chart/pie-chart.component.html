@@ -1,1 +1,6 @@
 <canvas id="pieChart"></canvas>
+@if (totalSum === 0 || totalSum < 0) {
+  <span class="pieChart-vallet"> {{ 'PIE_CHART.NO_EXPENSES' | translate}} </span>
+} @else {
+  <span class="pieChart-vallet">{{ totalSum }}</span>
+}

@@ -15,6 +15,8 @@ import { MessageBarComponent } from 'shared/components/message-bar/message-bar.c
 import { MaterialModule } from 'shared/modules/material.module';
 import { TokenInterceptor } from 'shared/services/auth/token.interceptor';
 import { AppState } from 'shared/store/app/app.state';
+import { CategoryState } from 'shared/store/category/category.state';
+import { PaymentsState } from 'shared/store/payments/payments.state';
 import { TokenState } from 'shared/store/token/token.state';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';

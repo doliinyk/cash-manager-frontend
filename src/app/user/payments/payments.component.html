@@ -4,100 +4,124 @@
       <div class="new-text">
         <span class="text">
           <i class="fa-solid fa-plus"></i>
-          Новий
+          {{ 'PAYMENTS.NEW' | translate }}
         </span>
       </div>
 
       <mat-stepper [linear]="true" [orientation]="(stepperOrientation | async)!" color="warn" #stepper>
         <mat-step [completed]="transactionField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Тип</ng-template>
+            <ng-template matStepLabel>{{ 'PAYMENTS.TYPE' | translate }}</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
-              <mat-label>Тип</mat-label>
+              <mat-label>{{ 'PAYMENTS.TYPE' | translate }}</mat-label>
               <mat-select formControlName="transactionType" (selectionChange)="onTransactionChanged($event.value)">
-                @for (transactionType of transactionTypes; track transactionType) {
-                  <mat-option [value]="transactionType.value">{{ transactionType.viewValue }}</mat-option>
-                }
+                <mat-option *ngFor="let transactionType of transactionTypes" [value]="transactionType.value">
+                  {{ transactionType.viewValue }}
+                </mat-option>
               </mat-select>
             </mat-form-field>
             <div class="stepper-button">
-              <button mat-raised-button matStepperNext>Далі</button>
+              <button mat-raised-button matStepperNext>{{ 'PAYMENTS.NEXT' | translate }}</button>
             </div>
           </form>
         </mat-step>
         <mat-step [completed]="nameField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Опис</ng-template>
+            <ng-template matStepLabel>{{ 'PAYMENTS.DESCRIPTION' | translate }}</ng-template>
             <div fxLayout="row" fxLayoutGap="10px">
               <mat-form-field color="warn" appearance="outline">
-                <mat-label>Назва</mat-label>
-                <input matInput type="text" placeholder="Назва" formControlName="name" required />
-                @if (nameField.value) {
-                  <button matSuffix mat-icon-button aria-label="Clear" (click)="nameField.setValue('')">
-                    <mat-icon>close</mat-icon>
-                  </button>
-                }
+                <mat-label>{{ 'PAYMENTS.NAME' | translate }}</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="{{ 'PAYMENTS.NAME' | translate }}"
+                  formControlName="name"
+                  required />
+                <button
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  *ngIf="nameField.value"
+                  (click)="nameField.setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
               </mat-form-field>
-              @if (
-                this.transactionField.value === transactionTypes[2].value ||
-                this.transactionField.value === transactionTypes[3].value
-              ) {
-                <mat-form-field class="search-field" color="warn" appearance="outline">
-                  <mat-label>Опис</mat-label>
-                  <input matInput type="text" placeholder="Назва" formControlName="descriptionRegular" required />
-                  @if (descriptionField.value) {
-                    <button matSuffix mat-icon-button aria-label="Clear" (click)="descriptionField.setValue('')">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  }
-                </mat-form-field>
-              }
+              <mat-form-field
+                *ngIf="
+                  transactionField.value === transactionTypes[2].value ||
+                  transactionField.value === transactionTypes[3].value
+                "
+                class="search-field"
+                color="warn"
+                appearance="outline">
+                <mat-label>{{ 'PAYMENTS.DESCRIPTION' | translate }}</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="{{ 'PAYMENTS.NAME' | translate }}"
+                  formControlName="descriptionRegular"
+                  required />
+                <button
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  *ngIf="descriptionField.value"
+                  (click)="descriptionField.setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
             </div>
             <div fxLayoutGap="10px">
-              <button class="stepper-button" mat-raised-button matStepperNext>Далі</button>
-              <button class="stepper-button" mat-button matStepperPrevious>Назад</button>
+              <button class="stepper-button" mat-raised-button matStepperNext>{{ 'PAYMENTS.NEXT' | translate }}</button>
+              <button class="stepper-button" mat-button matStepperPrevious>{{ 'PAYMENTS.BACK' | translate }}</button>
             </div>
           </form>
         </mat-step>
         <mat-step [completed]="categoryField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Категорія</ng-template>
+            <ng-template matStepLabel>{{ 'PAYMENTS.CATEGORY' | translate }}</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
-              <mat-label>Категорія</mat-label>
+              <mat-label>{{ 'PAYMENTS.CATEGORY' | translate }}</mat-label>
               <mat-select formControlName="category">
-                @for (category of selectedCategories | async; track category) {
-                  <mat-option [value]="category.title">{{ category.title }}</mat-option>
-                }
+                <mat-option *ngFor="let category of selectedCategories | async" [value]="category.title">
+                  {{ category.title }}
+                </mat-option>
               </mat-select>
             </mat-form-field>
             <div fxLayoutGap="10px">
-              <button class="stepper-button" mat-raised-button matStepperNext>Далі</button>
-              <button class="stepper-button" mat-button matStepperPrevious>Назад</button>
+              <button class="stepper-button" mat-raised-button matStepperNext>{{ 'PAYMENTS.NEXT' | translate }}</button>
+              <button class="stepper-button" mat-button matStepperPrevious>{{ 'PAYMENTS.BACK' | translate }}</button>
             </div>
           </form>
         </mat-step>
         <mat-step [completed]="amountField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Сума</ng-template>
+            <ng-template matStepLabel>{{ 'PAYMENTS.AMOUNT' | translate }}</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
-              <mat-label>Сума</mat-label>
-              <input matInput formControlName="amount" type="number" maxlength="10" placeholder="Сума" required />
+              <mat-label>{{ 'PAYMENTS.AMOUNT' | translate }}</mat-label>
+              <input
+                matInput
+                formControlName="amount"
+                type="number"
+                maxlength="10"
+                placeholder="{{ 'PAYMENTS.AMOUNT' | translate }}"
+                required />
               <span matSuffix class="sum-suffix">
                 <i class="fa-solid fa-hryvnia-sign"></i>
               </span>
             </mat-form-field>
             <div fxLayoutGap="10px">
-              <button class="stepper-button" mat-raised-button matStepperNext>Далі</button>
-              <button class="stepper-button" mat-button matStepperPrevious>Назад</button>
+              <button class="stepper-button" mat-raised-button matStepperNext>{{ 'PAYMENTS.NEXT' | translate }}</button>
+              <button class="stepper-button" mat-button matStepperPrevious>{{ 'PAYMENTS.BACK' | translate }}</button>
             </div>
           </form>
         </mat-step>
         <mat-step [completed]="dateField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Дата</ng-template>
+            <ng-template matStepLabel>{{ 'PAYMENTS.DATE' | translate }}</ng-template>
             <div fxLayout="row" fxLayoutGap="10px">
               <mat-form-field class="text-form-field" color="warn" appearance="outline">
-                <mat-label>Дата</mat-label>
+                <mat-label>{{ 'PAYMENTS.DATE' | translate }}</mat-label>
                 <input matInput formControlName="date" [matDatepicker]="picker" required />
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -107,7 +131,7 @@
                 this.transactionField.value === transactionTypes[3].value
               ) {
                 <mat-form-field class="text-form-field" color="warn" appearance="outline">
-                  <mat-label>Періодичність (дні)</mat-label>
+                  <mat-label>{{ 'PAYMENTS.PERIODICITY' | translate }}</mat-label>
                   <input
                     matInput
                     formControlName="periodicity"
@@ -126,10 +150,12 @@
                 [disabled]="!dateField.valid"
                 (click)="onSubmit()"
                 color="warn">
-                Додати
+                {{ 'PAYMENTS.ADD' | translate }}
               </button>
-              <button class="stepper-button" mat-button matStepperPrevious>Назад</button>
-              <button class="stepper-button" mat-button (click)="formGroup.reset(); stepper.reset()">Спочатку</button>
+              <button class="stepper-button" mat-button matStepperPrevious>{{ 'PAYMENTS.BACK' | translate }}</button>
+              <button class="stepper-button" mat-button (click)="formGroup.reset(); stepper.reset()">
+                {{ 'PAYMENTS.RESET' | translate }}
+              </button>
             </div>
           </form>
         </mat-step>
@@ -140,17 +166,22 @@
       <div class="new-text">
         <span class="text">
           <i class="fa-solid fa-filter"></i>
-          Фільтри
+          {{ 'PAYMENTS.FILTERS' | translate }}
         </span>
       </div>
-      <form class="filter-form" fxLayout="column" fxLayoutAlign="center none" fxLayoutGap="3.5vh">
+      <form
+        [formGroup]="filterGroup"
+        class="filter-form"
+        fxLayout="column"
+        fxLayoutAlign="center none"
+        fxLayoutGap="3.5vh">
         <div class="filter-search-category" fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="search-field" color="warn" appearance="outline">
-            <mat-label>Пошук</mat-label>
+            <mat-label>{{ 'PAYMENTS.SEARCH' | translate }}</mat-label>
             <span matPrefix class="search-preffix">
               <i class="fa-solid fa-magnifying-glass"></i>
             </span>
-            <input type="text" matInput placeholder="Почніть вводити назву.." [formControl]="searchField" />
+            <input type="text" matInput placeholder="Введіть назву" formControlName="searchDescription" />
             @if (searchField.value) {
               <button matSuffix mat-icon-button aria-label="Clear" (click)="searchField.setValue('')">
                 <mat-icon>close</mat-icon>
@@ -158,67 +189,61 @@
             }
           </mat-form-field>
           <mat-form-field class="filter-select , text-form-field" color="warn" appearance="outline">
-            <mat-label>Категорія</mat-label>
-            <mat-select multiple>
+            <mat-label>{{ 'PAYMENTS.CATEGORY' | translate }}</mat-label>
+            <mat-select formControlName="searchCategory">
               @for (category of categoriesService.allCategories$ | async; track category) {
-                <mat-option [value]="$index">{{ category.title }}</mat-option>
+                <mat-option [value]="category.title">{{ category.title }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
         </div>
         <div class="filter-date-type" fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
-            <mat-label>Від</mat-label>
-            <input matInput [matDatepicker]="frompicker" />
+            <mat-label>{{ 'PAYMENTS.FROM' | translate }}</mat-label>
+            <input matInput formControlName="searchDateFrom" [matDatepicker]="frompicker" />
             <mat-datepicker-toggle matIconSuffix [for]="frompicker"></mat-datepicker-toggle>
             <mat-datepicker #frompicker></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
-            <mat-label>До</mat-label>
-            <input matInput [matDatepicker]="topicker" />
+            <mat-label>{{ 'PAYMENTS.TO' | translate }}</mat-label>
+            <input matInput formControlName="searchDateTo" [matDatepicker]="topicker" />
             <mat-datepicker-toggle matIconSuffix [for]="topicker"></mat-datepicker-toggle>
             <mat-datepicker #topicker></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field class="filter-select , text-form-field" color="warn" appearance="outline">
-            <mat-label>Тип</mat-label>
-            <mat-select multiple>
-              @for (transactionType of transactionTypes; track transactionType) {
-                <mat-option [value]="transactionType.value">{{ transactionType.viewValue }}</mat-option>
-              }
-            </mat-select>
           </mat-form-field>
         </div>
         <div class="filter-price-buttons" fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
-            <mat-label>Від</mat-label>
-            <input matInput type="number" maxlength="10" placeholder="Сума" />
+            <mat-label>{{ 'PAYMENTS.FROM' | translate }}</mat-label>
+            <input matInput type="number" formControlName="searchSizeFrom" maxlength="10" placeholder="Сума" />
             <span matSuffix class="sum-suffix">
               <i class="fa-solid fa-hryvnia-sign"></i>
             </span>
           </mat-form-field>
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
-            <mat-label>До</mat-label>
-            <input matInput type="number" maxlength="10" placeholder="Сума" />
+            <mat-label>{{ 'PAYMENTS.TO' | translate }}</mat-label>
+            <input matInput type="number" formControlName="searchSizeTo" maxlength="10" placeholder="Сума" />
             <span matSuffix class="sum-suffix">
               <i class="fa-solid fa-hryvnia-sign"></i>
             </span>
           </mat-form-field>
-          <button mat-raised-button class="clear-filter-button">Очистити</button>
-          <button mat-raised-button class="apply-filter-button" color="warn">Застосувати</button>
+          <button mat-raised-button class="clear-filter-button" (click)="onClearFilters()">{{ 'PAYMENTS.CLEAR' | translate }}</button>
+          <button mat-raised-button class="apply-filter-button" color="warn" type="submit" (click)="onSubmitFilter()">
+            {{ 'PAYMENTS.APPLY' | translate }}
+          </button>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="payments-container">
-    <div class="new-text">
+  <div class="payments-container" fxLayout="column">
+    <div class="history-text">
       <span class="text">
         <i class="fa-solid fa-clock-rotate-left"></i>
-        Історія
+        {{ 'PAYMENTS.HISTORY' | translate }}
       </span>
     </div>
     <mat-tab-group color="warn">
-      <mat-tab label="Витрати">
+      <mat-tab label="{{ 'PAYMENTS.EXPENSES' | translate }}">
         <mat-paginator
           fxLayoutAlign="none center"
           [length]="this.paymentService.totalExpenses$ | async"
@@ -226,7 +251,7 @@
           (page)="onPageChange($event, 'expense')"></mat-paginator>
         <table mat-table [dataSource]="this.paymentService.allExpenses$ | async">
           <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.CATEGORY' | translate }}</th>
             <td mat-cell *matCellDef="let element">
               <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
                 {{ element.category.title }}
@@ -234,22 +259,22 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.NAME' | translate }}</th>
             <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
           </ng-container>
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.DATE' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ getDateByISO(element.expensesDate) }}</td>
           </ng-container>
           <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.SUM_UAH' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </mat-tab>
-      <mat-tab label="Прибутки">
+      <mat-tab label="{{ 'PAYMENTS.INCOMES' | translate }}">
         <mat-paginator
           fxLayoutAlign="none center"
           [length]="this.paymentService.totalIncomes$ | async"
@@ -257,7 +282,7 @@
           (page)="onPageChange($event, 'income')"></mat-paginator>
         <table mat-table [dataSource]="this.paymentService.allIncomes$ | async">
           <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.CATEGORY' | translate }}</th>
             <td mat-cell *matCellDef="let element">
               <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
                 {{ element.category.title }}
@@ -265,22 +290,22 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.NAME' | translate }}</th>
             <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
           </ng-container>
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.DATE' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ getDateByISO(element.incomeDate) }}</td>
           </ng-container>
           <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.SUM_UAH' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.profit }}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </mat-tab>
-      <mat-tab label="Витрати/Регулярні">
+      <mat-tab label="{{ 'PAYMENTS.EXPENSES_REGULAR' | translate }}">
         <mat-paginator
           fxLayoutAlign="none center"
           [length]="this.paymentService.totalExpenseRegulars$ | async"
@@ -288,7 +313,7 @@
           (page)="onPageChange($event, 'expense-regular')"></mat-paginator>
         <table mat-table [dataSource]="this.paymentService.allExpenseRegulars$ | async">
           <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.CATEGORY' | translate }}</th>
             <td mat-cell *matCellDef="let element">
               <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
                 {{ element.category.title }}
@@ -296,30 +321,30 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.NAME' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.title }}</td>
           </ng-container>
           <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Опис</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.DESCRIPTION' | translate }}</th>
             <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
           </ng-container>
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.DATE' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ getDateByISO(element.lastPaymentDate) }}</td>
           </ng-container>
           <ng-container matColumnDef="periodicity">
-            <th mat-header-cell *matHeaderCellDef>Періодичність</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.PERIODICITY' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.periodicity }}</td>
           </ng-container>
           <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.SUM_UAH' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumnsRegular"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumnsRegular"></tr>
         </table>
       </mat-tab>
-      <mat-tab label="Надходження/Регулярні">
+      <mat-tab label="{{ 'PAYMENTS.INCOMES_REGULAR' | translate }}">
         <mat-paginator
           fxLayoutAlign="none center"
           [length]="this.paymentService.totalIncomeRegulars$ | async"
@@ -327,7 +352,7 @@
           (page)="onPageChange($event, 'income-regular')"></mat-paginator>
         <table mat-table [dataSource]="this.paymentService.allIncomeRegulars$ | async">
           <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.CATEGORY' | translate }}</th>
             <td mat-cell *matCellDef="let element">
               <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
                 {{ element.category.title }}
@@ -335,23 +360,23 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.NAME' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.title }}</td>
           </ng-container>
           <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Опис</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.DESCRIPTION' | translate }}</th>
             <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
           </ng-container>
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.DATE' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ getDateByISO(element.lastPaymentDate) }}</td>
           </ng-container>
           <ng-container matColumnDef="periodicity">
-            <th mat-header-cell *matHeaderCellDef>Періодичність</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.PERIODICITY' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.periodicity }}</td>
           </ng-container>
           <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENTS.SUM_UAH' | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.profit }}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumnsRegular"></tr>

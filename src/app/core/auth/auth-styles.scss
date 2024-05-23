@@ -1,4 +1,4 @@
-@import '../../shared/styles/variables'; //unfixable for now
+@import '../../shared/styles/variables';
 
 .overall-page {
   height: $page-height;
@@ -10,9 +10,9 @@ form {
   width: 350px;
   height: auto;
   border-radius: 50px;
-  -webkit-box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
-  -moz-box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
-  box-shadow: 0 2px 24px -11px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 0 2px 24px -11px rgba(0, 0, 0, 0.54);
+  -moz-box-shadow: 0 2px 24px -11px rgba(0, 0, 0, 0.54);
+  box-shadow: 0 2px 24px -11px rgba(0, 0, 0, 0.54);
   padding: 15px 15px 30px 15px;
   background: #f1f1f1;
 }

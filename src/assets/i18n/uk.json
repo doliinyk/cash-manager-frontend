@@ -32,6 +32,14 @@
   "EMAIL_CONFIRMATION": {
     "TEXT": "Лист з активацією було надіслано на електронну пошту"
   },
+  "FORGOT-PASSWORD": {
+    "TITLE": "Відновлення паролю",
+    "EMAIL_LABLE": "Введіть електронну пошту",
+    "EMAIL_PH": "Електронна пошта",
+    "EMAIL_OK": "На електронну пошту надіслано лист з інструкціями",
+    "EMAIL_FAILED": "Користувача з даною поштою не існує",
+    "EMAIL_ERROR": "Неочікувана помилка"
+  },
   "EMAIL": {
     "CONGRATS": "Вітаємо!",
     "ACTIVATED": "Ваш аккаунт був успішно активований!",
@@ -49,11 +57,44 @@
     "CHANGE_PASSWORD_BUTTON": "Змінити пароль",
     "CATEGORIES_BUTTON": "Категорії",
     "PERIOD_LABEL": "Період",
-    "ALL_TIME_BUTTON": "Весь час",
+    "LAST_YEAR_BUTTON": "Остатній рік",
     "AVERAGE_LABEL": "Середні",
     "INCOME_LABEL": "Надходження",
     "EXPENSES_LABEL": "Витрати",
     "MONTHLY_LABEL": "За місяць"
+  },
+  "PIE_CHART": {
+    "NO_EXPENSES": "Немає витрат"
+  },
+  "PAYMENTS": {
+    "NEW": "Новий",
+    "TYPE": "Тип",
+    "DESCRIPTION": "Опис",
+    "NAME": "Назва",
+    "CATEGORY": "Категорія",
+    "AMOUNT": "Сума",
+    "DATE": "Дата",
+    "PERIODICITY": "Періодичність (дні)",
+    "ADD": "Додати",
+    "NEXT": "Далі",
+    "BACK": "Назад",
+    "RESET": "Спочатку",
+    "FILTERS": "Фільтри",
+    "SEARCH": "Пошук",
+    "FROM": "Від",
+    "TO": "До",
+    "CLEAR": "Очистити",
+    "APPLY": "Застосувати",
+    "HISTORY": "Історія",
+    "EXPENSES": "Витрати",
+    "INCOMES": "Прибутки",
+    "EXPENSES_REGULAR": "Витрати/Регулярні",
+    "INCOMES_REGULAR": "Надходження/Регулярні",
+    "SUM_UAH": "Сума ₴",
+    "income-0": "Прибуток",
+    "expense-1": "Витрата",
+    "income-regular-2": "Регулярний прибуток",
+    "expense-regular-3": "Регулярна витрата"
   },
   "CATEGORY_DIALOG": {
     "NEW_CATEGORY": "Нова категорія",
@@ -68,5 +109,13 @@
     "CATEGORIES_INCOME": "Категорії (Прибутки)",
     "DELETE_BUTTON": "Видалити",
     "CLOSE_BUTTON": "Закрити"
+  },
+  "PASSWORD_DIALOG": {
+    "PASSWORD_TITLE": "Змінити пароль",
+    "OLD_PASSWORD_LABEL": "Старий пароль",
+    "NEW_PASSWORD_LABEL": "Новий пароль",
+    "PASSWORD_PH": "Пароль",
+    "DECLINE": "Відміна",
+    "SEND": "Надіслати"
   }
 }

@@ -43,10 +43,14 @@
             <i class="fa-solid fa-arrow-up"></i>
             <span class="monthly-plus-text">{{ monthlyExpense }}</span>
           </div>
-        } @else {
+        } @else if (this.monthlyExpense < 0) {
           <div class="monthly-minus" fxLayoutAlign="center center" fxLayoutGap="3px">
             <i class="fa-solid fa-arrow-down"></i>
             <span class="monthly-minus-text">{{ monthlyExpense }}</span>
+          </div>
+        } @else {
+          <div class="monthly-neutral" fxLayoutAlign="center center" fxLayoutGap="3px">
+            <span class="monthly-neutral-text">{{ monthlyExpense }}</span>
           </div>
         }
       </span>

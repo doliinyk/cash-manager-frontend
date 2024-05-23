@@ -12,9 +12,11 @@ import {
   GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
+  GetExpensesByFilterParams,
   GetIncomeRegulars,
   GetIncomes,
-  GetIncomesByDate
+  GetIncomesByDate,
+  GetIncomesByFilterParams
 } from 'shared/store/payments/payments.actions';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
@@ -146,6 +148,40 @@ export class PaymentsState {
     dispatch(new GetIncomes(Payments.incomes, page, size));
     dispatch(new GetExpenseRegulars(Payments.expenseregulars, page, size));
     dispatch(new GetIncomeRegulars(Payments.incomeregulars, page, size));
+  }
+
+  @Action(GetExpensesByFilterParams)
+  getExpensesByFilterParmas(
+    { patchState }: StateContext<PaymentsStateModel>,
+    { url, params }: GetExpensesByFilterParams
+  ) {
+    return this.httpClient
+      .get<ExpensePayload>(url, { params: params })
+      .pipe(
+        tap((payload: ExpensePayload) => {
+          patchState({
+            allExpenses: payload.content,
+            totalExpenses: payload.totalElements
+          });
+        })
+      );
+  }
+
+  @Action(GetIncomesByFilterParams)
+  getIncomesByFilterParams(
+    { patchState }: StateContext<PaymentsStateModel>,
+    { url, params }: GetIncomesByFilterParams
+  ) {
+    return this.httpClient
+      .get<IncomePayload>(url, { params: params })
+      .pipe(
+        tap((payload: IncomePayload) => {
+          patchState({
+            allIncomes: payload.content,
+            totalExpenses: payload.totalElements
+          });
+        })
+      );
   }
 
   @Action(GetExpensesByDate)
