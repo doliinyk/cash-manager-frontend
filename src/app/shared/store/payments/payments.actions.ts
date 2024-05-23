@@ -1,3 +1,4 @@
+import {HttpParams} from "@angular/common/http";
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
 
@@ -50,25 +51,21 @@ export class GetAllPayments {
   ) {}
 }
 
-export class GetExpensesByDescription {
-  static readonly type = '[payments] get expenses by description';
+export class GetExpensesByFilterParams {
+  static readonly type = '[payments] get expenses by filter params';
 
   constructor(
     public url: string,
-    public page: number,
-    public size: number,
-    public description: string
+    public params: HttpParams
   ) {}
 }
 
-export class GetIncomesByDescription {
-  static readonly type = '[payments] get incomes by description';
+export class GetIncomesByFilterParams {
+  static readonly type = '[payments] get incomes by filter params';
 
   constructor(
     public url: string,
-    public page: number,
-    public size: number,
-    public description: string
+    public params: HttpParams
   ) {}
 }
 

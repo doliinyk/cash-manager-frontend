@@ -12,11 +12,11 @@ import {
   GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
-  GetExpensesByDescription,
+  GetExpensesByFilterParams,
   GetIncomeRegulars,
   GetIncomes,
   GetIncomesByDate,
-  GetIncomesByDescription
+  GetIncomesByFilterParams
 } from 'shared/store/payments/payments.actions';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
@@ -150,13 +150,13 @@ export class PaymentsState {
     dispatch(new GetIncomeRegulars(Payments.incomeregulars, page, size));
   }
 
-  @Action(GetExpensesByDescription)
-  getExpensesByDescription(
+  @Action(GetExpensesByFilterParams)
+  getExpensesByFilterParmas(
     { patchState }: StateContext<PaymentsStateModel>,
-    { url, page, size, description }: GetExpensesByDescription
+    { url, params }: GetExpensesByFilterParams
   ) {
     return this.httpClient
-      .get<ExpensePayload>(url, { params: { page, size, sort: 'expensesDate,DESC', description } })
+      .get<ExpensePayload>(url, { params: params })
       .pipe(
         tap((payload: ExpensePayload) => {
           patchState({
@@ -167,13 +167,13 @@ export class PaymentsState {
       );
   }
 
-  @Action(GetIncomesByDescription)
-  getIncomesByDescription(
+  @Action(GetIncomesByFilterParams)
+  getIncomesByFilterParams(
     { patchState }: StateContext<PaymentsStateModel>,
-    { url, page, size, description }: GetIncomesByDescription
+    { url, params }: GetIncomesByFilterParams
   ) {
     return this.httpClient
-      .get<IncomePayload>(url, { params: { page, size, sort: 'incomeDate,DESC', description } })
+      .get<IncomePayload>(url, { params: params })
       .pipe(
         tap((payload: IncomePayload) => {
           patchState({

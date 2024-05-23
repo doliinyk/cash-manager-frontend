@@ -38,6 +38,13 @@
   "EMAIL_CONFIRMATION": {
     "TEXT": "List z aktywacją odesłano na e-maila"
   },
+  "FORGOT-PASSWORD": {
+    "TITLE": "Odzyskiwanie hasła",
+    "EMAIL_LABLE": "Wprowadź adres e-mail",
+    "EMAIL_PH": "Adres e-mail",
+    "EMAIL_OK": "Na Twój adres e-mail została wysłana wiadomość z instrukcjami",
+    "EMAIL_FAILED": "Użytkownik o podanym adresie e-mail nie istnieje"
+  },
   "PROFILE": {
     "EDIT_BUTTON": "Edytuj",
     "SAVE_BUTTON": "Zapisz",
@@ -79,7 +86,11 @@
     "INCOMES": "Przychody",
     "EXPENSES_REGULAR": "Wydatki/Regularne",
     "INCOMES_REGULAR": "Przychody/Regularne",
-    "SUM_UAH": "Kwota ₴"
+    "SUM_UAH": "Kwota ₴",
+    "income-0": "Dochód",
+    "expense-1": "Wydatek",
+    "income-regular-2": "Regularny dochód",
+    "expense-regular-3": "Regularny wydatek"
   },
   "CATEGORY_DIALOG": {
     "NEW_CATEGORY": "Nowa kategoria",

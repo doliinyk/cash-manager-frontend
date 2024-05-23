@@ -1,7 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
+import {HttpParams} from "@angular/common/http";
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {TranslateService} from "@ngx-translate/core";
 import { map, Observable, Subscription } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesService } from 'shared/services/categories/categories.service';
@@ -45,8 +47,18 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   });
 
   searchField = new FormControl('');
+  categoryFilterField = new FormControl('');
+  dateFromFilterField = new FormControl('');
+  dateToFilterField = new FormControl('');
+  sizeFromFilterField = new FormControl('');
+  sizeToFilterField = new FormControl('');
   filterGroup = this._formBuilder.group({
-    searchDescription: this.searchField
+    searchDescription: this.searchField,
+    searchCategory: this.categoryFilterField,
+    searchDateFrom: this.dateFromFilterField,
+    searchDateTo: this.dateToFilterField,
+    searchSizeFrom: this.sizeFromFilterField,
+    searchSizeTo: this.sizeToFilterField
   });
 
   categories: CategoryStateModel[] = [];
@@ -64,6 +76,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit() {
+    this.updateTranslations();
     this.paymentService.getAllPayments();
     this.categoriesService.getAllCategories();
     this.subcription = this.categoriesService.allCategories$.subscribe(categories => (this.categories = categories));
@@ -77,11 +90,21 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver,
     protected categoriesService: CategoriesService,
-    protected paymentService: PaymentsService
+    protected paymentService: PaymentsService,
+    private translationService: TranslateService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+  }
+
+  updateTranslations() {
+    this.transactionTypes = [
+      { value: 'income-0', viewValue: this.translationService.instant('PAYMENTS.income-0') },
+      { value: 'expense-1', viewValue: this.translationService.instant('PAYMENTS.expense-1') },
+      { value: 'income-regular-2', viewValue: this.translationService.instant('PAYMENTS.income-regular-2') },
+      { value: 'expense-regular-3', viewValue: this.translationService.instant('PAYMENTS.expense-regular-3') }
+    ];
   }
 
   onTransactionChanged(event: string) {
@@ -143,8 +166,42 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   onSubmitFilter() {
     const transactionData = this.filterGroup.value;
-    this.paymentService.getExpensesByDescription(transactionData.searchDescription);
-    this.paymentService.getIncomesByDescription(transactionData.searchDescription);
+    let params = new HttpParams();
+
+    if (transactionData.searchDescription) {
+      params = params.set('description', transactionData.searchDescription);
+    }
+    if (transactionData.searchCategory) {
+      params = params.set('categoryTitle', transactionData.searchCategory);
+    }
+    if (transactionData.searchDateFrom) {
+      params = params.set('fromByDate', new Date(transactionData.searchDateFrom).toISOString());
+    }
+    if (transactionData.searchDateTo) {
+      params = params.set('toByDate', new Date(transactionData.searchDateTo).toISOString());
+    }
+    if (transactionData.searchSizeFrom) {
+      params = params.set('fromBySize', transactionData.searchSizeFrom);
+    }
+    if (transactionData.searchSizeTo) {
+      params = params.set('toBySize', transactionData.searchSizeTo);
+    }
+    params.set('page', this.paginator.pageIndex);
+    params.set('size', this.paginator.pageSize);
+    this.paymentService.getExpensesByFilterParams(params);
+    this.paymentService.getIncomesByFilterParams(params);
+  }
+
+  onClearFilters() {
+    this.filterGroup.reset({
+      searchDescription: null,
+      searchCategory: null,
+      searchDateFrom: null,
+      searchDateTo: null,
+      searchSizeFrom: null,
+      searchSizeTo: null
+    });
+    this.paymentService.getAllPayments();
   }
 
   onPageChange(event: PageEvent, type: string) {

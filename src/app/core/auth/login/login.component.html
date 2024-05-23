@@ -2,17 +2,17 @@
   <form fxLayout="column" fxLayoutAlign="none center" [formGroup]="loginForm">
     <span class="color-grad" fxLayout="fxLayout" fxLayoutAlign="center center"> {{ 'LOGIN.TITLE' | translate }} </span>
     <div class="inputs-container" fxLayout="column" fxLayoutAlign="none center">
-      <mat-form-field color="accent" appearance="outline">
+      <mat-form-field color="warn" appearance="outline">
         <mat-label>{{ 'LOGIN.EMAIL_PH' | translate }}</mat-label>
         <input matInput type="email" formControlName="login" />
       </mat-form-field>
-      <mat-form-field color="accent" appearance="outline">
+      <mat-form-field color="warn" appearance="outline">
         <mat-label>{{ 'LOGIN.PASSWORD_PH' | translate }}</mat-label>
         <input matInput type="password" formControlName="password" />
       </mat-form-field>
     </div>
     <div class="forgot-password">
-      <a href="#" target="_blank">{{ 'LOGIN.FORGOT' | translate }}</a>
+      <a href="#" routerLink="/forgot-password">{{ 'LOGIN.FORGOT' | translate }}</a>
     </div>
     <div class="two-buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="25px">
       <button mat-raised-button class="log-register-button" routerLink="/registration">

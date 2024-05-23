@@ -32,6 +32,13 @@
   "EMAIL_CONFIRMATION": {
     "TEXT": "An activation letter has been sent to e-mail"
   },
+  "FORGOT-PASSWORD": {
+    "TITLE": "Password recovery",
+    "EMAIL_LABLE": "Enter email address",
+    "EMAIL_PH": "Email Address",
+    "EMAIL_OK": "An email with instructions has been sent to your email address",
+    "EMAIL_FAILED": "User with this email address does not exist"
+  },
   "EMAIL": {
     "CONGRATS": "Congratulations!",
     "ACTIVATED": "Your account was successfully activated!",
@@ -79,7 +86,11 @@
     "INCOMES": "Incomes",
     "EXPENSES_REGULAR": "Expenses/Regular",
     "INCOMES_REGULAR": "Incomes/Regular",
-    "SUM_UAH": "Amount ₴"
+    "SUM_UAH": "Amount ₴",
+    "income-0": "Income",
+    "expense-1": "Expense",
+    "income-regular-2": "Regular Income",
+    "expense-regular-3": "Regular Expense"
   },
   "CATEGORY_DIALOG": {
     "NEW_CATEGORY": "New category",

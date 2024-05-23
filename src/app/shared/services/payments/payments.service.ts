@@ -1,8 +1,13 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { Payments } from 'shared/enums/payments';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
+import { PaymentsStateModel } from 'shared/models/payments';
+import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
+import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
 import {
   CreateExpensePayment,
   CreateExpenseRegularPayment,
@@ -12,17 +17,13 @@ import {
   GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
-  GetExpensesByDescription,
+  GetExpensesByFilterParams,
   GetIncomeRegulars,
   GetIncomes,
   GetIncomesByDate,
-  GetIncomesByDescription
+  GetIncomesByFilterParams
 } from 'shared/store/payments/payments.actions';
 import { PaymentsState } from 'shared/store/payments/payments.state';
-import { PaymentsStateModel } from 'shared/models/payments';
-import { Payments } from 'shared/enums/payments';
-import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
-import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
 
 @Injectable({
   providedIn: 'root'
@@ -69,12 +70,12 @@ export class PaymentsService {
     this.store.dispatch(new GetAllPayments(0, 10));
   }
 
-  getExpensesByDescription(description: string) {
-    this.store.dispatch(new GetExpensesByDescription(Payments.expenses, 0, 1000000, description));
+  getExpensesByFilterParams(params: HttpParams) {
+    this.store.dispatch(new GetExpensesByFilterParams(Payments.expenses, params));
   }
 
-  getIncomesByDescription(description: string) {
-    this.store.dispatch(new GetIncomesByDescription(Payments.incomes, 0, 1000000, description));
+  getIncomesByFilterParams(params: HttpParams) {
+    this.store.dispatch(new GetIncomesByFilterParams(Payments.incomes, params));
   }
 
   getExpensesByDate(from: string, to: string) {

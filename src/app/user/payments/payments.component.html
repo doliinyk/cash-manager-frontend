@@ -190,9 +190,9 @@
           </mat-form-field>
           <mat-form-field class="filter-select , text-form-field" color="warn" appearance="outline">
             <mat-label>{{ 'PAYMENTS.CATEGORY' | translate }}</mat-label>
-            <mat-select multiple>
+            <mat-select formControlName="searchCategory">
               @for (category of categoriesService.allCategories$ | async; track category) {
-                <mat-option [value]="$index">{{ category.title }}</mat-option>
+                <mat-option [value]="category.title">{{ category.title }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -200,13 +200,13 @@
         <div class="filter-date-type" fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
             <mat-label>{{ 'PAYMENTS.FROM' | translate }}</mat-label>
-            <input matInput [matDatepicker]="frompicker" />
+            <input matInput formControlName="searchDateFrom" [matDatepicker]="frompicker" />
             <mat-datepicker-toggle matIconSuffix [for]="frompicker"></mat-datepicker-toggle>
             <mat-datepicker #frompicker></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
             <mat-label>{{ 'PAYMENTS.TO' | translate }}</mat-label>
-            <input matInput [matDatepicker]="topicker" />
+            <input matInput formControlName="searchDateTo" [matDatepicker]="topicker" />
             <mat-datepicker-toggle matIconSuffix [for]="topicker"></mat-datepicker-toggle>
             <mat-datepicker #topicker></mat-datepicker>
           </mat-form-field>
@@ -214,19 +214,19 @@
         <div class="filter-price-buttons" fxLayout="row" fxLayoutGap="2%">
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
             <mat-label>{{ 'PAYMENTS.FROM' | translate }}</mat-label>
-            <input matInput type="number" maxlength="10" placeholder="Сума" />
+            <input matInput type="number" formControlName="searchSizeFrom" maxlength="10" placeholder="Сума" />
             <span matSuffix class="sum-suffix">
               <i class="fa-solid fa-hryvnia-sign"></i>
             </span>
           </mat-form-field>
           <mat-form-field class="text-form-field" color="warn" appearance="outline">
             <mat-label>{{ 'PAYMENTS.TO' | translate }}</mat-label>
-            <input matInput type="number" maxlength="10" placeholder="Сума" />
+            <input matInput type="number" formControlName="searchSizeTo" maxlength="10" placeholder="Сума" />
             <span matSuffix class="sum-suffix">
               <i class="fa-solid fa-hryvnia-sign"></i>
             </span>
           </mat-form-field>
-          <button mat-raised-button class="clear-filter-button">{{ 'PAYMENTS.CLEAR' | translate }}</button>
+          <button mat-raised-button class="clear-filter-button" (click)="onClearFilters()">{{ 'PAYMENTS.CLEAR' | translate }}</button>
           <button mat-raised-button class="apply-filter-button" color="warn" type="submit" (click)="onSubmitFilter()">
             {{ 'PAYMENTS.APPLY' | translate }}
           </button>
@@ -235,8 +235,8 @@
     </div>
   </div>
 
-  <div class="payments-container">
-    <div class="new-text">
+  <div class="payments-container" fxLayout="column">
+    <div class="history-text">
       <span class="text">
         <i class="fa-solid fa-clock-rotate-left"></i>
         {{ 'PAYMENTS.HISTORY' | translate }}
