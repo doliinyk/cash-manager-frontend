@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent implements OnInit, OnDestroy {
+export class ForgotPasswordComponent implements OnDestroy {
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder
@@ -20,8 +20,6 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   forgotGroup = this.formBuilder.group({
     email: this.emailField
   });
-
-  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

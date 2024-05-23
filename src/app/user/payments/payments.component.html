@@ -226,7 +226,9 @@
               <i class="fa-solid fa-hryvnia-sign"></i>
             </span>
           </mat-form-field>
-          <button mat-raised-button class="clear-filter-button" (click)="onClearFilters()">{{ 'PAYMENTS.CLEAR' | translate }}</button>
+          <button mat-raised-button class="clear-filter-button" (click)="onClearFilters()">
+            {{ 'PAYMENTS.CLEAR' | translate }}
+          </button>
           <button mat-raised-button class="apply-filter-button" color="warn" type="submit" (click)="onSubmitFilter()">
             {{ 'PAYMENTS.APPLY' | translate }}
           </button>

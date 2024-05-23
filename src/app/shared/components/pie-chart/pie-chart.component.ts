@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import {combineLatest, map, Observable, Subject, takeUntil} from 'rxjs';
+import { combineLatest, map, Observable, Subject, takeUntil } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
 import { CategoriesService } from 'shared/services/categories/categories.service';
-import {PaymentsService} from "shared/services/payments/payments.service";
+import { PaymentsService } from 'shared/services/payments/payments.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -15,19 +15,24 @@ export class PieChartComponent implements OnInit, OnDestroy {
   titles: string[] = [];
   colors: string[] = [];
   values: number[] = [];
-  expensesWithCategory: { category: CategoryStateModel, sum: number }[] = [];
+  expensesWithCategory: { category: CategoryStateModel; sum: number }[] = [];
   totalSum: number = 0;
   pieChart: any;
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private categoriesService: CategoriesService, private paymentsService: PaymentsService) {}
+  constructor(
+    private categoriesService: CategoriesService,
+    private paymentsService: PaymentsService
+  ) {}
 
   ngOnInit(): void {
-    this.getExpensesByCategory().pipe(takeUntil(this.destroy$)).subscribe(data => {
-      this.expensesWithCategory = data;
-      this.updateChartData(this.expensesWithCategory);
-      this.totalSum = this.getTotalSum(this.expensesWithCategory);
-    })
+    this.getExpensesByCategory()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.expensesWithCategory = data;
+        this.updateChartData(this.expensesWithCategory);
+        this.totalSum = this.getTotalSum(this.expensesWithCategory);
+      });
   }
 
   public ngOnDestroy(): void {
@@ -35,27 +40,24 @@ export class PieChartComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  getTotalSum(expenses: { category: CategoryStateModel, sum: number}[]): number {
+  getTotalSum(expenses: { category: CategoryStateModel; sum: number }[]): number {
     return expenses.reduce((total, item) => total + item.sum, 0);
   }
 
-  getExpensesByCategory(): Observable<{ category: CategoryStateModel, sum: number }[]> {
-    return combineLatest([
-      this.paymentsService.allExpenses$,
-      this.categoriesService.expenseCategories$
-    ]).pipe(
+  getExpensesByCategory(): Observable<{ category: CategoryStateModel; sum: number }[]> {
+    return combineLatest([this.paymentsService.allExpenses$, this.categoriesService.expenseCategories$]).pipe(
       map(([expenses, categories]) => {
         return categories.map(category => {
           const totalSum = expenses
             .filter(expense => expense.category?.title === category.title)
-            .reduce((sum, expense) => sum + (expense.cost), 0);
+            .reduce((sum, expense) => sum + expense.cost, 0);
           return { category, sum: totalSum };
         });
       })
     );
   }
 
-  updateChartData(expenses: { category: CategoryStateModel, sum: number }[]) {
+  updateChartData(expenses: { category: CategoryStateModel; sum: number }[]) {
     this.titles = expenses.filter(data => data.sum !== 0).map(data => data.category.title);
     this.colors = expenses.filter(data => data.sum !== 0).map(data => data.category.colorCode);
     this.values = expenses.filter(data => data.sum !== 0).map(data => data.sum);

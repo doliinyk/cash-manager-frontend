@@ -1,4 +1,4 @@
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from '@angular/common/http';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
 
