@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { CategoryStateModel } from 'shared/models/category';
-import { CategoryExpenseService } from 'shared/services/user/category.expense.service';
+import { CategoriesService } from 'shared/services/categories/categories.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -15,33 +15,34 @@ export class PieChartComponent implements OnInit, OnDestroy {
   colors: string[] = [];
   values: number[] = [];
   pieChart: any;
-  subscription: Subscription | undefined;
+  private readonly destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private categoryService: CategoryExpenseService) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
-    this.subscription = this.categoryService.categories$.subscribe(categories => {
-      if (categories && categories.length > 0) {
-        this.categories = categories;
-        this.updateChartData();
-      }
+    this.categoriesService.expenseCategories$.pipe(takeUntil(this.destroy$)).subscribe(data => {
+      this.updateChartData(data);
     });
   }
 
   public ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
-  updateChartData() {
-    this.titles = this.categories.map(category => category.title || 'Error');
-    this.colors = this.categories.map(category => category.colorCode || '#fff');
-    for (const key in this.categories) {
+  updateChartData(data: CategoryStateModel[]) {
+    this.values = [];
+    this.titles = data.map(category => category.title || 'Error');
+    this.colors = data.map(category => category.colorCode || '#fff');
+    for (const key in data) {
       this.values.push(10);
+      console.log(key);
     }
     this.renderChart();
   }
 
   renderChart() {
+    if (this.pieChart) this.pieChart.destroy();
     this.pieChart = new Chart('pieChart', {
       type: 'doughnut',
       data: {

@@ -19,10 +19,12 @@ export class UserLoginSuccess {
 
 export class UserLoginFailed {
   static readonly type = '[user] login failed';
+
   constructor() {}
 }
 
 export class GetUser {
   static readonly type = '[user] get User';
+
   constructor() {}
 }

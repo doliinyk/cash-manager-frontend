@@ -1,5 +1,69 @@
-.bar-container {
-  margin-top: 10px;
-  height: 100%;
+.gistogram-row {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.bar-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.gistogram-row-barchart {
+  height: 95%;
+  width: 60%;
+  margin-top: 10px;
+}
+
+.gistogram-row-other {
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 20px;
+  width: 40%;
+  height: 100%;
+}
+
+@media (max-width: 1230px) {
+  .gistogram-row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .gistogram-row-other {
+    width: 100%;
+  }
+}
+
+.others {
+  width: 100%;
+}
+
+.gistogram-row-other-title {
+  background: darkorange;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.gistogram-row-other-subtitle {
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.monthly-plus,
+.monthly-minus {
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.monthly-plus {
+  background: green;
+}
+
+.monthly-minus {
+  background: red;
 }

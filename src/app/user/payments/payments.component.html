@@ -11,7 +11,7 @@
       <mat-stepper [linear]="true" [orientation]="(stepperOrientation | async)!" color="warn" #stepper>
         <mat-step [completed]="transactionField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Виберіть тип</ng-template>
+            <ng-template matStepLabel>Тип</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Тип</mat-label>
               <mat-select formControlName="transactionType" (selectionChange)="onTransactionChanged($event.value)">
@@ -27,16 +27,32 @@
         </mat-step>
         <mat-step [completed]="nameField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Введіть назву</ng-template>
-            <mat-form-field class="search-field" color="warn" appearance="outline">
-              <mat-label>Назва</mat-label>
-              <input matInput type="text" placeholder="Назва" formControlName="name" required />
-              @if (nameField.value) {
-                <button matSuffix mat-icon-button aria-label="Clear" (click)="nameField.setValue('')">
-                  <mat-icon>close</mat-icon>
-                </button>
+            <ng-template matStepLabel>Опис</ng-template>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <mat-form-field color="warn" appearance="outline">
+                <mat-label>Назва</mat-label>
+                <input matInput type="text" placeholder="Назва" formControlName="name" required />
+                @if (nameField.value) {
+                  <button matSuffix mat-icon-button aria-label="Clear" (click)="nameField.setValue('')">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                }
+              </mat-form-field>
+              @if (
+                this.transactionField.value === transactionTypes[2].value ||
+                this.transactionField.value === transactionTypes[3].value
+              ) {
+                <mat-form-field class="search-field" color="warn" appearance="outline">
+                  <mat-label>Опис</mat-label>
+                  <input matInput type="text" placeholder="Назва" formControlName="descriptionRegular" required />
+                  @if (descriptionField.value) {
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="descriptionField.setValue('')">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  }
+                </mat-form-field>
               }
-            </mat-form-field>
+            </div>
             <div fxLayoutGap="10px">
               <button class="stepper-button" mat-raised-button matStepperNext>Далі</button>
               <button class="stepper-button" mat-button matStepperPrevious>Назад</button>
@@ -45,12 +61,12 @@
         </mat-step>
         <mat-step [completed]="categoryField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Виберіть категорію</ng-template>
+            <ng-template matStepLabel>Категорія</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Категорія</mat-label>
               <mat-select formControlName="category">
-                @for (category of selectedCategories; track category) {
-                  <mat-option [value]="$index">{{ category.title }}</mat-option>
+                @for (category of selectedCategories | async; track category) {
+                  <mat-option [value]="category.title">{{ category.title }}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -62,7 +78,7 @@
         </mat-step>
         <mat-step [completed]="amountField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Введіть суму</ng-template>
+            <ng-template matStepLabel>Сума</ng-template>
             <mat-form-field class="text-form-field" color="warn" appearance="outline">
               <mat-label>Сума</mat-label>
               <input matInput formControlName="amount" type="number" maxlength="10" placeholder="Сума" required />
@@ -78,13 +94,30 @@
         </mat-step>
         <mat-step [completed]="dateField.valid">
           <form [formGroup]="formGroup">
-            <ng-template matStepLabel>Виберіть дату</ng-template>
-            <mat-form-field class="text-form-field" color="warn" appearance="outline">
-              <mat-label>Дата</mat-label>
-              <input matInput formControlName="date" [matDatepicker]="picker" required />
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            <ng-template matStepLabel>Дата</ng-template>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <mat-form-field class="text-form-field" color="warn" appearance="outline">
+                <mat-label>Дата</mat-label>
+                <input matInput formControlName="date" [matDatepicker]="picker" required />
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              @if (
+                this.transactionField.value === transactionTypes[2].value ||
+                this.transactionField.value === transactionTypes[3].value
+              ) {
+                <mat-form-field class="text-form-field" color="warn" appearance="outline">
+                  <mat-label>Періодичність (дні)</mat-label>
+                  <input
+                    matInput
+                    formControlName="periodicity"
+                    type="number"
+                    maxlength="10"
+                    placeholder="Сума"
+                    required />
+                </mat-form-field>
+              }
+            </div>
             <div fxLayoutAlign="none center" fxLayoutGap="10px">
               <button
                 class="stepper-button"
@@ -127,7 +160,7 @@
           <mat-form-field class="filter-select , text-form-field" color="warn" appearance="outline">
             <mat-label>Категорія</mat-label>
             <mat-select multiple>
-              @for (category of allCategories; track category) {
+              @for (category of categoriesService.allCategories$ | async; track category) {
                 <mat-option [value]="$index">{{ category.title }}</mat-option>
               }
             </mat-select>
@@ -185,17 +218,145 @@
       </span>
     </div>
     <mat-tab-group color="warn">
-      <mat-tab label="Усі">
-        <div class="scroll-container"></div>
+      <mat-tab label="Витрати">
+        <mat-paginator
+          fxLayoutAlign="none center"
+          [length]="this.paymentService.totalExpenses$ | async"
+          [pageSize]="10"
+          (page)="onPageChange($event, 'expense')"></mat-paginator>
+        <table mat-table [dataSource]="this.paymentService.allExpenses$ | async">
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
+                {{ element.category.title }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <td mat-cell *matCellDef="let element">{{ getDateByISO(element.expensesDate) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
       </mat-tab>
       <mat-tab label="Прибутки">
-        <div class="scroll-container"></div>
+        <mat-paginator
+          fxLayoutAlign="none center"
+          [length]="this.paymentService.totalIncomes$ | async"
+          [pageSize]="10"
+          (page)="onPageChange($event, 'income')"></mat-paginator>
+        <table mat-table [dataSource]="this.paymentService.allIncomes$ | async">
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
+                {{ element.category.title }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <td mat-cell *matCellDef="let element">{{ getDateByISO(element.incomeDate) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <td mat-cell *matCellDef="let element">{{ element.profit }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
       </mat-tab>
-      <mat-tab label="Витрати">
-        <div class="scroll-container"></div>
+      <mat-tab label="Витрати/Регулярні">
+        <mat-paginator
+          fxLayoutAlign="none center"
+          [length]="this.paymentService.totalExpenseRegulars$ | async"
+          [pageSize]="10"
+          (page)="onPageChange($event, 'expense-regular')"></mat-paginator>
+        <table mat-table [dataSource]="this.paymentService.allExpenseRegulars$ | async">
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
+                {{ element.category.title }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Опис</th>
+            <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <td mat-cell *matCellDef="let element">{{ getDateByISO(element.lastPaymentDate) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="periodicity">
+            <th mat-header-cell *matHeaderCellDef>Періодичність</th>
+            <td mat-cell *matCellDef="let element">{{ element.periodicity }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsRegular"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsRegular"></tr>
+        </table>
       </mat-tab>
-      <mat-tab label="Регулярні">
-        <div class="scroll-container"></div>
+      <mat-tab label="Надходження/Регулярні">
+        <mat-paginator
+          fxLayoutAlign="none center"
+          [length]="this.paymentService.totalIncomeRegulars$ | async"
+          [pageSize]="10"
+          (page)="onPageChange($event, 'income-regular')"></mat-paginator>
+        <table mat-table [dataSource]="this.paymentService.allIncomeRegulars$ | async">
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Категорія</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="cell-category" [style.background-color]="getColorByTitle(element.category.title)">
+                {{ element.category.title }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Назва</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Опис</th>
+            <td mat-cell *matCellDef="let element" class="cell-description">{{ element.description }}</td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Дата</th>
+            <td mat-cell *matCellDef="let element">{{ getDateByISO(element.lastPaymentDate) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="periodicity">
+            <th mat-header-cell *matHeaderCellDef>Періодичність</th>
+            <td mat-cell *matCellDef="let element">{{ element.periodicity }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Сума ₴</th>
+            <td mat-cell *matCellDef="let element">{{ element.profit }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsRegular"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsRegular"></tr>
+        </table>
       </mat-tab>
     </mat-tab-group>
   </div>

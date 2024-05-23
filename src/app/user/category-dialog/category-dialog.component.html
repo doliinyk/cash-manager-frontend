@@ -1,21 +1,36 @@
 <mat-dialog-content fxLayout="column" fxLayoutGap="10px">
-  <div class="new-category-container">
-    <span>Нова</span>
+  <div class="new-category-container" fxLayout="column" fxLayoutGap="20px">
+    <span class="new-text">{{ 'CATEGORY_DIALOG.NEW_CATEGORY' | translate }}</span>
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-      <div class="new-category-inputs" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+      <div class="new-category-inputs" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
         <button mat-icon-button (click)="colorPicker.click()" [style.color]="pickedColor">
           <mat-icon>palette</mat-icon>
         </button>
         <input type="color" class="color-picker-invisible" (input)="onColorChanged($event)" #colorPicker required />
         <mat-form-field appearance="outline" color="warn">
-          <mat-label>Назва</mat-label>
-          <input matInput type="text" placeholder="Категорія" [formControl]="newNameFormControl" #newCategoryInput />
+          <mat-label>{{ 'CATEGORY_DIALOG.NAME_LABEL' | translate }}</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ 'CATEGORY_DIALOG.NAME_PLACEHOLDER' | translate }}"
+            [formControl]="newNameFormControl"
+            #newCategoryInput />
         </mat-form-field>
       </div>
-      @if (newNameFormControl.invalid && (newNameFormControl.dirty || newNameFormControl.touched)) {
-        <div *ngIf="newNameFormControl.hasError('required')">Поле назви є обов'язковим</div>
-        <div *ngIf="newNameFormControl.hasError('maxlength')">Максимум символів: 20</div>
-      }
+      <mat-radio-group color="warn" [(ngModel)]="pickedType" fxLayout="column">
+        <mat-radio-button value="{{ Categories.expenses }}" checked
+          >{{ 'CATEGORY_DIALOG.EXPENSE' | translate }}
+        </mat-radio-button>
+        <mat-radio-button value="{{ Categories.incomes }}">{{ 'CATEGORY_DIALOG.INCOME' | translate }}</mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="newNameFormControl.invalid && (newNameFormControl.dirty || newNameFormControl.touched)">
+        <div *ngIf="newNameFormControl.hasError('required')">
+          {{ 'CATEGORY_DIALOG.NAME_REQUIRED_ERROR' | translate }}
+        </div>
+        <div *ngIf="newNameFormControl.hasError('maxlength')">
+          {{ 'CATEGORY_DIALOG.NAME_MAXLENGTH_ERROR' | translate }}
+        </div>
+      </div>
       <button
         mat-raised-button
         class="add-button"
@@ -23,25 +38,32 @@
         color="warn"
         [disabled]="!newNameFormControl.valid"
         (click)="onAppendCategory()">
-        Додати
+        {{ 'CATEGORY_DIALOG.ADD_BUTTON' | translate }}
       </button>
     </div>
   </div>
   <div>
-    <span>Категорії</span>
-    <mat-selection-list role="list">
-      @for (category of this.categories; track category) {
-        <mat-list-option>
-          <div matListItemIcon class="category-color" [style.background-color]="category.colorCode"></div>
-          <span matListItemTitle> {{ category.title }}</span>
-        </mat-list-option>
-      }
+    <mat-selection-list role="list" #categoriesList [multiple]="false" color="warn">
+      <span>{{ 'CATEGORY_DIALOG.CATEGORIES_EXPENSES' | translate }}</span>
+      <mat-list-option *ngFor="let category of categoriesService.expenseCategories$ | async" [value]="category">
+        <div matListItemIcon class="category-color" [style.background-color]="category.colorCode"></div>
+        <span matListItemTitle>{{ category.title }}</span>
+      </mat-list-option>
+      <mat-divider></mat-divider>
+      <span>{{ 'CATEGORY_DIALOG.CATEGORIES_INCOME' | translate }}</span>
+      <mat-list-option *ngFor="let category of categoriesService.incomeCategories$ | async" [value]="category">
+        <div matListItemIcon class="category-color" [style.background-color]="category.colorCode"></div>
+        <span matListItemTitle>{{ category.title }}</span>
+      </mat-list-option>
     </mat-selection-list>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-icon-button [disabled]="categoryPicked === 0">
+  <button
+    mat-icon-button
+    [disabled]="!categoriesList.selectedOptions.hasValue()"
+    (click)="onDeleteCategory(categoriesList.selectedOptions.selected[0].value)">
     <mat-icon>delete</mat-icon>
   </button>
-  <button mat-raised-button color="warn" matDialogClose>Ok</button>
+  <button mat-raised-button color="warn" matDialogClose>{{ 'CATEGORY_DIALOG.CLOSE_BUTTON' | translate }}</button>
 </mat-dialog-actions>
