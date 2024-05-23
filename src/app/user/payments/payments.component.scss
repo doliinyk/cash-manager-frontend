@@ -126,6 +126,20 @@ input[type='number'] {
   margin-left: 50px;
 }
 
+.history-text {
+  border-radius: 5px 5px 0 0;
+  font-size: 30px;
+  color: orange;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 58px;
+}
+
+mat-tab-group {
+  height: calc(100% - 58px);
+}
+
 mat-paginator {
   background: #f1f1f1;
   font-size: 15px;

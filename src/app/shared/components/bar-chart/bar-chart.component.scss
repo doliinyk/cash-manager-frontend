@@ -54,7 +54,8 @@
 }
 
 .monthly-plus,
-.monthly-minus {
+.monthly-minus,
+.monthly-neutral {
   color: white;
   padding: 5px;
   border-radius: 10px;
@@ -66,4 +67,8 @@
 
 .monthly-minus {
   background: red;
+}
+
+.monthly-neutral {
+  background: grey;
 }

@@ -1,8 +1,17 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
+import { Payments } from 'shared/enums/payments';
+import { ExpenseStateModel } from 'shared/models/expense-payment';
+import { ExpensePayload } from 'shared/models/expense-payments-payload';
+import { IncomeStateModel } from 'shared/models/income-payment';
+import { IncomePayload } from 'shared/models/income-payments-payload';
 import { PaymentsStateModel } from 'shared/models/payments';
+import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
+import { ExpenseRegularPayload } from 'shared/models/regular-expense-payments-payload';
+import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
+import { IncomeRegularPayload } from 'shared/models/regular-income-payments-payload';
 import {
   CreateExpensePayment,
   CreateExpenseRegularPayment,
@@ -12,19 +21,12 @@ import {
   GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
+  GetExpensesByFilterParams,
   GetIncomeRegulars,
   GetIncomes,
-  GetIncomesByDate
+  GetIncomesByDate,
+  GetIncomesByFilterParams
 } from 'shared/store/payments/payments.actions';
-import { ExpenseStateModel } from 'shared/models/expense-payment';
-import { IncomeStateModel } from 'shared/models/income-payment';
-import { ExpensePayload } from 'shared/models/expense-payments-payload';
-import { IncomePayload } from 'shared/models/income-payments-payload';
-import { Payments } from 'shared/enums/payments';
-import { ExpenseRegularPayload } from 'shared/models/regular-expense-payments-payload';
-import { IncomeRegularPayload } from 'shared/models/regular-income-payments-payload';
-import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
-import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
 
 @State<PaymentsStateModel>({
   name: 'payment',
@@ -146,6 +148,36 @@ export class PaymentsState {
     dispatch(new GetIncomes(Payments.incomes, page, size));
     dispatch(new GetExpenseRegulars(Payments.expenseregulars, page, size));
     dispatch(new GetIncomeRegulars(Payments.incomeregulars, page, size));
+  }
+
+  @Action(GetExpensesByFilterParams)
+  getExpensesByFilterParmas(
+    { patchState }: StateContext<PaymentsStateModel>,
+    { url, params }: GetExpensesByFilterParams
+  ) {
+    return this.httpClient.get<ExpensePayload>(url, { params: params }).pipe(
+      tap((payload: ExpensePayload) => {
+        patchState({
+          allExpenses: payload.content,
+          totalExpenses: payload.totalElements
+        });
+      })
+    );
+  }
+
+  @Action(GetIncomesByFilterParams)
+  getIncomesByFilterParams(
+    { patchState }: StateContext<PaymentsStateModel>,
+    { url, params }: GetIncomesByFilterParams
+  ) {
+    return this.httpClient.get<IncomePayload>(url, { params: params }).pipe(
+      tap((payload: IncomePayload) => {
+        patchState({
+          allIncomes: payload.content,
+          totalExpenses: payload.totalElements
+        });
+      })
+    );
   }
 
   @Action(GetExpensesByDate)

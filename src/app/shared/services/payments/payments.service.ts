@@ -1,8 +1,13 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { Payments } from 'shared/enums/payments';
 import { ExpenseStateModel } from 'shared/models/expense-payment';
 import { IncomeStateModel } from 'shared/models/income-payment';
+import { PaymentsStateModel } from 'shared/models/payments';
+import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
+import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
 import {
   CreateExpensePayment,
   CreateExpenseRegularPayment,
@@ -12,15 +17,13 @@ import {
   GetExpenseRegulars,
   GetExpenses,
   GetExpensesByDate,
+  GetExpensesByFilterParams,
   GetIncomeRegulars,
   GetIncomes,
-  GetIncomesByDate
+  GetIncomesByDate,
+  GetIncomesByFilterParams
 } from 'shared/store/payments/payments.actions';
 import { PaymentsState } from 'shared/store/payments/payments.state';
-import { PaymentsStateModel } from 'shared/models/payments';
-import { Payments } from 'shared/enums/payments';
-import { IncomeRegularStateModel } from 'shared/models/regular-income-payments';
-import { ExpenseRegularStateModel } from 'shared/models/regular-expense-payment';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +68,14 @@ export class PaymentsService {
 
   getAllPayments() {
     this.store.dispatch(new GetAllPayments(0, 10));
+  }
+
+  getExpensesByFilterParams(params: HttpParams) {
+    this.store.dispatch(new GetExpensesByFilterParams(Payments.expenses, params));
+  }
+
+  getIncomesByFilterParams(params: HttpParams) {
+    this.store.dispatch(new GetIncomesByFilterParams(Payments.incomes, params));
   }
 
   getExpensesByDate(from: string, to: string) {

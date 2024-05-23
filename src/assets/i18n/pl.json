@@ -38,6 +38,14 @@
   "EMAIL_CONFIRMATION": {
     "TEXT": "List z aktywacją odesłano na e-maila"
   },
+  "FORGOT-PASSWORD": {
+    "TITLE": "Odzyskiwanie hasła",
+    "EMAIL_LABLE": "Wprowadź adres e-mail",
+    "EMAIL_PH": "Adres e-mail",
+    "EMAIL_OK": "Na Twój adres e-mail została wysłana wiadomość z instrukcjami",
+    "EMAIL_FAILED": "Użytkownik o podanym adresie e-mail nie istnieje",
+    "EMAIL_ERROR": "Nieoczekiwany błąd"
+  },
   "PROFILE": {
     "EDIT_BUTTON": "Edytuj",
     "SAVE_BUTTON": "Zapisz",
@@ -49,11 +57,44 @@
     "CHANGE_PASSWORD_BUTTON": "Zmień hasło",
     "CATEGORIES_BUTTON": "Kategorie",
     "PERIOD_LABEL": "Okres",
-    "ALL_TIME_BUTTON": "Cały czas",
+    "LAST_YEAR_BUTTON": "Ostatni rok",
     "AVERAGE_LABEL": "Średnia",
     "INCOME_LABEL": "Dochód",
     "EXPENSES_LABEL": "Wydatki",
     "MONTHLY_LABEL": "Miesięcznie"
+  },
+  "PIE_CHART": {
+    "NO_EXPENSES": "Niema wydatków"
+  },
+  "PAYMENTS": {
+    "NEW": "Nowy",
+    "TYPE": "Typ",
+    "DESCRIPTION": "Opis",
+    "NAME": "Nazwa",
+    "CATEGORY": "Kategoria",
+    "AMOUNT": "Kwota",
+    "DATE": "Data",
+    "PERIODICITY": "Okresowość (dni)",
+    "ADD": "Dodaj",
+    "NEXT": "Dalej",
+    "BACK": "Wstecz",
+    "RESET": "Reset",
+    "FILTERS": "Filtry",
+    "SEARCH": "Szukaj",
+    "FROM": "Od",
+    "TO": "Do",
+    "CLEAR": "Wyczyść",
+    "APPLY": "Zastosuj",
+    "HISTORY": "Historia",
+    "EXPENSES": "Wydatki",
+    "INCOMES": "Przychody",
+    "EXPENSES_REGULAR": "Wydatki/Regularne",
+    "INCOMES_REGULAR": "Przychody/Regularne",
+    "SUM_UAH": "Kwota ₴",
+    "income-0": "Dochód",
+    "expense-1": "Wydatek",
+    "income-regular-2": "Regularny dochód",
+    "expense-regular-3": "Regularny wydatek"
   },
   "CATEGORY_DIALOG": {
     "NEW_CATEGORY": "Nowa kategoria",
@@ -68,5 +109,13 @@
     "CATEGORIES_INCOME": "Kategorie (Dochody)",
     "DELETE_BUTTON": "Usuń",
     "CLOSE_BUTTON": "Zamknij"
+  },
+  "PASSWORD_DIALOG": {
+    "PASSWORD_TITLE": "Zmień hasło",
+    "OLD_PASSWORD_LABEL": "Stare hasło",
+    "NEW_PASSWORD_LABEL": "Nowe hasło",
+    "PASSWORD_PH": "Hasło",
+    "DECLINE": "Zwrót",
+    "SEND": "Odeslać"
   }
 }

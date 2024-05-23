@@ -32,6 +32,14 @@
   "EMAIL_CONFIRMATION": {
     "TEXT": "An activation letter has been sent to e-mail"
   },
+  "FORGOT-PASSWORD": {
+    "TITLE": "Password recovery",
+    "EMAIL_LABLE": "Enter email address",
+    "EMAIL_PH": "Email Address",
+    "EMAIL_OK": "An email with instructions has been sent to your email address",
+    "EMAIL_FAILED": "User with this email address does not exist",
+    "EMAIL_ERROR": "Unexpected error"
+  },
   "EMAIL": {
     "CONGRATS": "Congratulations!",
     "ACTIVATED": "Your account was successfully activated!",
@@ -49,11 +57,44 @@
     "CHANGE_PASSWORD_BUTTON": "Change Password",
     "CATEGORIES_BUTTON": "Categories",
     "PERIOD_LABEL": "Period",
-    "ALL_TIME_BUTTON": "All Time",
+    "LAST_YEAR_BUTTON": "Last year",
     "AVERAGE_LABEL": "Average",
     "INCOME_LABEL": "Income",
     "EXPENSES_LABEL": "Expenses",
     "MONTHLY_LABEL": "Monthly"
+  },
+  "PIE_CHART": {
+    "NO_EXPENSES": "No expenses there"
+  },
+  "PAYMENTS": {
+    "NEW": "New",
+    "TYPE": "Type",
+    "DESCRIPTION": "Description",
+    "NAME": "Name",
+    "CATEGORY": "Category",
+    "AMOUNT": "Amount",
+    "DATE": "Date",
+    "PERIODICITY": "Periodicity (days)",
+    "ADD": "Add",
+    "NEXT": "Next",
+    "BACK": "Back",
+    "RESET": "Reset",
+    "FILTERS": "Filters",
+    "SEARCH": "Search",
+    "FROM": "From",
+    "TO": "To",
+    "CLEAR": "Clear",
+    "APPLY": "Apply",
+    "HISTORY": "History",
+    "EXPENSES": "Expenses",
+    "INCOMES": "Incomes",
+    "EXPENSES_REGULAR": "Expenses/Regular",
+    "INCOMES_REGULAR": "Incomes/Regular",
+    "SUM_UAH": "Amount ₴",
+    "income-0": "Income",
+    "expense-1": "Expense",
+    "income-regular-2": "Regular Income",
+    "expense-regular-3": "Regular Expense"
   },
   "CATEGORY_DIALOG": {
     "NEW_CATEGORY": "New category",
@@ -68,5 +109,13 @@
     "CATEGORIES_INCOME": "Categories (Income)",
     "DELETE_BUTTON": "Delete",
     "CLOSE_BUTTON": "Close"
+  },
+  "PASSWORD_DIALOG": {
+    "PASSWORD_TITLE": "Change password",
+    "OLD_PASSWORD_LABEL": "Old password",
+    "NEW_PASSWORD_LABEL": "New password",
+    "PASSWORD_PH": "Password",
+    "DECLINE": "Cancel",
+    "SEND": "Send"
   }
 }

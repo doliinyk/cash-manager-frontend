@@ -67,16 +67,15 @@
     <div class="period-buttons-container" fxLayoutAlign="none center" fxLayoutGap="20px">
       <span>{{ 'PROFILE.PERIOD_LABEL' | translate }}</span>
       <mat-button-toggle-group appearance="legacy">
-        <mat-button-toggle value="sevenDays" checked>7</mat-button-toggle>
-        <mat-button-toggle value="thirtyDays">30</mat-button-toggle>
-        <mat-button-toggle value="allTime">{{ 'PROFILE.ALL_TIME_BUTTON' | translate }}</mat-button-toggle>
+        <!--        <mat-button-toggle value="sevenDays" checked>7</mat-button-toggle>-->
+        <!--        <mat-button-toggle value="thirtyDays">30</mat-button-toggle>-->
+        <mat-button-toggle value="lastYear" checked>{{ 'PROFILE.LAST_YEAR_BUTTON' | translate }}</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
     <div class="stats-container" fxLayout="column">
       <div class="piechart-row" fxLayout="row" fxLayoutAlign="center center">
         <div class="piechart-row-piechart" fxLayoutAlign="center center">
           <app-pie-chart></app-pie-chart>
-          <span class="pieChart-vallet">1337</span>
         </div>
         <div class="piechar-row-categories">
           @for (category of this.categoriesService.expenseCategories$ | async; track category) {
