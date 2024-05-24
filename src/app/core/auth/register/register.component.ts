@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RegistrationService } from 'shared/services/auth/registration.service';
 
 @Component({
@@ -13,8 +12,7 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private registrationService: RegistrationService,
-    private router: Router
+    private registrationService: RegistrationService
   ) {
     this.registerForm = this.formBuilder.group({
       login: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])\\w{3,30}$'), Validators.nullValidator]],
