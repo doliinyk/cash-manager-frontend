@@ -15,7 +15,7 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,13 @@ import {ResetPasswordComponent} from "./reset-password/reset-password.component"
     ForgotPasswordComponent,
     ResetPasswordComponent
   ],
-  exports: [LoginComponent, RegisterComponent, ForgotPasswordComponent, EmailConfirmationComponent, ResetPasswordComponent],
+  exports: [
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    EmailConfirmationComponent,
+    ResetPasswordComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,

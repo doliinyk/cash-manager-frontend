@@ -1,11 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {LocalizationService} from "shared/services/localization/localization.service";
-import {catchError, tap} from "rxjs";
-import {F} from "@angular/cdk/keycodes";
-import {ActivatedRoute} from "@angular/router";
-import {AuthService} from "shared/services/auth/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { LocalizationService } from 'shared/services/localization/localization.service';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -41,7 +39,6 @@ export class ResetPasswordComponent implements OnInit {
 
   id: string | null = null;
   securityCode: string | null = null;
-
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {

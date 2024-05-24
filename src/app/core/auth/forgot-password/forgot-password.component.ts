@@ -29,9 +29,13 @@ export class ForgotPasswordComponent {
       .set('locale', locale)
       .set('redirectUrl', location.href.replace('/forgot-password', '/reset'));
     return this.http
-      .post<void>('http://localhost:8080/api/v1/auth/forgot', {
-        email: emailData.email
-      }, { params: params })
+      .post<void>(
+        'http://localhost:8080/api/v1/auth/forgot',
+        {
+          email: emailData.email
+        },
+        { params: params }
+      )
       .pipe(
         tap(() => {
           this.responseMessage = 'SUCCESS';
