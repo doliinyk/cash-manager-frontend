@@ -133,7 +133,7 @@ export class AuthState {
     const locale: string = this.localizationService.getLocalization();
     const params = new HttpParams()
       .set('locale', locale)
-      .set('redirectUrl', location.href.replace('profile', 'auth/login'));
+      .set('redirectUrl', location.href.replace('/user/profile', '/auth/activation'));
     return this.httpClient
       .patch<UserStateModel>(
         'http://localhost:8080/api/v1/user',
