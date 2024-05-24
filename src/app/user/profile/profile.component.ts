@@ -63,8 +63,7 @@ export class ProfileComponent implements OnInit {
   }
 
   declineChanges() {
-    this.userName = this.tempUserName;
-    this.userEmail = this.tempUserEmail;
+    this.authService.getUserByLogin();
     this.isEditMode = false;
   }
 }
