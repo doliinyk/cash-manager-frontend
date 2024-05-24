@@ -1,4 +1,11 @@
 {
+  "MAIN": {
+    "text_main_child_1": "Record expenses and incomes, view history",
+    "text_main_child_2": "Use ready-made categories and add your own expense categories",
+    "text_main_child_3": "View analytics for a specific period across multiple indicators",
+    "button_login_authenticated": "To profile",
+    "button_login_not_authenticated": "Register now"
+  },
   "NAV": {
     "PROFILE": "Profile",
     "PAYMENTS": "Payments",
@@ -39,6 +46,12 @@
     "EMAIL_OK": "An email with instructions has been sent to your email address",
     "EMAIL_FAILED": "User with this email address does not exist",
     "EMAIL_ERROR": "Unexpected error"
+  },
+  "RESET-PASSWORD": {
+    "TITLE": "Password recovery",
+    "NEW_LABEL": "New password",
+    "CONFIRM_LABEL": "Confirm password",
+    "NOT_EQUALS": "Fields are not equals"
   },
   "EMAIL": {
     "CONGRATS": "Congratulations!",
@@ -117,5 +130,14 @@
     "PASSWORD_PH": "Password",
     "DECLINE": "Cancel",
     "SEND": "Send"
+  },
+  "INFO": {
+    "ABOUT_US": "About us",
+    "DEVELOPED_BY": "Developed by IN'SE team",
+    "LEAD": "Denys Oliinyk",
+    "FRONT_1": "Yurii Romanchak",
+    "FRONT_2": "Vitaliy Spelina",
+    "BACK": "Pavlo Glyn",
+    "CLOSE": "Close"
   }
 }

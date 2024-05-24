@@ -1,47 +1,50 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { catchError, tap } from 'rxjs';
+import { LocalizationService } from 'shared/services/localization/localization.service';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent implements OnDestroy {
+export class ForgotPasswordComponent {
   constructor(
     private http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private localizationService: LocalizationService
   ) {}
 
-  subscription: Subscription;
   responseMessage = '';
   emailField = new FormControl('', [Validators.required, Validators.email]);
   forgotGroup = this.formBuilder.group({
     email: this.emailField
   });
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   sendData() {
     const emailData = this.forgotGroup.value;
-    this.subscription = this.http
-      .post<string>('http://localhost:8080/api/v1/auth/forgot', {
-        email: emailData.email
-      })
-      .subscribe(
-        () => {
-          this.responseMessage = 'SUCCESS';
+    const locale: string = this.localizationService.getLocalization();
+    const params = new HttpParams()
+      .set('locale', locale)
+      .set('redirectUrl', location.href.replace('/forgot-password', '/reset'));
+    return this.http
+      .post<void>(
+        'http://localhost:8080/api/v1/auth/forgot',
+        {
+          email: emailData.email
         },
-        error => {
-          if (error.status === 404) {
-            this.responseMessage = 'ERROR_USER';
-          } else {
-            this.responseMessage = 'ERROR';
-          }
-        }
-      );
+        { params: params }
+      )
+      .pipe(
+        tap(() => {
+          this.responseMessage = 'SUCCESS';
+        }),
+        catchError(err => {
+          err.status === 404 ? (this.responseMessage = 'ERROR_USER') : this.responseMessage === 'ERROR';
+          return err;
+        })
+      )
+      .subscribe();
   }
 }

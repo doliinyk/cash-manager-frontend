@@ -2,24 +2,25 @@
   <div class="text-main" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px">
     <div class="text-main-child" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="30px">
       <div class="text-main-child-step" fxLayoutAlign="center center">1</div>
-      <span>Записуйте трати та прибутки, переглядайте історію</span>
+      <span>{{ 'MAIN.text_main_child_1' | translate }}</span>
     </div>
     <div class="text-main-child" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="30px">
       <div class="text-main-child-step" fxLayoutAlign="center center">2</div>
-      <span>Користуйтесь готовими, та додайте власні категорії витрат</span>
+      <span>{{ 'MAIN.text_main_child_2' | translate }}</span>
     </div>
     <div class="text-main-child" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="30px">
       <div class="text-main-child-step" fxLayoutAlign="center center">3</div>
-      <span>Переглядайте аналітику за окремий період часу по декільком показникам</span>
+      <span>{{ 'MAIN.text_main_child_3' | translate }}</span>
     </div>
-    @if (isAuthentificated | async) {
+    <ng-container *ngIf="isAuthentificated | async; else notAuthenticated">
       <button mat-button class="button-login" routerLink="/user/profile">
-        <span class="text-login"> До профілю</span>
+        <span class="text-login">{{ 'MAIN.button_login_authenticated' | translate }}</span>
       </button>
-    } @else {
+    </ng-container>
+    <ng-template #notAuthenticated>
       <button mat-button class="button-login" routerLink="/registration">
-        <span class="text-login"> Зареєстуватись зараз</span>
+        <span class="text-login">{{ 'MAIN.button_login_not_authenticated' | translate }}</span>
       </button>
-    }
+    </ng-template>
   </div>
 </div>

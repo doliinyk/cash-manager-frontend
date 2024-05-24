@@ -1,14 +1,23 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UserStateModel } from 'shared/models/user';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { GetUser, LoginUser, LogoutUser, UserLoginFailed, UserLoginSuccess } from 'shared/store/auth/auth.actions';
+import {
+  ChangeUserNameAndEmail,
+  GetUser,
+  LoginUser,
+  LogoutUser,
+  ResetPassword,
+  UserLoginFailed,
+  UserLoginSuccess
+} from 'shared/store/auth/auth.actions';
 import { catchError, tap } from 'rxjs';
 import { LoginPayload } from 'shared/models/login.payload';
 import { ShowMessageBar } from 'shared/store/app/app.actions';
 import { RemoveTokens, SetTokens } from 'shared/store/token/token.actions';
 import { GetAllCategories } from 'shared/store/category/category.actions';
+import { LocalizationService } from 'shared/services/localization/localization.service';
 
 @State<UserStateModel>({
   name: 'user',
@@ -23,7 +32,8 @@ import { GetAllCategories } from 'shared/store/category/category.actions';
 export class AuthState {
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private localizationService: LocalizationService
   ) {}
 
   @Selector()
@@ -94,5 +104,59 @@ export class AuthState {
       account: undefined
     });
     this.router.navigate(['']);
+  }
+
+  @Action(ResetPassword)
+  resetPassword({ dispatch }: StateContext<UserStateModel>, { id, securityCode, password }: ResetPassword) {
+    return this.httpClient
+      .post<void>('http://localhost:8080/api/v1/auth/reset', {
+        id: id,
+        securityCode: securityCode,
+        password: password
+      })
+      .pipe(
+        tap(() => {
+          dispatch(new ShowMessageBar({ message: 'Success', type: 'success' }));
+          return this.router.navigate(['/login']);
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return dispatch(new ShowMessageBar({ message: err.error.message, type: 'success' }));
+        })
+      );
+  }
+
+  @Action(ChangeUserNameAndEmail)
+  changeUserNameAndEmail(
+    { patchState, dispatch }: StateContext<UserStateModel>,
+    { name, email }: ChangeUserNameAndEmail
+  ) {
+    const locale: string = this.localizationService.getLocalization();
+    const params = new HttpParams()
+      .set('locale', locale)
+      .set('redirectUrl', location.href.replace('profile', 'auth/login'));
+    return this.httpClient
+      .patch<UserStateModel>(
+        'http://localhost:8080/api/v1/user',
+        {
+          login: name,
+          email: email
+        },
+        { params: params }
+      )
+      .pipe(
+        tap((data: UserStateModel) => {
+          patchState({
+            login: data.login,
+            email: data.email,
+            account: data.account,
+            isAuthorized: true
+          });
+          dispatch(new ShowMessageBar({ message: 'Success', type: 'success' }));
+          dispatch(new LogoutUser());
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return dispatch(new ShowMessageBar({ message: error.error.message, type: 'error' }));
+        })
+      );
   }
 }
