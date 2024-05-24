@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {DevinfoComponent} from "../devinfo/devinfo.component";
-import {MatDialog} from "@angular/material/dialog";
+import { DevinfoComponent } from '../devinfo/devinfo.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-footer',

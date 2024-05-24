@@ -39,7 +39,8 @@
         type="text"
         placeholder="{{ 'PROFILE.NAME_FIELD_PLACEHOLDER' | translate }}"
         [readonly]="!isEditMode"
-        [(ngModel)]="user.login" #nameField/>
+        [(ngModel)]="user.login"
+        #nameField />
     </mat-form-field>
     <mat-form-field class="profile-field" color="warn" appearance="outline">
       <mat-label>{{ 'PROFILE.EMAIL_FIELD_LABEL' | translate }}</mat-label>
@@ -48,7 +49,8 @@
         type="email"
         placeholder="{{ 'PROFILE.EMAIL_FIELD_PLACEHOLDER' | translate }}"
         [readonly]="!isEditMode"
-        [(ngModel)]="user.email" #emailField/>
+        [(ngModel)]="user.email"
+        #emailField />
     </mat-form-field>
     <button
       mat-raised-button
