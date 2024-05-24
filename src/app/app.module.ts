@@ -2,7 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { HttpClient, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,9 +25,17 @@ import { AuthModule } from './core/auth/auth.module';
 import { MainComponent } from './core/main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { DevinfoComponent } from './devinfo/devinfo.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, MessageBarComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    MessageBarComponent,
+    DevinfoComponent
+  ],
   imports: [
     TranslateModule.forRoot({
       loader: {
@@ -49,7 +57,8 @@ import { HeaderComponent } from './header/header.component';
     AuthModule,
     FlexLayoutModule,
     NgOptimizedImage,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [[provideHttpClient(withInterceptors([TokenInterceptor]))]],
   bootstrap: [AppComponent]

@@ -28,3 +28,22 @@ export class GetUser {
 
   constructor() {}
 }
+
+export class ChangeUserNameAndEmail {
+  static readonly type = '[user] changeUserNameAndEmail';
+
+  constructor(
+    public name: string,
+    public email: string
+  ) {}
+}
+
+export class ResetPassword {
+  static readonly type = '[user] reset password';
+
+  constructor(
+    public id: string,
+    public securityCode: string,
+    public password: string
+  ) {}
+}

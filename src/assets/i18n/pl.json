@@ -1,4 +1,11 @@
 {
+  "MAIN": {
+    "text_main_child_1": "Zapisuj wydatki i dochody, przeglądaj historię",
+    "text_main_child_2": "Korzystaj z gotowych kategorii i dodawaj własne kategorie wydatków",
+    "text_main_child_3": "Przeglądaj analizy za określony okres według różnych wskaźników",
+    "button_login_authenticated": "Do profilu",
+    "button_login_not_authenticated": "Zarejestruj się teraz"
+  },
   "NAV": {
     "PROFILE": "Profil",
     "PAYMENTS": "Płatności",
@@ -45,6 +52,12 @@
     "EMAIL_OK": "Na Twój adres e-mail została wysłana wiadomość z instrukcjami",
     "EMAIL_FAILED": "Użytkownik o podanym adresie e-mail nie istnieje",
     "EMAIL_ERROR": "Nieoczekiwany błąd"
+  },
+  "RESET-PASSWORD": {
+    "TITLE": "Odzyskiwanie hasła",
+    "NEW_LABEL": "Nowe hasło",
+    "CONFIRM_LABEL": "Potwierdzenie hasła",
+    "NOT_EQUALS": "Pola nie są jednakowe"
   },
   "PROFILE": {
     "EDIT_BUTTON": "Edytuj",
@@ -117,5 +130,14 @@
     "PASSWORD_PH": "Hasło",
     "DECLINE": "Zwrót",
     "SEND": "Odeslać"
+  },
+  "INFO": {
+    "ABOUT_US": "O nas",
+    "DEVELOPED_BY": "Stworzone przez zespół IN'SE",
+    "LEAD": "Denys Oliinyk",
+    "FRONT_1": "Yurii Romanchak",
+    "FRONT_2": "Witold Spelina",
+    "BACK": "Paveł Glyn",
+    "CLOSE": "Zamknij"
   }
 }

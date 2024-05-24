@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LoginResponse } from 'shared/models/login.response';
 import { UserStateModel } from 'shared/models/user';
 import { Select, Store } from '@ngxs/store';
-import { LoginUser, LogoutUser } from 'shared/store/auth/auth.actions';
+import { ChangeUserNameAndEmail, GetUser, LoginUser, LogoutUser, ResetPassword } from 'shared/store/auth/auth.actions';
 import { AuthState } from 'shared/store/auth/auth.state';
 import { TokenState } from 'shared/store/token/token.state';
 import { GetTokens, RefreshTokens } from 'shared/store/token/token.actions';
@@ -53,6 +53,10 @@ export class AuthService {
     return this.store.dispatch(new RefreshTokens());
   }
 
+  public getUserByLogin() {
+    return this.store.dispatch(new GetUser());
+  }
+
   public setAuthorization(req: HttpRequest<any>) {
     const token = this.store.selectSnapshot(TokenState.accessToken);
     if (token) {
@@ -71,5 +75,13 @@ export class AuthService {
 
   isUserAuth() {
     this.store.dispatch(new UserIsAuth());
+  }
+
+  changeUserNameAndEmail(name: string, email: string) {
+    this.store.dispatch(new ChangeUserNameAndEmail(name, email));
+  }
+
+  resetPassword(id: string, securityCode: string, password: string) {
+    this.store.dispatch(new ResetPassword(id, securityCode, password));
   }
 }
